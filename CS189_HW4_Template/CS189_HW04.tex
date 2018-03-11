@@ -1,0 +1,288 @@
+%%%%% Don't Make Changes Below Here %%%%%
+\documentclass{article}\usepackage[utf8]{inputenc}\usepackage[margin=0.4cm,top=0.4cm,bottom=0.4cm]{geometry}\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}\usepackage{bm}\usepackage{calligra}\usepackage{tikz}\usepackage{hyperref}\usetikzlibrary{matrix,fit,chains,calc,scopes}\usepackage{tcolorbox}\tcbuselibrary{skins}\tcbset{Baystyle/.style={sharp corners,enhanced,boxrule=6pt,colframe=orange,height=\textheight,width=\textwidth,borderline={8pt}{-11pt}{},}}\usepackage{amsmath,amssymb,amsthm,tikz,tkz-graph,color,chngpage,soul,hyperref,csquotes,graphicx,floatrow}\newcommand*{\QEDB}{\hfill\ensuremath{\square}}\newtheorem*{prop}{Proposition}\renewcommand{\theenumi}{\alph{enumi}}\usepackage[shortlabels]{enumitem}\usetikzlibrary{matrix,calc}\MakeOuterQuote{"}\newtheorem{theorem}{Theorem} \usetikzlibrary{shapes} \usepackage{lipsum}\usepackage{tabularx,ragged2e,booktabs,caption}\tcbuselibrary{breakable}\newenvironment{yframed}{\begin{tcolorbox}[breakable,colback=gray!3,title after break={\textit{\color{red}Solution (cont.)}},colbacktitle=gray!3, coltitle=black,titlerule=-1pt] }{\end{tcolorbox}}\newtcolorbox{mybox}{colback=black!15!white, colframe=white,arc=12pt}\newtcolorbox{myboxot}{colback=green!15!white, colframe=white,arc=12pt,width=110pt, height=27pt}\newtcbox{\mylib}{enhanced,boxrule=0pt,top=0mm,bottom=0mm,right=0mm,left=4mm,arc=4pt,boxsep=9pt,before upper={\vphantom{dlg}},colframe=green!50!black,coltext=green!25!black,colback=green!10!white,overlay={\begin{tcbclipinterior}\fill[green!75!blue!50!white] (frame.south west)rectangle node[text=white,font=\sffamily\bfseries\tiny,rotate=90] {Problem} ([xshift=4mm]frame.north west);\end{tcbclipinterior}}}\newtcbox{\mylibot}{enhanced,boxrule=0pt,top=0mm,bottom=0mm,right=0mm,arc=4pt,boxsep=9pt,before upper={\vphantom{dlg}},colframe=green!50!black,coltext=green!25!black,colback=green!10!white,overlay={\begin{tcbclipinterior}\fill[red!75!blue!50!white] (frame.south west)rectangle node[text=white,font=\sffamily\bfseries\tiny,rotate=90] {Other} ([xshift=4mm]frame.north west);\end{tcbclipinterior}}}
+\def\Title{\begin{tcolorbox}[Baystyle,]{\begin{center}\vspace*{0.14\textheight}
+{\rule{\textwidth}{1.6pt}\vspace*{-\baselineskip}\vspace*{2pt}}
+\rule{\textwidth}{0.4pt}\\[0.2\baselineskip]{\fontsize{45}{45}\scshape CS 189: Introduction to Machine Learning \\[0.2\baselineskip] \calligra Spring 2018 \\[0.2\baselineskip]}
+{\rule{\textwidth}{0.4pt}\vspace*{-\baselineskip}\vspace{3.2pt}}
+\rule{\textwidth}{1.6pt}\\[\baselineskip]\vspace{0.05\textheight}{{\fontsize{45}{45}\scshape$\bullet$\\ {Homework 4}\\\vspace*{0.01\textheight} }{{\fontsize{18}{18}\scshape{Due on Friday, February 16th, 2018 at 10pm\\}}}\fontsize{45}{45}\scshape$\bullet$  \\}\vspace*{0.1\textheight}{\fontsize{12}{12}\calligra Solutions by\\}{\fontsize{28}{28}\scshape \Name \\}\vspace*{0.01\textheight}{\fontsize{12}{12}\scshape \SID} \\\vspace*{0.05\textheight}{\fontsize{12}{12}\calligra In collaboration with\\}\vspace*{0.01\textheight}{\fontsize{12}{12}\scshape \Collabs} \\\vspace*{0.05\textheight}\end{center}}\end{tcolorbox}\newgeometry{margin=0.75in}}\def\BeginSolution{\begin{yframed}\textbf{\color{red}Solution }}\def\EndSolution{\end{yframed}}\usepackage{algorithm}\usepackage[noend]{algpseudocode}\makeatletter\def\BState{\State\hskip-\ALG@thistlm}\makeatother\def\star{\bigstar}\usetikzlibrary{arrows}\usepackage[mathscr]{euscript}\usepackage[T1]{fontenc}\DeclareSymbolFont{rsfs}{U}{rsfs}{m}{n}\DeclareSymbolFontAlphabet{\mathscrsfs}{rsfs}\newcommand\tab[1][1cm]{\hspace*{#1}}\hypersetup{colorlinks=true,urlcolor=blue}\newtheorem{lemma}[theorem]{Lemma}\newcommand{\norm}[1]{\left\lVert#1\right\rVert}\def\vec{\mathbf}\def\y{\mathbf{y}}\def\X{\mathbf{X}}\def\R{\mathbb{R}}\def\x{\mathbf{x}}\def\w{\mathbf{w}}\def\T{^\top}\def\r{\mathbf{r}}\def\mat{\mathbf}\def\I{\mathbf{I}}\def\A{\mathbf{A}}
+%%%%% Don't Make Changes Above Here %%%%%
+
+%%%%% Template Begins Here %%%%%
+
+\def\Name{Firstname Lastname}  % Your name
+\def\SID{Student ID}  % Your student ID number
+\def\Collabs{None} % Your collaborators here with a comma between each person's name. Write None if no collaborators. Don't leave blank.
+
+
+\pagestyle{empty}
+\begin{document}
+\Title
+\clearpage
+
+%%%% Problem 1 Starts Here %%%%
+\vspace{-2mm}\noindent\begin{mybox}{\begin{center}\textbf{\color{black}Problem 1: Getting Started}\end{center}}\end{mybox}\vspace{-2mm}
+\vspace{10pt}
+\noindent \textbf{Read through this page carefully.} You may typeset your homework in latex or submit neatly handwritten/scanned solutions. Please start each question on a new page. Deliverables:
+\begin{enumerate}[1.]
+\item Submit a PDF of your writeup, \textbf{with an appendix for your code}, to assignment on Gradescope, ``HW4 Write-Up''. If there are graphs, include those graphs in the correct sections. Do not simply reference your appendix.
+\item If there is code, submit all code needed to reproduce your results, ``HW4 Code''.
+\item If there is a test set, submit your test set evaluation results, ``HW4 Test Set''.
+\end{enumerate}
+After you've submitted your homework, watch out for the self-grade form.
+\begin{enumerate}
+\item Who else did you you work with on this homework? In case of course events, just describe the group. How did you work on this homework? Any comments about the homework?
+\BeginSolution
+%1a
+
+\EndSolution
+\item Please copy the following statement and sign next to it. We just want to make it \textit{extra} clear so that no one inadvertently cheats.
+
+\textit{I certify that all solutions are entirely in my words and that I have not looked at another student's solutions. I have credited all external sources in this write up.}
+\BeginSolution
+%1b
+
+\EndSolution
+\end{enumerate}
+%%%% Problem 1 Ends Here %%%%
+\clearpage
+
+%%%% Problem 2 Starts Here %%%%
+\vspace{-2mm}\noindent\begin{mybox}{\begin{center}\textbf{\color{black}Problem 2: MLE of Multivariate Gaussian}\end{center}}\end{mybox}\vspace{-2mm}
+\vspace{10pt}
+\noindent In lecture, we discussed uses of the multivariate Gaussian distribution. We just assumed that we knew the parameters of the distribution (the mean vector $\mu$ and covariance matrix $\Sigma$). In practice, though, we will often want to estimate $\mu$ and $\Sigma$ from data. (This will come up even beyond regression-type problems: for example, when we want to use Gaussian models for classification problems.) This problem asks you to derive the Maximum Likelihood Estimate for the mean and variance of a multivariate Gaussian distribution.
+\begin{enumerate}
+\item Let $\mathbf{X}$ have a multivariate Gaussian distribution with mean $\mu \in \mathbb{R}^d$ and covariance matrix $\Sigma \in \mathbb{R}^{d \times d}$. {\bf Write the log likelihood of drawing the $n$ i.i.d. samples $\mathbf{x}_1, \ldots, \mathbf{x}_n \in \mathbb{R}^d$ from $\mathbf{X}$ given $\Sigma$ and $\mu$}.
+\BeginSolution
+%2a
+
+\EndSolution
+\item \textbf{Find MLE of $\mu$ and $\Sigma$.} For taking derivatives with respect to matrices, you may use any formula in "The Matrix Cookbook" without proof. This is a reasonably involved problem part with lots of steps to get to the answer. We recommend students first do the one-dimensional case and then the two-dimensional case to warm up.
+\vspace{4pt}
+
+\noindent Note: Conventions for gradient and derivative in ``The Matrix Cookbook'' may vary from the conventions we saw in the discussion.
+\BeginSolution
+%2b
+
+\EndSolution
+\item Use the following code to sample from a two-dimensional Multivariate Gaussian and plot the samples:
+\begin{verbatim}
+	import numpy as np
+	import matplotlib.pyplot as plt
+	mu = [15, 5]
+	sigma = [[20, 0], [0, 10]]
+	samples = np.random.multivariate_normal(mu, sigma, size=100)
+	plt.scatter(samples[:, 0], samples[:, 1])
+	plt.show()
+\end{verbatim}
+Try the following three values of $\Sigma$:
+$$\Sigma =\begin{bmatrix}20 & 0 \\0 & 10\end{bmatrix}; \quad\Sigma =\begin{bmatrix}20 & 14 \\14 & 10\end{bmatrix}; \quad\Sigma =\begin{bmatrix}20 & -14 \\-14 & 10\end{bmatrix}$$
+\noindent {\bf Calculate the mean and covariance matrix of these distributions from the samples (that is, implement part (b))}. Report your results. Include your code in your write-up. Note: you are allowed to use \texttt{numpy}.
+\BeginSolution
+%2c
+
+\EndSolution
+\end{enumerate}
+%%%% Problem 2 Ends Here %%%%
+\clearpage
+
+%%%% Problem 3 Starts Here %%%%
+\vspace{-2mm}\noindent\begin{mybox}{\begin{center}\textbf{\color{black}Problem 3: Tikhonov Regularization and Weighted Least Squares}\end{center}}\end{mybox}\vspace{-2mm}
+\vspace{10pt}
+\noindent In lecture, you have seen this worked out in one way. In homework 2 we introduced Tikhonov regularization as a generalization of ridge regression. In this problem, we look at Tikhonov regularization from a probabilistic standpoint.
+\vspace{4pt}
+
+\noindent The main goal is to deepen your understanding of how priors and thus the right regularization affect the MAP estimator. First, you will work out how introducing a certain probabilistic prior before maximizing the posterior is equivalent to adding the Tikhonov regularization term: by adding the Tikhonov regularization term, we effectively constrain our optimization space.  Similarly, using a probabilistic prior drives our optimization towards solutions that have a high (prior) probability of occurring. In the second half of the problem you will then do some simulations to see how different priors influence the estimator explicitly, as well as how this effect changes as the number of samples grows.
+\begin{enumerate}
+\item Let $\mathbf{x} \in \mathbb{R}^d$ be a $d$-dimensional vector and $Y \in \mathbb{R}$ be a one-dimensional random variable. Assume a linear model: $Y=\mathbf{x}^\top\mathbf{w}+Z$ where $Z\in\mathbb{R}$ is a standard Gaussian random variable $Z \sim\mathcal{N}(0,1)$ and $\mathbf{w}\in\mathbb{R}^d$ is a $d$-dimensional Gaussian random vector $\mathbf{w}\sim\mathcal{N}(0,\mathbf{\Sigma})$. $\mathbf{\Sigma}$ is a known symmetric positive definite covariance matrix.  Note that $\mathbf{w}$ is independent of the observation noise.  {\bf What is the conditional distribution of $Y$ given $\mathbf{x}$ and $\mathbf{w}$?}
+\BeginSolution
+%3a
+
+\EndSolution
+\item (Tikhonov regularization) Let us assume that we are given $n$ training data points\\ $\{(\mathbf{x}_1,Y_1),(\mathbf{x}_2,Y_2),\cdots, (\mathbf{x}_n,Y_n)\}$ which we know are generated i.i.d. according to the model of $(\mathbf{x},Y)$ in the previous part, i.e. we draw one $\mathbf{w}$ and use this to generate all $Y_i$ given distinct but arbitrary $\{\mathbf{x}_i\}_{i=1}^n$ , but the observation noise $Z_i$ varies across the different training points.  {\bf Derive the posterior distribution of $\mathbf{w}$ given the training data. Based on your result, what is the MAP estimate of $\mathbf{w}$?  Comment on how Tikhonov regularization is a generalization of ridge regression from a probabilistic perspective.}
+\vspace{4pt}
+
+\noindent Note: $\mathbf{w}$ and $\mathbf{Y} = (Y_1, Y_2, \ldots, Y_n)$ are jointly Gaussian in this problem given $\{\mathbf{x}_i\}_{i=1}^n$.
+\vspace{4pt}
+
+\noindent Hint: (You may or may not find this useful) If the probability density function of a random variable is of the form \begin{align*}f(\mathbf{v})=C \cdot\exp\left\{-\frac{1}{2}\mathbf{v}^\top\mathbf{A}\mathbf{v}+\mathbf{b}^\top \mathbf{v}\right\}, \end{align*} where $C$ is some constant to make $f(\mathbf{v})$ integrates to $1$, then the mean of $\mathbf{v}$ is $\mathbf{A}^{-1}\mathbf{b}$. This can be used to help complete squares if you choose to go that way.
+\BeginSolution
+%3b
+
+\EndSolution
+\item We have so far assumed that the observation noise has a standard normal distribution. While this assumption is nice to work with, we would like to be able to handle a more general noise model. In particular, we would like to extend our result from the previous part to the case where the observation noise variables $Z_i$ are no longer independent across samples, i.e. $\mathbf{Z}$ is no longer $N(\mathbf{0}, \mathbb{I}_n)$ but instead distributed as $N(\mu_z, \mathbf{\Sigma}_z)$ for some mean $\mu_z$ and some covariance $\mathbf{\Sigma}_z$ (still independent of the parameter $\mathbf{w}$). {\bf Derive the posterior distribution of $\mathbf{w}$ by appropriately changing coordinates.} We make the reasonable assumption that the $\mathbf{\Sigma}_z$ is invertible, since otherwise, there would be some dimension in which there is no noise.
+\vspace{4pt}
+
+\noindent Hint: Write $\mathbf{Z}$ as a function of a standard normal Gaussian vector $\mathbf{V}\sim\mathcal{N}(\mathbf{0}, \mathbb{I}_n)$ and use the result in (b) for an equivalent model of the form $\widetilde{\mathbf{Y}} = \widetilde{\mathbf{X}}\mathbf{w} + \mathbf{V}$.
+\BeginSolution
+%3c
+
+\EndSolution
+\item (Compare the effect of different priors) In this part, you will generate plots that show how different priors on $\mathbf{w}$ affect our prediction of the true $\mathbf{w}$ which generated the data points. Pay attention to how the amount of data used and the choice of prior relative to the true $\mathbf{w}$ we use are related to the final prediction.
+\vspace{4pt}
+
+\noindent Do the following for$\mathbf{\Sigma} = \mathbf{\Sigma}_1,\mathbf{\Sigma}_2,\mathbf{\Sigma}_3,\mathbf{\Sigma}_4,\mathbf{\Sigma}_5,\mathbf{\Sigma}_6$ respectively, where\begin{align*}&\mathbf{\Sigma}_1 = \begin{bmatrix}    1      & 0\\    0      & 1    \end{bmatrix}; \quad\mathbf{\Sigma}_2 = \begin{bmatrix}1      & 0.25\\0.25      & 1\end{bmatrix} ; \quad\mathbf{\Sigma}_3 = \begin{bmatrix}1      & 0.9\\0.9      & 1\end{bmatrix} ;  \\&\mathbf{\Sigma}_4 = \begin{bmatrix}1      & -0.25\\-0.25      & 1\end{bmatrix}  ; \quad\mathbf{\Sigma}_5 = \begin{bmatrix}1      & -0.9\\-0.9      & 1\end{bmatrix} ; \quad\mathbf{\Sigma}_6 = \begin{bmatrix} 0.1      & 0 \\ 0      & 0.1 \end{bmatrix} \end{align*} Under the priors above, the coordinates of the (random) vector $\mathbf{w}$ are: (1) independent with large variance, (2) mildly positively correlated, (3) strongly positively correlated, (4) mildly negatively correlated, (5) strongly negatively correlated, and (6) independent with small variances respectively.
+\vspace{4pt}
+
+\noindent Using the starter code, generate data points (in the range [5, 500]) $Y = x_1 + x_2 + Z$ with $x_1, x_2 \sim\mathcal{N}(0, 5)$ and $Z \sim\mathcal{N}(0, 1)$ as training data (here, the true $\mathbf{w}$ is thus $\begin{bmatrix} 1 & 1 \end{bmatrix}^T$). Note that the randomness of $x_i$ here is only for the generation of the plot but in our probabilistic model for parameter estimation we consider them as fixed and given. The starter code helps you generate an interactive plot where you can adjust the covariance prior and the number of samples used to calculate the posterior. {\bf Include 6 plots of the contours of the posteriors on $\mathbf{w}$ for various settings of $\mathbf{\Sigma}$ and number of data points. Write the covariance prior and number of samples for each plot. What do you observe as the number of data points increases? }
+\BeginSolution
+%3d
+
+\EndSolution
+\item (Influence of Priors) For our simulations, we will generate $n$ training data samples from $Y=x_1+x_2+Z$ where again $x_1,x_2 \sim\mathcal{N}(0,5)$ and $Z\sim\mathcal{N}(0,1)$ (all of them independent of each other) as before. Notice that the true parameters $w_1 = 1, w_2 = 1$ are moderately large and positively correlated with each other. We want to quantitatively understand how the effect of the prior influences the mean square error as we get more training data. This should corroborate the qualitative results you saw in the previous part.
+\vspace{4pt}
+
+\noindent In this case, we could directly compute the "test error" for a given estimator $\widehat{\mathbf{w}}$ of the parameter $\mathbf{w}$ (our prediction for $Y$ given a new data point $\mathbf{x} = (x_1, x_2)^\top$ is then $\widehat{Y} = \widehat{w}_1 x_1 + \widehat{w}_2 x_2$). Specifically, considering $\widehat{\mathbf{w}}$ now fixed, the expected error for a randomly drawn $Y$ given the true (but unknown) parameter vector $\mathbf{w} = (1, 1)^\top$ is equal to $\mathbb{E}_{Z,\mathbf{x}}(Y-\widehat{Y})^2 = 5(\widehat{w}_1-1)^2 + 5(\widehat{w}_2 - 1)^2 + 1$. We call this the \emph{theoretical average test error}. Note that here by our choice of definition, the expectation for new test samples is over $\mathbf{x}$ as well, although our estimator is not taking the randomness of $\mathbf{x}$ in the training data into account.
+\vspace{4pt}
+
+\noindent In practice, the expectation with respect to the true conditional distribution of $Y$ given $\mathbf{w}$ cannot be computed since the true $\mathbf{w}$ is unknown. Instead, we are only given a finite amount of samples from the model (which we call the \emph{test set}, which independent of the training data, but identically distributed) so that it is only possible to compute \begin{equation*} \frac{1}{n}\sum_{i=1}^n(Y_i-\hat{Y}_i)^2 \end{equation*} which we call the \emph{empirical average test error} (also known as MSE). Again, note that here, $\hat{Y}_i = \mathbf{x}_i^\top\mathbf{\widehat{w}}$ where $\mathbf{x}_i\in\mathbb{R}^2$ and $\mathbf{\widehat{w}}$ in your model is the solution to the least square problem with Tikhonov regularization given the training data.
+\vspace{4pt}
+
+\noindent {\bf Generate a test set of $500$ data points $(\mathbf{x}_i, Y_i)$ from the above model. Plot the empirical and theoretical mean square error between $\hat Y_i$ and $Y_i$ over the test data with respect to the size of training data $n$ (increase $n$ from $5$ to $200$ in increments of $5$). }
+\vspace{4pt}
+
+\noindent Note: If we just plotted both the empirical and theoretical average test errors with respect to the amount of training data for one "round" or training data, the results would still look jagged. In order to give a quantitive statement about the test error with respect to the training data $n$ with a ``smoother'' plot, what we really want to know is the expectation of the theoretical average test error with respect to $\mathbf{w}$ and the training samples $(\mathbf{x}_i,Y_i)$, i.e. $\mathbb{E}_{(\mathbf{x}_1,Y_1),\dots, (\mathbf{x}_n,Y_n)}\mathbb{E}_{Z,\mathbf{x}}(Y-\widehat{Y})^2$ (note that in this term, only $\widehat{Y}$ depends on the training data $(\mathbf{x}_1,Y_1),\dots, (\mathbf{x}_n,Y_n)$ whereas $(\mathbf{x},Y)$ is an independent fresh test sample). Consequently, as an approximation, it is worth replicating the entire experiment a few times (say 100 times) to get an empirical estimate of this quantity. (It is also insightful to look at the spread.)  {\bf Compare what happens for different priors as the amount of training data increases. Try plotting the theoretical MSE with logarithmic x and y-axes and explain the plot.  What constitutes a "good" prior and which of the given priors are "good" choices for our particular $\mathbf{w} = (1,1)^\top$? Describe how the influence of different priors changes with the number of data points.}
+\BeginSolution
+%3e
+
+\EndSolution
+\end{enumerate}
+%%%% Problem 3 Ends Here %%%%
+\clearpage
+
+%%%% Problem 4 Starts Here %%%%
+\vspace{-2mm}\noindent\begin{mybox}{\begin{center}\textbf{\color{black}Problem 4: Kernel Ridge Regression: Theory}\end{center}}\end{mybox}\vspace{-2mm}
+\vspace{10pt}
+\noindent In ridge regression, we are given a vector $\y \in \R^{n}$ and a matrix $\X \in \mathbb{R}^{n \times \ell}$, where $n$ is the number of training points and $\ell$ is the dimension of the raw data points. In most settings we don't want to work with just the raw feature space, so we augment the data points with features and replace $\X$ with $\bm{\Phi} \in \mathbb{R}^{n \times d}$, where $\pmb{\phi}_i^\top = \pmb{\phi}(\x_i) \in \R^{d}$. Then we solve a well-defined optimization problem that involves the matrix $\bm{\Phi}$ and $\y$ to find the parameters $\w \in \R^{d}$. Note the problem that arises here. If we have polynomial features of degree at most $p$ in the raw $\ell$ dimensional space, then there are $d = \binom{\ell+p}{p}$ terms that we need to optimize, which can be very, very large (much larger than the number of training points $n$). Wouldn't it be useful, if instead of solving an optimization problem over $d$ variables, we could solve an equivalent problem over $n$ variables (where $n$ is potentially much smaller than $d$), and achieve a computational runtime independent of the number of augmented features? As it turns out, the concept of kernels (in addition to a technique called the kernel trick) will allow us to achieve this goal.
+\begin{enumerate}
+\item (Dual perspective of the kernel method) In lecture, you saw a derivation of kernel ridge regression involving Gaussians and conditioning. There is also a pure optimization perspective that uses Lagrangian multipliers to find the dual of the ridge regression problem. First, we could rewrite the original problem as \begin{align*}  \operatorname*{minimize}_{\w, \vec r} &  \qquad \frac 1 2 \left[    \left\lVert \vec r \right\rVert_2^2 +    \lambda\left\lVert \w \right\rVert_2^2    \right] \\  \text{subject to} & \qquad \vec r = \X\w-\y.\end{align*} \textbf{Show that the solution of this is equivalent to} \begin{equation}  \min_{\w,\r}\max_{\bm{\alpha}} L(\w, \vec r, \bm{\alpha}) :=  \min_{\w,\r}\max_{\bm{\alpha}} \left[  \frac 1 2 \left\lVert \r \right\rVert_2^2  + \frac \lambda 2 \left\lVert \w \right\rVert_2^2  + \bm{\alpha}\T \left( \vec r - \X\w + \y\right)\right], \end{equation} where $L(\w, \vec r, \bm{\alpha})$ is the Lagrangian function.
+\BeginSolution
+%4a
+
+\EndSolution
+\item Using the minmax theorem\footnote{\url{https://www.wikiwand.com/en/Minimax_theorem}}, we can swap the min and max (think about what does the order of min and max mean here and why it is important):\begin{equation}  \min_{\w,\r}\max_{\bm{\alpha}} L(\w, \vec r, \bm{\alpha}) = \max_{\bm{\alpha}} \min_{\w,\r} L(\w, \vec r, \bm{\alpha}).\end{equation}\textbf{Argue that the right hand side is equal to}\begin{equation}  \min_{\bm{\alpha}} \left[ \frac{1}{2} \bm{\alpha}\T (\mat K+\lambda \I) \bm{\alpha} -\lambda\bm{\alpha}\T \y \right]  \text{where $\mat K = \X\X\T \in \R^{n \times n}$}. \end{equation} You can do this by setting the appropriate partial derivative of the Lagrangian $L$ to zero.  This is often call \emph{the Lagrangian dual problem} of the original optimization problem.
+\BeginSolution
+%4b
+
+\EndSolution
+\item \textbf{Finally, prove that the optimal $\w^*$ can be computed using} \begin{equation}   \w^* = \X\T \left( \mat K + \lambda\I \right)^{-1}\y. \end{equation}
+\BeginSolution
+%4c
+
+\EndSolution
+\item (Polynomial Regression from a kernelized view) In this part, we will show that polynomial regression with a particular Tiknov regularization is the same as kernel ridge regression with a polynomial kernel for second-order polynomials. Recall that a degree 2 polynomial kernel function on $\mathbb R^d$ is defined as \begin{equation} K(\x_i,\x_j) = (1+\x_i\T\x_j)^2, \end{equation} for any $\x_i,\x_j\in\mathbb R^d$. Given a dataset $(\x_i,y_i)$ for $i=1,2,\dots, n$, \textbf{show the solution to kernel ridge regression is the same as the regularized least square solution to polynomial regression (with unweighted monomials as features) for $d=2$ given the right choice of Tikhonov regularization for the polynomial regression.} That is, show for any new point ${\x}$ given in the prediction stage, both methods give the same prediction $\hat{y}$ with the same training data. \textbf{What is the Tikhonov regularization matrix here?}
+\vspace{4pt}
+
+\noindent Hint: You may or may not use the following matrix identity: \begin{equation} \A(a \I_d + \A\T \A)^{-1} = (a \I + \A \A\T)^{-1}\A, \end{equation} for any matrix $\A\in\mathbb R^{n\times d}$ and any positive real number $a$.
+\BeginSolution
+%4d
+
+\EndSolution
+\item In general, for any polynomial regression with $p$th order polynomial on $\mathbb R^d$ with an appropriately specified Tikhonov regression, we can show the equivalence between it and kernel ridge regression with a polynomial kernel of order $p$.  {\bf Comment on the computational complexity of doing least squares for polynomial regression with this Tikhonov regression directly and that of doing kernel ridge regression in the training stage.} (That is, the complexity of finding $\pmb\alpha$ and finding $\vec w$.) {\bf Compare with the computational complexity of actually doing prediction as well.}
+\BeginSolution
+%4e
+
+\EndSolution
+\end{enumerate}
+%%%% Problem 4 Ends Here %%%%
+\clearpage
+
+%%%% Problem 5 Starts Here %%%%
+\vspace{-2mm}\noindent\begin{mybox}{\begin{center}\textbf{\color{black}Problem 5: Kernel Ridge Regression: Practice}\end{center}}\end{mybox}\vspace{-2mm}
+\vspace{10pt}
+\noindent In the following problem, you will implement Polynomial Ridge Regression and its kernel variant Kernel Ridge Regression, and compare them with each other.  You will be dealing with a 2D regression problem, i.e., $\vec x_i \in \mathbb{R}^2$.  We give you three datasets, \texttt{circle.npz} (small dataset),  \texttt{heart.npz} (medium dataset), and \texttt{asymmetric.npz} (large dataset).  In this problem, we choose $y_i \in \{-1, +1\}$, so you may view this question as a classification problem. Later on in the course we will learn about logistic regression and SVMs, which can solve classification problems much better and can also leverage kernels.
+\begin{enumerate}
+\item \textbf{Use \texttt{matplotlib.pyplot} to visualize all the datasets and attach the plots to your report}. Label the points with different $y$ values with different colors and/or shapes. You are only allow to use \texttt{numpy.*} and \texttt{numpy.linalg.*} in the following questions.
+\BeginSolution
+%5a
+
+\EndSolution
+\item \textbf{Implement polynomial ridge regression} (non-kernelized version that you should already have implemented in your previous homework) \textbf{to fit all three datasets}.  Use the first 80\% dataset.  \textbf{Report both the average training error and the average validation error for polynomial order $p \in \{1, \dots, 16\}$}.  Use the regularization term $\lambda=0.001$ for all $p$.  \textbf{Visualize your result and attach the heatmap plots only for \texttt{asymmetric.npz} (as you have already done for the other two datasets) over the 2D domain for $p \in \{2, 4, 6, 8, 10, 12\}$ in your report.} You can start with the code from homework 2, problem 5.
+\BeginSolution
+%5b
+
+\EndSolution
+\item \textbf{Implement kernel ridge regression to fit the datasets \texttt{circle.npz}, \texttt{asymmetric.npy}, and \texttt{heart.npz}}.  Use the polynomial kernel $K(\vec x_i, \vec x_j) = (1 + \vec x_i^\top \vec x_j)^p$. Use the first 80\% dataset \textbf{Report both the average training error, and the average validation error for polynomial order $p \in \{1,\dots, 16\}$}.  Use the regularization term $\lambda=0.001$ for all $p$.  \textbf{Visualize your result and attach the heatmap plots for the learned predictions over the entire 2D domain for $p \in \{2, 4, 6, 8, 10, 12\}$ in your report.} The sample code for generating heatmap plot is included in the start kit.  \textbf{For \texttt{circle.npz}, also report the average training error and validation error for polynomial order $p \in \{1,\dots, 24\}$ when you use only the first 15\% as the training dataset and the rest 85\% to use a high-order polynomial in linear/ridge regression.}
+\BeginSolution
+%5c
+
+\EndSolution
+\item (Diminishing influence of the prior with growing amount of data) With increasing of amount of data, the prior (from the statistical view) and regularization (from the optimization view) will be washed away and become less and less important.  Sample the training data from the first 80\% from \texttt{asymmetric.npz} and use the data from the last 20\\textbf{Make a plot whose $x$ axis is the amount of the training data and $y$ axis is the validation error of the non-kernelized ridge regression algorithm. Repeat the same for kernel ridge regression.}  Include 6 curves for hyper-parameters $\lambda \in \{0.0001, 0.001, 0.01\}$ and $p = \{5, 6\}$.  Your plot should demonstrate that with same $p$, the validation error will converge with enough data, regardless of the choice of $\lambda$ and the regularizer.  You can use log plot on $x$ axis for clarity and you need to resample the data multiple times for the given $p$, $\lambda$, and the amount of training data in order to get a smooth curve.
+\BeginSolution
+%5d
+
+\EndSolution
+\item A popular kernel function that is widely used in various kernelized learning algorithms is called the radial basis function kernel (RBF kernel).  It is defined as \begin{equation} K(\x, \x') = \exp \left(-\frac{\lVert \x-\x'\rVert_2^2}{2\sigma^2}\right) \end{equation} \textbf{Implement the RBF kernel function for kernel ridge regression to fit the dataset \texttt{heart.npz}}.  Use the regularization term $\lambda=0.001$.  \textbf{Report the average error, visualize your result and attach the heatmap plots for the fitted functions over the 2D domain for $\sigma \in \{10, 3, 1, 0.3, 0.1, 0.03\}$ in your report.}  You may want to vectorize your kernel functions to speed up your implementation.  \textbf{Comment on the effect of $\sigma$.}
+\BeginSolution
+%5e
+
+\EndSolution
+\item For polynomial ridge regression, \textbf{which of your implementation is more efficient, the kernelized one or the non-kernelized one?} For RBF kernel, \textbf{explain whether it is possible to implement it in the non-kernelized ridge regression.}  \textbf{Summarize when you prefer the kernelized to the non-kernelized ridge regression.}
+\BeginSolution
+%5f
+
+\EndSolution
+\item Disable the \texttt{clip} option in the provided \texttt{heatmap} function and redraw the heatmap plots for the functions learned by the polynomial kernel and RBF kernel.  Experiment on the provided datasets and \textbf{describe one potential problem of the polynomial kernel related to what you see here.} Does the RBF kernel have such problem?  \textbf{Compute, compare, comment, and attach the heatmap plots of the polynomial kernel and the RBF kernel on \texttt{heart.npz} dataset.}
+\BeginSolution
+%5g
+
+\EndSolution
+\end{enumerate}
+%%%% Problem 5 Ends Here %%%%
+\clearpage
+
+%%%% Problem 6 Starts Here %%%%
+\vspace{-2mm}\noindent\begin{mybox}{\begin{center}\textbf{\color{black}Problem 6: Your Own Question}\end{center}}\end{mybox}\vspace{-2mm}
+\vspace{10pt}
+\noindent \textbf{Write your own question, and provide a thorough solution.}
+\vspace{3pt}
+
+\noindent Writing your own problems is a very important way to really learn the material. The famous ``Bloom's Taxonomy'' that lists the levels of learning is: Remember, Understand, Apply, Analyze, Evaluate, and Create. Using what you know to create is the top-level. We rarely ask you any HW questions about the lowest level of straight-up remembering, expecting you to be able to do that yourself. (e.g. make yourself flashcards) But we don't want the same to be true about the highest level.
+\vspace{3pt}
+
+\noindent As a practical matter, having some practice at trying to create problems helps you study for exams much better than simply counting on solving existing practice problems. This is because thinking about how to create an interesting problem forces you to really look at the material from the perspective of those who are going to create the exams. 
+\vspace{3pt}
+
+\noindent Besides, this is fun. If you want to make a boring problem, go ahead. That is your prerogative. But it is more fun to really engage with the material, discover something interesting, and then come up with a problem that walks others down a journey that lets them share your discovery. You don't have to achieve this every week. But unless you try every week, it probably won't happen ever. 
+\BeginSolution
+%6
+
+\EndSolution
+%%%% Problem 6 Ends Here %%%%
+\clearpage
+
+%%%% Code Appendix Starts Here %%%%
+\vspace{-2mm}\noindent\begin{mybox}{\begin{center}\textbf{\color{black}Code Appendix}\end{center}}\end{mybox}\vspace{-2mm}
+\begin{itemize}
+\item \texttt{kernal: startkit.py}
+\BeginSolution
+% Paste Code Between Verbatim
+\begin{verbatim}
+
+\end{verbatim}
+\EndSolution
+\item \texttt{tikhonov: prior1\_interactive\_starter.py}
+\BeginSolution
+% Paste Code Between Verbatim
+\begin{verbatim}
+
+\end{verbatim}
+\EndSolution
+\item \texttt{tikhonov: prior1\_starter.py}
+\BeginSolution
+% Paste Code Between Verbatim
+\begin{verbatim}
+
+\end{verbatim}
+\EndSolution
+\item \texttt{tikhonov: prior1\_starter.py}
+\BeginSolution
+% Paste Code Between Verbatim
+\begin{verbatim}
+
+\end{verbatim}
+\EndSolution
+\end{itemize}
+%%%% Code Appendix Ends Here %%%%
+
+\end{document}
+%%%%% Template Ends Here %%%%%

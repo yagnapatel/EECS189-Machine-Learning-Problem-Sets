@@ -1,0 +1,351 @@
+%%%%% Don't Make Changes Below Here %%%%%
+\documentclass{article}\usepackage[utf8]{inputenc}\usepackage[margin=0.4cm,top=0.4cm,bottom=0.4cm]{geometry}\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}\usepackage{bm, multicol}\usepackage{calligra}\usepackage{tikz, listings}\usepackage{hyperref}\usetikzlibrary{matrix,fit,chains,calc,scopes}\usepackage{tcolorbox}\tcbuselibrary{skins}\tcbset{Baystyle/.style={sharp corners,enhanced,boxrule=6pt,colframe=orange,height=\textheight,width=\textwidth,borderline={8pt}{-11pt}{},}}\usepackage{amsmath,amssymb,amsthm,tikz,tkz-graph,color,chngpage,soul,hyperref,csquotes,graphicx,floatrow}\newcommand*{\QEDB}{\hfill\ensuremath{\square}}\newtheorem*{prop}{Proposition}\renewcommand{\theenumi}{\alph{enumi}}\usepackage[shortlabels]{enumitem}\usetikzlibrary{matrix,calc}\MakeOuterQuote{"}\newtheorem{theorem}{Theorem} \usetikzlibrary{shapes} \usepackage{lipsum}\usepackage{tabularx,ragged2e,booktabs,caption}\tcbuselibrary{breakable}\newenvironment{yframed}{\begin{tcolorbox}[breakable,colback=gray!3,title after break={\textit{\color{red}Solution (cont.)}},colbacktitle=gray!3, coltitle=black,titlerule=-1pt] }{\end{tcolorbox}}\newtcolorbox{mybox}{colback=black!15!white, colframe=white,arc=12pt}\newtcolorbox{myboxot}{colback=green!15!white, colframe=white,arc=12pt,width=110pt, height=27pt}\newtcbox{\mylib}{enhanced,boxrule=0pt,top=0mm,bottom=0mm,right=0mm,left=4mm,arc=4pt,boxsep=9pt,before upper={\vphantom{dlg}},colframe=green!50!black,coltext=green!25!black,colback=green!10!white,overlay={\begin{tcbclipinterior}\fill[green!75!blue!50!white] (frame.south west)rectangle node[text=white,font=\sffamily\bfseries\tiny,rotate=90] {Problem} ([xshift=4mm]frame.north west);\end{tcbclipinterior}}}\newtcbox{\mylibot}{enhanced,boxrule=0pt,top=0mm,bottom=0mm,right=0mm,arc=4pt,boxsep=9pt,before upper={\vphantom{dlg}},colframe=green!50!black,coltext=green!25!black,colback=green!10!white,overlay={\begin{tcbclipinterior}\fill[red!75!blue!50!white] (frame.south west)rectangle node[text=white,font=\sffamily\bfseries\tiny,rotate=90] {Other} ([xshift=4mm]frame.north west);\end{tcbclipinterior}}}
+\def\Title{\begin{tcolorbox}[Baystyle,]{\begin{center}\vspace*{0.14\textheight}
+{\rule{\textwidth}{1.6pt}\vspace*{-\baselineskip}\vspace*{2pt}}
+\rule{\textwidth}{0.4pt}\\[0.2\baselineskip]{\fontsize{45}{45}\scshape CS 189: Introduction to Machine Learning \\[0.2\baselineskip] \calligra Spring 2018 \\[0.2\baselineskip]}
+{\rule{\textwidth}{0.4pt}\vspace*{-\baselineskip}\vspace{3.2pt}}
+\rule{\textwidth}{1.6pt}\\[\baselineskip]\vspace{0.05\textheight}{{\fontsize{45}{45}\scshape$\bullet$\\ {Homework 7}\\\vspace*{0.01\textheight} }{{\fontsize{18}{18}\scshape{Due on Friday, March 9th, 2018 at 10pm\\}}}\fontsize{45}{45}\scshape$\bullet$  \\}\vspace*{0.1\textheight}{\fontsize{12}{12}\calligra Solutions by\\}{\fontsize{28}{28}\scshape \Name \\}\vspace*{0.01\textheight}{\fontsize{12}{12}\scshape \SID} \\\vspace*{0.05\textheight}{\fontsize{12}{12}\calligra In collaboration with\\}\vspace*{0.01\textheight}{\fontsize{12}{12}\scshape \Collabs} \\\vspace*{0.05\textheight}\end{center}}\end{tcolorbox}\newgeometry{margin=0.75in}}\def\BeginSolution{\begin{yframed}\textbf{\color{red}Solution }}\def\EndSolution{\end{yframed}}\usepackage{algorithm}\usepackage[noend]{algpseudocode}\makeatletter\def\BState{\State\hskip-\ALG@thistlm}\makeatother\def\star{\bigstar}\usetikzlibrary{arrows}\usepackage[mathscr]{euscript}\usepackage[T1]{fontenc}\DeclareSymbolFont{rsfs}{U}{rsfs}{m}{n}\DeclareSymbolFontAlphabet{\mathscrsfs}{rsfs}\newcommand\tab[1][1cm]{\hspace*{#1}}\hypersetup{colorlinks=true,urlcolor=blue}\newtheorem{lemma}[theorem]{Lemma}\newcommand{\norm}[1]{\left\lVert#1\right\rVert}\def\vec{\mathbf}\def\y{\mathbf{y}}\def\X{\mathbf{X}}\def\R{\mathbb{R}}\def\x{\mathbf{x}}\def\w{\mathbf{w}}\def\T{^\top}\def\r{\mathbf{r}}\def\mat{\mathbf}\def\I{\mathbf{I}}\def\A{\mathbf{A}}\newcommand{\num}{n}\newcommand{\dims}{d}\def\real{\mathbb{R}}\def\ev{\mathbb{E}}\newcommand{\whatridge}{\widehat{w}_\lambda}\def\calN{\mathcal{N}}\newcommand{\hatwPCA}{\vec{\widehat{w}}_\text{{PCA}}}\newcommand{\hatyPCA}{\vec{\widehat{y}}_{\text{PCA}}}\newcommand{\hatwOLS}{\vec{\widehat{w}}_{\text{OLS}}}\newcommand{\hatwridge}{\vec{\widehat{w}}_{\text{ridge}}}\newcommand{\tildewridge}{\vec{\tilde{w}}_{\text{ridge}}}\newcommand{\hatyridge}{\vec{\hat{y}}_{\text{ridge}}}\def\diag{\operatorname{diag}}\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[circle,fill=white!20,draw,inner sep=1pt,opacity=1,text opacity=0] (char) {#1};}}\newcommand\citem{\item[\circled{\Alph{enumi}}]}\def\hat{\widehat}
+%%%%% Don't Make Changes Above Here %%%%%
+
+%%%%% Template Begins Here %%%%%
+
+\def\Name{Firstname Lastname}  % Your name
+\def\SID{Student ID}  % Your student ID number
+\def\Collabs{None} % Your collaborators here with a comma between each person's name. Write None if no collaborators. Don't leave blank.
+
+
+\pagestyle{empty}
+\begin{document}
+\Title
+\clearpage
+
+%%%% Problem 1 Starts Here %%%%
+\vspace{-2mm}\noindent\begin{mybox}{\begin{center}\textbf{\color{black}Problem 1: Getting Started}\end{center}}\end{mybox}\vspace{-2mm}
+\vspace{10pt}
+\noindent \textbf{Read through this page carefully.} You may typeset your homework in latex or submit neatly handwritten/scanned solutions. Please start each question on a new page. Deliverables:
+\begin{enumerate}[1.]
+\item Submit a PDF of your writeup, \textbf{with an appendix for your code}, to assignment on Gradescope, ``HW7 Write-Up''. If there are graphs, include those graphs in the correct sections. Do not simply reference your appendix.
+\item If there is code, submit all code needed to reproduce your results, ``HW7 Code''.
+\item If there is a test set, submit your test set evaluation results, ``HW7 Test Set''.
+\end{enumerate}
+After you've submitted your homework, watch out for the self-grade form.
+\begin{enumerate}
+\item Who else did you you work with on this homework? In case of course events, just describe the group. How did you work on this homework? Any comments about the homework?
+\BeginSolution
+%1a
+
+\EndSolution
+\item Please copy the following statement and sign next to it. We just want to make it \textit{extra} clear so that no one inadvertently cheats.
+
+\textit{I certify that all solutions are entirely in my words and that I have not looked at another student's solutions. I have credited all external sources in this write up.}
+\BeginSolution
+%1b
+
+\EndSolution
+\end{enumerate}
+%%%% Problem 1 Ends Here %%%%
+\clearpage
+
+%%%% Problem 2 Starts Here %%%%
+\vspace{-2mm}\noindent\begin{mybox}{\begin{center}\textbf{\color{black}Problem 2: Step Size in Gradient Descent}\end{center}}\end{mybox}\vspace{-2mm}
+\vspace{10pt}
+\noindent By this point in the class, we know that gradient descent is a powerful tool for moving towards local minima of general functions. We also know that local minima of convex functions are global minima. In this problem, we will look at the convex function $f(x) = \|x-b\|_2$. Note that we are using ``just'' the regular Euclidean $\ell_2$ norm, \emph{not} the norm squared! This problem illustrates the importance of understanding how gradient descent works and choosing step sizes strategically. In fact, there is a lot of active research in variations on gradient descent. Throughout the question we will look at different kinds of step-sizes. Constant step size vs. decreasing step size. We will also look at the rate at which the different step sizes decrease and draw some conclusions about the rate of convergence. Notice that we want to make sure the way we get to some local minimum and we want to do it as quickly as possible. 
+\vspace{4pt}
+
+\noindent You have been provided with a tool in \texttt{step\_size.py} which will help you visualize the problems below.
+\begin{enumerate}
+\item Let $\vec{x},\vec{b}\in\mathbb{R}^d$. \textbf{Prove that $f(x)=\|\vec x-\vec b\|_2$ is a convex function of $\vec x$.}
+\BeginSolution
+%2a
+
+\EndSolution
+\item We are minimizing $f(\vec{x}) = \|\vec{x}-\vec{b}\|_2$, where $\vec{x}\in\mathbb{R}^2$ and $\vec{b}=[4.5,6]\in\mathbb{R}^2$, with gradient descent. We use a constant step size of $t_i=1$. That is, $$\vec{x}_{i+1}=\vec{x}_i-t_i\nabla f(\vec{x}_i) = \vec{x}_i - \nabla f(\vec{x}_i)$$ We start at $\vec{x}_0=[0,0]$. \textbf{Will gradient descent find the optimal solution? If so, how many steps will it take to get within $0.01$ of the optimal solution? If not, why not?} Prove your answer. (Hint: use the tool to compute the first ten steps.) \textbf{What about general $\vec b\neq 0$?}
+\BeginSolution
+%2b
+
+\EndSolution
+\item We are minimizing $f(\vec x) = \|\vec x-\vec b\|_2$, where $\vec x \in \mathbb{R}^2$ and $\vec b = [4.5, 6] \in \mathbb{R}^2$, now with a decreasing step size of $t_i = \left(\frac{5}{6}\right)^i$ at step $i$. That is, $$\vec x_{i+1} = \vec x_i - t_i \nabla f(\vec x_i) = \vec x_i - \left(\frac{5}{6}\right)^i \nabla f(\vec x_i).$$ We start at $\vec x_0 = [0, 0]$. \textbf{Will gradient descent find the optimal solution? If so, how many steps will it take to get within $0.01$ of the optimal solution? If not, why not?} Prove your answer. (Hint: examine $\|\vec x_i\|_2$.) \textbf{What about general $\vec b \neq \vec{0}$?}
+\BeginSolution
+%2c
+
+\EndSolution
+\item We are minimizing $f(x) = \|\vec x-\vec b\|_2$, where $\vec x \in \mathbb{R}^2$ and $\vec b = [4.5, 6] \in \mathbb{R}^2$, now with a decreasing step size of $t_i = \frac{1}{i+1}$ at step $i$. That is, $$\vec x_{i+1} = \vec x_i - t_i \nabla f(\vec x_i) = \vec x_i - \frac{1}{i+1} \nabla f(\vec x_i).$$ We start at $\vec x_0 = [0, 0]$. \textbf{Will gradient descent find the optimal solution? If so, how many steps will it take to get within $0.01$ of the optimal solution? If not, why not?} Prove your answer. (Hint: examine $\|\vec x_i\|_2$, and use $\sum_{i=1}^n\frac{i}{i}$ is of the order $\log n$.) \textbf{What about general $b \neq \vec{0}$?}
+\BeginSolution
+%2d
+
+\EndSolution
+\item Now, say we are minimizing $f(x) = \|Ax-b\|_2$. Use the code provided to test several values of $A$ with the step sizes suggested above. Make plots to visualize what is happening. We suggest trying $A = [[10, 0], [0, 1]]$ and $A = [[15, 8], [6, 5]]$. \textbf{Will any of the step sizes above work for all choices of $A$ and $b$?} You do not need to prove your answer, but you should briefly explain your reasoning.
+\BeginSolution
+%2e
+
+\EndSolution
+\end{enumerate}
+%%%% Problem 2 Ends Here %%%%
+\clearpage
+
+%%%% Problem 3 Starts Here %%%%
+\vspace{-2mm}\noindent\begin{mybox}{\begin{center}\textbf{\color{black}Problem 3: Convergence Rate of Gradient Descent}\end{center}}\end{mybox}\vspace{-2mm}
+\vspace{10pt}
+\noindent In the previous problem, you examined $\|\mat A\vec x-\vec b\|_2$ (without the square). You showed that even though it is convex, getting gradient descent to converge requires some care. In this problem, you will examine $\frac{1}{2}\|\mat A\vec x-\vec b\|_2^2$ (with the square). You will show that now gradient descent converges quickly.
+\vspace{4pt}
+
+\noindent For a matrix $\mat A\in\mathbb{R}^{n\times d}$ and a vector $\vec{b}\in\mathbb{R}^n$, consider the quadratic function $f(\vec{x})=\frac{1}{2}\|\mat A\vec x\|_2^2$ such that $\mat A^\top\mat A$ is positive definite.
+\vspace{4pt}
+
+\noindent Throughout this question the \textit{Cauchy-Schwarz inequality} might be useful: Given two vectors, $|\vec u, \vec v$: $$\|\vec u^\top\vec v|\leqslant \|u\|_2\|v\|_2$$ with equality only when $\vec v$ is a scaled version of $\vec u$.
+\begin{enumerate}
+\item First, consider the case $\vec b = \vec{0}$, and think of each $\vec x \in \mathbb{R}^d$ as a ``state". Performing gradient descent moves us sequentially through the states, which is called a ``state evolution". {\bf Write out the state evolution for $n$ iterations of gradient descent using step-size $\gamma > 0$.} Use $\vec x_0$ to denote the initial condition of where you start gradient descent from.
+\BeginSolution
+%3a
+
+\EndSolution
+\item A state evolution is said to be stable if it does not blow up arbitrarily over time. Specifically, if state $n$ is $$\vec x_n = \mat B^n\vec x_0$$ then we need \textit{all} the eigenvalues of $\mat B$ to be less than or equal to $1$ in absolute value, otherwise $\mat B^n$ might blow up for $\vec x_0$ for large enough $n$.
+\vspace{4pt}
+
+\noindent {\bf When is the state evolution of the iterations you calculated above stable when viewed as a dynamical system?}
+\BeginSolution
+%3b
+
+\EndSolution
+\item We want to bound the progress of gradient descent in the general case, when $\vec b$ is arbitrary. To do this, we first show a slightly more general bound, which relates how much the spacing between two points changes if they \textit{both} take a gradient step. If this spacing shrinks, this is called a contraction. Define $\phi(\vec x)=\vec x - \gamma\nabla f(\vec x)$, for some constant step size $\gamma>0$. {\bf Show that for any $\vec{x}, \vec{x}'\in\mathbb{R}^d$, } $$\|\phi(\vec{x}) - \phi(\vec{x}')\|_2\leqslant \beta\|\vec x - \vec{x}'\|_2$$ where $\beta=\max\left\{|1 - \gamma\lambda_{\text{max}}\left(\mat A^\top A\right)|, |1-\gamma\lambda_{\text{min}}\left(\mat A^\top \mat A\right)|\right\}$. Note that $\lambda_{\text{min}}\left(\mat A^\top \mat A\right)$ denotes the largest eigenvalue of the matrix $\mat A^\top \mat A$.
+\BeginSolution
+%3c
+
+\EndSolution
+\item Now we give a bound for progress after $k$ steps of gradient descent. Define $$\vec {x}^*=\arg\min_{\vec{x}\in\mathbb{R}^d} f(\vec x)$$ {\bf Show that $$\|\vec{x}_{k+1}-\vec{x}^*\|_2 = \|\phi(\vec{x}_k) - \phi(\vec{x}^*)\|_2$$ and conclude that $$\|\vec{x}_{k+1} - \vec{x}^*\|_2\leqslant \beta^{k+1}\|\vec{x}_0-\vec{x}^*\|_2$$}
+\BeginSolution
+%3d
+
+\EndSolution
+\item However, what we actually care about is progress in the objective value $f(\vec x)$. That is, we want to show how quickly $f(\vec x)$ is converging to $f(\vec{x}^*)$. We can do this by relating $f(\vec x) - f(\vec{x}^*)$ to $\|\vec x - \vec{x}^*\|_2$; or even better, relating $f(\vec x) - f(\vec{x}^*)$ to $\|\vec{x}_0 - \vec{x}^*\|_2$, for some starting point $\vec{x}_0$. First, {\bf show that $$f(\vec x) - f(\vec{x}^*) = \frac{1}{2}\|\mat A(\vec x - \vec{x}^*)\|_2^2$$}
+\BeginSolution
+%3e
+
+\EndSolution
+\item {\bf Show that $$f(\vec{x}_k) - f(\vec{x}^*)\leqslant \frac{\alpha}{2}\|\vec{x}_k - \vec{x}^*\|_2^2$$ for $\alpha = \lambda_{\text{max}}\left(\mat A^\top \mat A\right)$, and conclude that $$f(\vec{x}_k) - f(\vec{x}^*)\leqslant \frac{\alpha}{2}\beta^{2k}\|\vec{x}_0-\vec{x}^*\|_2^2$$}
+\BeginSolution
+%3f
+
+\EndSolution
+\item Finally, the convergence rate is a function of $\beta$, so it's desirable for $\beta$ to be as small as possible. Recall that $\beta$ is a function of $\gamma$, so we can pick $\gamma$ such that $\beta$ is as small as possible, as a function of $\lambda_{\text{min}}\left(\mat A^\top \mat A\right)$, $\lambda_{\text{max}}\left(\mat A^\top \mat A\right)$. {\bf Write the resulting convergence rate as a function of $\kappa = \frac{\lambda_{\text{max}}\left(\mat A^\top \mat A\right)}{\lambda_{\text{min}}\left(\mat A^\top \mat A\right)}$, That is, show that $$f(\vec{x}_k) - f(\vec{x}^*) = \frac{\alpha}{2}\left(\frac{\kappa - 1}{\kappa + 1}\right)^{2k}\|\vec{x}_0 - \vec{x}^*\|_2^2$$}
+\BeginSolution
+%3g
+
+\EndSolution
+\end{enumerate}
+%%%% Problem 3 Ends Here %%%%
+\clearpage
+
+%%%% Problem 4 Starts Here %%%%
+\vspace{-2mm}\noindent\begin{mybox}{\begin{center}\textbf{\color{black}Problem 4: Sensors, Objects, and Localization}\end{center}}\end{mybox}\vspace{-2mm}
+\vspace{10pt}
+\noindent In this problem, we will be using gradient descent to solve the problem of figuring out where objects are, given noisy distance measurements. (This is roughly how GPS works and students who have taken EE16A have seen a variation on this problem in lecture and lab.)
+\vspace{4pt}
+
+\noindent First, the setup. Let us say there are $m$ sensors and $n$ objects located in a two dimensional plane. The $m$ sensors are located at the points $(a_1,b_1),\ldots,(a_m,b_m)$. The $n$ objects are located at the points $(x_1,y_1),\ldots,(x_n,y_n)$. We have measurements for the distances between the sensors and the objects: $D_{ij}$ is the measured distance from sensor $i$ to object $j$. The distance measurement has noise in it. Specifically, we model $$D_{ij} = \|(a_i,b_i)-(x_j,y_j)\|+Z_{ij},$$ where $Z_{ij} \sim \mathcal{N}(0, 1)$. The noise is independent across different measurements. 
+\vspace{4pt}
+
+\noindent Code has been provided for data generation to aid your explorations.
+\vspace{4pt}
+
+\noindent For this problem, all Python libraries are permitted. 
+\begin{enumerate}
+\item Consider the case where $m=7$ and $n=1$. That is, there are $7$ sensors and $1$ object. Suppose that we know the exact location of the $7$ sensors but not the $1$ object. We have $7$ measurements of the distances from each sensor to the object $D_{i1}=d_i$ for $i=1,\ldots,7$. Because the underlying measurement noise is modeled as iid Gaussian, the interesting part of the log likelihood function is $$L(x_1,y_1) = -\sum_{i=1}^7(\sqrt{(a_i-x_1)^2+(b_i-y_1)^2}-d_i)^2$$ ignoring the constant term. \textbf{Manually compute the symbolic gradient of the log likelihood function, with respect to $x_1$ and $y_1$.}
+\BeginSolution
+%4a
+
+\EndSolution
+\item The provided code generates \begin{itemize}\item $m=7$ sensor locations $(a_i, b_i)$ sampled from $\mathcal{N}(\mat 0, \sigma_s^2 \mat I)$ \item $n=1$ object locations $(x_1, y_1)$ sampled from $\mathcal{N}(\mat \mu, \sigma_o^2 \mat I)$ \item $mn=7$ distance measurements $D_{i1} = \|(a_i,b_i)-(x_1,y_1)\| + \mathcal{N}(0, 1)$.\end{itemize} for $\mat\mu=[0, 0]^\top$, $\sigma_s= 100$ and $\sigma_o=100$. \textbf{Solve for the maximum likelihood estimator of $(x_1,y_1)$ by gradient descent on the negative log-likelihood. Report the estimated $(x_1,y_1)$ for the given sensor locations.} Try two approaches for initializing gradient descent: starting at $\vec{0}$ and starting at a random point. Which of the following step sizes is a reasonable one, $1, 0.01, 0.001$ or $0.0001$?
+\BeginSolution
+%4b
+
+\EndSolution
+\item (Local Mimima of Gradient Descent) In this part, we vary the location of the single object among different positions: $$(x_1, y_1) \in \{(0,0),(100,100),(200,200),\ldots,(900,900)\}$$ For each choice of $(x_1,y_1)$, \textbf{generate the following data set $10$ times}: \begin{itemize}\item Generate $m=7$ sensor locations $(a_i, b_i)$ from $\mathcal (\mat 0,\sigma_s^2 \mat I)$ (Use the same $\sigma_s$ from the previous part.) \item Generate $mn=7$ distance measurements $D_{i1} = \|(a_i,b_i)-(x_1,y_1)\| + \mathcal{N}(0, 1)$. \end{itemize} \textbf{For each data set, carry out gradient descents $100$ times to find a prediction for $(x_1, y_1)$}. We are pretending we do not know $(x_1, y_1)$ and are trying to predict it. For each gradient descent, take $1000$ iterations with step-size $0.1$ and a random initialization of $(x,y)$ from $\mathcal{N}(\mat 0, \sigma^2 \mat I),$ where $\sigma=x_1+1$. \begin{itemize}\item \textbf{Draw the contour plot of the log likelihood function of a particular data set for $(x_1,y_1)=(0,0)$ and $(x_1,y_1)=(100,100)$.} \item For each of the ten data sets and each of the ten choices of $(x_1, y_1)$, calculate the number of distinct points that gradient descent converges to. Then, for each of the ten choices of $(x_1,y_1)$, calculate the average of the number of distinct points over the ten data sets. \textbf{Plot the average number of local minima against $x_1$.} For this problem, two local minima are considered identical if their distance is within $0.01$. Hint: \texttt{np.unique} and \texttt{np.round} will help. \item For each of the ten data sets and each of the ten choices of $(x_1, y_1)$, calculate the proportion of gradient descents which converge to what you believe to be a global minimum (that is, the minimum point in the set of local minima that you have found). Then, for each of the ten choices of $(x_1, y_1)$, calculate the average of the proportion over the ten data sets. \textbf{Plot the average proportion against $x_1$.} \item For the object location of $(500,500)$ and one trail out of $10$ of the data generation, plot the sensor locations, the ground truth object location and the MLE object locations found by $100$ times of gradient descent. Do you find any patterns?\end{itemize}
+\vspace{4pt}
+
+\noindent Please be aware that the code might take a while to run.
+\BeginSolution
+%4c
+
+\EndSolution
+\item Repeat the previous part, except explore what happens as you reduce the variance of the measurement noise. {\bf Comment with appropriate plots justifying your comments.}
+\vspace{4pt}
+
+\noindent For the sake of saving time, you can experiment with only one smaller noise, such as $\mathcal{N}(0,0.01^2)$. You might need to change the learning rate to make the gradient descent converge.
+\BeginSolution
+%4d
+
+\EndSolution
+\item Repeat part (c) again, except explore what happens as you increase the number of sensors. For the sake of saving time, you can experiment with only one number of sensors, such as $20$. {\bf Comment with appropriate plots justifying your comments.} 
+\BeginSolution
+%4e
+
+\EndSolution
+\item Now, we are going to turn things around. Instead of assuming that we know where the sensors are, suppose that the sensor locations are unknown. But we get some training data for $100$ object locations that are known. We want to use gradient descent to estimate the sensor locations, and then use these estimated sensor locations on new test data for objects. 
+
+Consider the case where $m=7$ sensors and the training data consists of $n=100$ object positions. We have $7$ noisy measurements of the distances from each sensor to the object $D_{i1}=d_{ij}$ for $i=1,\ldots,7;j=1,2,\ldots,100$.  
+\vspace{4pt}
+
+\noindent Use the provided code to generate \begin{itemize}\item $m=7$ sensor locations $(a_i, b_i)$ sampled from $\mathcal{N}(\mat 0, \sigma^2 \mat I)$ \item $n=100$ object locations $(x_j, y_j)$ sampled from $\mathcal{N}(\mat \mu,\sigma^2\mat I)$  in $3$ datasets: (1) Training data with $\mat\mu =\vec{0}$, (2) Interpolating Test data with $\mat\mu = \vec{0}$, and (3) Extrapolating Test data with $\mat\mu = [300,300]^\top$. \item $mn=700$ distance measurements $D_{ij} =\|(a_i,b_i)-(x_j,y_j)\| + \mathcal{N}(0, 1)$ for each of the data sets. \item Use the same $\sigma$ as before, i.e. $\sigma=100$.\end{itemize}Use the first dataset as the training data and the second two as two kinds of test data: points drawn similarly to the training data, and points drawn in different way.
+\vspace{4pt}
+
+\noindent Use gradient descent to calculate the MLE for the sensor locations $(\hat{a_i},\hat{b_i})$ given the training object locations $(x_j,x_j)$ and all the pairwise training distance measurements $(D_{ij}=d_{ij})$. (Use gradient descent with multiple random starts, picking the best estimates as your estimate.)  
+\vspace{4pt}
+
+\noindent Use these estimated sensor locations as though they were true sensor locations to compute object locations for both sets of test data. (Use gradient descent with multiple random starts, picking the best estimate as your estimated position.) {\bf Report the mean-squared error in object positions on both test data sets. Also report the MSE on the second test set if we know the testing mean $(300,300)$ (such that we can have a better initial guess in the gradient descent).}
+\BeginSolution
+%4f
+
+\EndSolution
+\end{enumerate}
+%%%% Problem 4 Ends Here %%%%
+\clearpage
+
+%%%% Problem 5 Starts Here %%%%
+\vspace{-2mm}\noindent\begin{mybox}{\begin{center}\textbf{\color{black}Problem 5: Backpropogation Algorithm for Neural Networks}\end{center}}\end{mybox}\vspace{-2mm}
+\vspace{10pt}
+\noindent In this problem, we will be implementing the backprop algorithm to train a neural network to approximate the function $$f(x) = \sin(x)$$ To establish notation for this problem, the output of layer $i$ given the input $\vec{a}$ in the neural network is given by $$\vec a_{i+1}=l_i(\vec{a}) = \sigma(\vec{z}_i) = \sigma(W_i\vec{a}+\vec{b}_i)$$ In this equation, $\mat W_i$ is a $n_{i+1}\times m_i$ matrix that maps the input $\vec a_i$ of dimension $m_i$ to a vector of dimension $n_{i+1}$, where $n_{i+1}$ is the size of layer $i+1$ and we have that $m_i=n_{i-1}$.  The vector $\vec{b}_i$ is the bias vector added after the matrix multiplication, and $\sigma$ is the nonlinear function applied element-wise to the result of the matrix multiplication and addition. $\vec{z}_i = \mat W_i \vec a_i + \vec b_i$ is a shorthand for the immediate result within layer $i$ before applying the nonlinear activation function $\sigma$. Each layer is computed sequentially where the output of one layer is used as the input to the next. To compute the derivatives with respect to the weights $W_i$ and the biases $\vec{b}_i$ of each layer, we use the chain rule starting with the output of the network and work our way backwards through the layers, which is where the backprop algorithm gets its name.
+\vspace{4pt}
+
+\noindent You are given starter code with incomplete function implementations.  For this problem, you will fill in the missing code so that we can train a neural network to learn the function $f(x) = \sin(x)$.  The code currently trains a network with two hidden layers with $100$ nodes per layer.  Later in this problem, you will be exploring how the number of layers and the number of nodes per layer affects the approximation.
+\begin{enumerate}
+\item \textbf{Start by drawing a small example network with three computational layers, where the last layer has a single scalar output.} The first layer should have a single external input corresponding to the input $x$. The computational layers should have widths of $5$, $3$, and $1$ respectively. The final ``output'' layer's ``nonlinearity'' should be a linear unit that just returns its input. The earlier ``hidden'' layers should have ReLU units. Label all the $n_i$ and $m_i$ as well as all the $\vec a_i$ and $\mat W_i$ and $\vec b_i$ weights. You can consider the bias terms to be weights connected to a dummy unit whose output is always $1$ for the purpose of labeling. You can also draw and label the loss function that will be important during training --- use a squared-error loss. 
+\vspace{4pt}
+
+\noindent Here, the important thing is for you to understand your own clear ways to illustrate neural nets. You can follow conventions seen online or in lecture or discussion, or you can modify those conventions to pick something that makes the most sense to you. The important thing is to have your illustration be unambiguous so you can use it to help understand the forward flow of information during evaluation and the backward flow during gradient computations. Since you?re going to be implementing all this during this problem, it is good to be clear.
+\BeginSolution
+%5a
+
+\EndSolution
+\item Let's start by implementing the cost function of the network.  This function is used to assign an error for each prediction made by the network during training.  The implementation will be using the mean squared error cost function, which is given by $$\text{MSE}(\hat{\vec{y}})=\frac{1}{2}\sum_{i=1}^n( y_i - \hat{y}_i)^2$$ where $y_i$ is the observation that we want the neural network to output and $\hat{y}_i$ is the prediction from the network.
+\vspace{4pt}
+
+\noindent \textbf{Write the derivative of the mean squared error cost function with respect to the predicted outputs $\hat{\vec{y}}$.  In \texttt{backprop.py} implement the functions \texttt{QuadraticCost.fx} and \texttt{QuadraticCost.dx}}
+\BeginSolution
+%5b
+
+\EndSolution
+\item Now, let's take the derivatives of the nonlinear activation functions used in the network.  \textbf{Implement the following nonlinear functions in the code and their derivatives} $$\sigma_{\text{linear}}(z)=z$$ $$\sigma_{\text{ReLU}}(z)=\begin{cases}0 & z<0 \\ z & \text{otherwise}\end{cases}$$ $$\sigma_{\text{tanh}}(z)=\frac{e^z-e^{-z}}{e^z+e^{-z}}$$ For the $\tanh$ function, feel free to use the $\tanh$ function in \texttt{numpy}.  We have provided the sigmoid function as an example activation function.
+\BeginSolution
+%5c
+
+\EndSolution
+\item We have implemented the forward propagation part of the network for you (see \texttt{Model.evaluate} in the code). We now need to compute the derivative 
+of the cost function with respect to the weights $\mat W$ and the biases $\vec b$ of each layer in the network. We will be using all of the code we previously 
+implemented to help us compute the gradients. \textbf{Assume that $\frac{\partial\mat{MSE}}{\partial\vec{a}_{i+1}}$ is given, where $a_{i+1}$ is the input to layer 
+$i+1$. Write the expression for $\frac{\partial\mat{MSE}}{\partial\vec{a}_{i}}$ in terms of $\frac{\partial\mat{MSE}}{\partial\vec{a}_{i+1}}$. Then implement these 
+derivative calculations in the function \texttt{Model.compute\_gradient}.}
+\vspace{4pt}
+
+\noindent Recall, $\vec a_{i+1}$ is given by $$\vec{a}_{i+1} = l_i(\vec{a}_i) = \sigma(\vec{z}_i) = \sigma(\mat W_i\vec{a}_i + \vec{b}_i)$$
+\BeginSolution
+%5d
+
+\EndSolution
+\item To help you debug, we have implemented a numerical gradient calculator. \textbf{Use the starter code to compare and verify your gradient implementation with the numerical gradient calculator. Include the output numbers comparing the differences between the two gradient calculations in your writeup.}
+\BeginSolution
+%5e
+
+\EndSolution
+\item Finally, we use these gradients to update the model parameters using gradient descent.  \textbf{Implement the function \texttt{GDOptimizer.update} to update the parameters in each layer of the network.}  You will need to use the derivatives $\frac{\partial\mat{MSE}}{\partial \vec{z}_i}$ and the outputs of each layer $\vec{a}_i$ to compute the derivates $\frac{\partial\mat{MSE}}{\partial \mat W_i}$ and $\frac{\partial\mat{MSE}}{\partial \vec{b}_i}$.  Use the learning rate $\eta$, given by \texttt{self.eta} in the function, to scale the gradients when using them to update the model parameters. Normalize the learning rate by the number of inputs to the network.
+\BeginSolution
+%5f
+
+\EndSolution
+\item \textbf{Show your results by reporting the mean squared error of the network when using the $ReLU$ nonlinearity, the $\tanh$ nonlinearity, and the linear activation function.  Additionally, make a plot of the approximated $\sin$ function in the range $[-\pi,\pi]$.}  Use the model parameters, the learning rate, and the training iterations provided in the code to train the models.  When you have all of the above parts implemented, you will just need to copy the output of the script when you run \texttt{backprop.py}.
+\BeginSolution
+%5g
+
+\EndSolution
+\item Let's now explore how the number of layers and the number of hidden nodes per layer affects the approximation. \textbf{Train a models using the tanh and the ReLU activation functions with $5$, $10$, $25$, and $50$ hidden nodes per layer (width) and $1$, $2$, and $3$ hidden layers (depth)}.  Use the same training iterations and learning rate from the starter code. \textbf{Report the resulting error on the training set after training for each combination of parameters.}
+\BeginSolution
+%5h
+
+\EndSolution
+\item \textbf{Run a shortcut-training approach that doesn't bother to update any of the weights that are inputs to the hidden layers and just leaves them at the starting random values. All it does is treat the outputs of the hidden layers as random features, and does OLS+Ridge to set the final weights. Compare the resulting approximation by both plots and mean-squared-error values for the 24 cases above (2 nonlinearities times 4 widths times 3 depths). Comment on what you see.}
+\BeginSolution
+%5i
+
+\EndSolution
+\item \textbf{Bonus:} Modify the code to implement stochastic gradient descent where the batch size is given as a parameter to the function \texttt{Model.train}. \textbf{Choose several different batch sizes and report the final error on the training set given the batch sizes.}
+\BeginSolution
+%5j
+
+\EndSolution
+\item \textbf{Bonus:} Experiment with using different learning rates.  Try both different constant learning rates and rates that change with the iteration number such as one that is proportional to 1/iteration.  Feel free to change the number of training iterations.  \textbf{Report your results with the number of training iterations and the final error on the training set.}
+\BeginSolution
+%5k
+
+\EndSolution
+\end{enumerate}
+%%%% Problem 5 Ends Here %%%%
+\clearpage
+
+%%%% Problem 9 Starts Here %%%%
+\vspace{-2mm}\noindent\begin{mybox}{\begin{center}\textbf{\color{black}Problem 6: Your Own Question}\end{center}}\end{mybox}\vspace{-2mm}
+\vspace{10pt}
+\noindent \textbf{Write your own question, and provide a thorough solution.}
+\vspace{3pt}
+
+\noindent Writing your own problems is a very important way to really learn the material. The famous ``Bloom's Taxonomy'' that lists the levels of learning is: Remember, Understand, Apply, Analyze, Evaluate, and Create. Using what you know to create is the top-level. We rarely ask you any HW questions about the lowest level of straight-up remembering, expecting you to be able to do that yourself. (e.g. make yourself flashcards) But we don't want the same to be true about the highest level.
+\vspace{3pt}
+
+\noindent As a practical matter, having some practice at trying to create problems helps you study for exams much better than simply counting on solving existing practice problems. This is because thinking about how to create an interesting problem forces you to really look at the material from the perspective of those who are going to create the exams. 
+\vspace{3pt}
+
+\noindent Besides, this is fun. If you want to make a boring problem, go ahead. That is your prerogative. But it is more fun to really engage with the material, discover something interesting, and then come up with a problem that walks others down a journey that lets them share your discovery. You don't have to achieve this every week. But unless you try every week, it probably won't happen ever. 
+\BeginSolution
+%6
+
+\EndSolution
+%%%% Problem 6 Ends Here %%%%
+\clearpage
+
+%%%% Code Appendix Starts Here %%%%
+\vspace{-2mm}\noindent\begin{mybox}{\begin{center}\textbf{\color{black}Code Appendix}\end{center}}\end{mybox}\vspace{-2mm}
+\begin{itemize}
+\item \texttt{backprop.py}
+\BeginSolution
+% Paste Code Between Verbatim
+% backprop.py
+\begin{verbatim}
+
+\end{verbatim}
+\EndSolution
+\item \texttt{step\_size.py}
+\BeginSolution
+% Paste Code Between Verbatim
+% step_size.py
+\begin{verbatim}
+
+\end{verbatim}
+\EndSolution
+\item \texttt{sensor\_location1\_starter/part\_b\_starter.py}
+\BeginSolution
+% Paste Code Between Verbatim
+% sensor_location1_starter/part_b_starter.py
+\begin{verbatim}
+
+\end{verbatim}
+\EndSolution
+\item \texttt{sensor\_location1\_starter/part\_c\_starter.py}
+\BeginSolution
+% Paste Code Between Verbatim
+% sensor_location1_starter/part_c_starter.py
+\begin{verbatim}
+
+\end{verbatim}
+\EndSolution
+\item \texttt{sensor\_location1\_starter/part\_f\_starter.py}
+\BeginSolution
+% Paste Code Between Verbatim
+% sensor_location1_starter/part_f_starter.py
+\begin{verbatim}
+
+\end{verbatim}
+\EndSolution
+\end{itemize}
+%%%% Code Appendix Ends Here %%%%
+
+\end{document}
+%%%%% Template Ends Here %%%%%

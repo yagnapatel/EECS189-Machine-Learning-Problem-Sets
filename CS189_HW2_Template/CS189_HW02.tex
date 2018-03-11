@@ -1,0 +1,373 @@
+%%%%% Don't Make Changes Below Here %%%%%
+\documentclass{article}\usepackage[utf8]{inputenc}\usepackage[margin=0.4cm,top=0.4cm,bottom=0.4cm]{geometry}\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{calligra}\usepackage{tikz}\usepackage{hyperref}\usetikzlibrary{matrix,fit,chains,calc,scopes}\usepackage{tcolorbox}\tcbuselibrary{skins}\tcbset{Baystyle/.style={sharp corners,enhanced,boxrule=6pt,colframe=orange,height=\textheight,width=\textwidth,borderline={8pt}{-11pt}{},}}\usepackage{amsmath,amssymb,amsthm,tikz,tkz-graph,color,chngpage,soul,hyperref,csquotes,graphicx,floatrow}\newcommand*{\QEDB}{\hfill\ensuremath{\square}}\newtheorem*{prop}{Proposition}\renewcommand{\theenumi}{\alph{enumi}}\usepackage[shortlabels]{enumitem}\usetikzlibrary{matrix,calc}\MakeOuterQuote{"}\newtheorem{theorem}{Theorem} \usetikzlibrary{shapes} \usepackage{lipsum}\usepackage{tabularx,ragged2e,booktabs,caption}\tcbuselibrary{breakable}\newenvironment{yframed}{\begin{tcolorbox}[breakable,colback=gray!3,title after break={\textit{\color{red}Solution (cont.)}},colbacktitle=gray!3, coltitle=black,titlerule=-1pt] }{\end{tcolorbox}}\newtcolorbox{mybox}{colback=black!15!white, colframe=white,arc=12pt}\newtcolorbox{myboxot}{colback=green!15!white, colframe=white,arc=12pt,width=110pt, height=27pt}\newtcbox{\mylib}{enhanced,boxrule=0pt,top=0mm,bottom=0mm,right=0mm,left=4mm,arc=4pt,boxsep=9pt,before upper={\vphantom{dlg}},colframe=green!50!black,coltext=green!25!black,colback=green!10!white,overlay={\begin{tcbclipinterior}\fill[green!75!blue!50!white] (frame.south west)rectangle node[text=white,font=\sffamily\bfseries\tiny,rotate=90] {Problem} ([xshift=4mm]frame.north west);\end{tcbclipinterior}}}\newtcbox{\mylibot}{enhanced,boxrule=0pt,top=0mm,bottom=0mm,right=0mm,arc=4pt,boxsep=9pt,before upper={\vphantom{dlg}},colframe=green!50!black,coltext=green!25!black,colback=green!10!white,overlay={\begin{tcbclipinterior}\fill[red!75!blue!50!white] (frame.south west)rectangle node[text=white,font=\sffamily\bfseries\tiny,rotate=90] {Other} ([xshift=4mm]frame.north west);\end{tcbclipinterior}}}
+\def\Title{\begin{tcolorbox}[Baystyle,]{\begin{center}\vspace*{0.14\textheight}
+{\rule{\textwidth}{1.6pt}\vspace*{-\baselineskip}\vspace*{2pt}}
+\rule{\textwidth}{0.4pt}\\[0.2\baselineskip]{\fontsize{45}{45}\scshape CS 189: Introduction to Machine Learning \\[0.2\baselineskip] \calligra Spring 2018 \\[0.2\baselineskip]}
+{\rule{\textwidth}{0.4pt}\vspace*{-\baselineskip}\vspace{3.2pt}}
+\rule{\textwidth}{1.6pt}\\[\baselineskip]\vspace{0.05\textheight}{{\fontsize{45}{45}\scshape$\bullet$\\ {Homework 2}\\\vspace*{0.01\textheight} }{{\fontsize{18}{18}\scshape{Due on Friday, February 2nd, 2018 at 10pm\\}}}\fontsize{45}{45}\scshape$\bullet$  \\}\vspace*{0.1\textheight}{\fontsize{12}{12}\calligra Solutions by\\}{\fontsize{28}{28}\scshape \Name \\}\vspace*{0.01\textheight}{\fontsize{12}{12}\scshape \SID} \\\vspace*{0.05\textheight}{\fontsize{12}{12}\calligra In collaboration with\\}\vspace*{0.01\textheight}{\fontsize{12}{12}\scshape \Collabs} \\\vspace*{0.05\textheight}\end{center}}\end{tcolorbox}\newgeometry{margin=0.75in}}\def\BeginSolution{\begin{yframed}\textbf{\color{red}Solution }}\def\EndSolution{\end{yframed}}
+\usepackage{algorithm}\usepackage[noend]{algpseudocode}\makeatletter\def\BState{\State\hskip-\ALG@thistlm}\makeatother\def\T{\indent}\def\star{\bigstar}
+\usetikzlibrary{arrows}
+\usepackage[mathscr]{euscript}
+\usepackage[T1]{fontenc}
+\DeclareSymbolFont{rsfs}{U}{rsfs}{m}{n}
+\DeclareSymbolFontAlphabet{\mathscrsfs}{rsfs}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\hypersetup{colorlinks=true,urlcolor=blue}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+%%%%% Don't Make Changes Above Here %%%%%
+
+%%%%% Template Begins Here %%%%%
+
+\def\Name{Firstname Lastname}  % Your name
+\def\SID{Student ID}  % Your student ID number
+\def\Collabs{None} % Your collaborators here with a comma between each person's name. Write None if no collaborators. Don't leave blank.
+
+
+\pagestyle{empty}
+\begin{document}
+\Title
+\clearpage
+
+%%%% Problem 1 Starts Here %%%%
+\vspace{-2mm}\noindent\begin{mybox}{\begin{center}\textbf{\color{black}Problem 1: Getting Started}\end{center}}\end{mybox}\vspace{-2mm}
+\vspace{10pt}
+\noindent \textbf{Read through this page carefully.} You may typeset your homework in latex or submit neatly handwritten/scanned solutions. Please start each question on a new page. Deliverables:
+\begin{enumerate}[1.]
+\item Submit a PDF of your writeup, \textbf{with an appendix for your code}, to assignment on Gradescope, ``HW2 Write-Up''. If there are graphs, include those graphs in the correct sections. Do not simply reference your appendix.
+\item If there is code, submit all code needed to reproduce your results, ``HW2 Code''.
+\item If there is a test set, submit your test set evaluation results, ``HW2 Test Set''.
+\end{enumerate}
+After you've submitted your homework, watch out for the self-grade form.
+\begin{enumerate}
+\item Who else did you you work with on this homework? In case of course events, just describe the group. How did you work on this homework? Any comments about the homework?
+\BeginSolution
+%1a
+
+\EndSolution
+\item Please copy the following statement and sign next to it. We just want to make it \textit{extra} clear so that no one inadvertently cheats.
+
+\textit{I certify that all solutions are entirely in my words and that I have not looked at another student's solutions. I have credited all external sources in this write up.}
+\BeginSolution
+%1b
+
+\EndSolution
+\end{enumerate}
+%%%% Problem 1 Ends Here %%%%
+\clearpage
+
+%%%% Problem 2 Starts Here %%%%
+\vspace{-2mm}\noindent\begin{mybox}{\begin{center}\textbf{\color{black}Problem 2: Geometry of Ridge Regression}\end{center}}\end{mybox}\vspace{-2mm}
+\vspace{10pt}
+\noindent You recently learned ridge regression and how it differs from ordinary least squares. In this question we will explore how ridge regression is related to solving a constrained least squares problem in terms of their parameters and solutions.
+\begin{enumerate}
+\item Given a matrix $\mathbf{X}\in\mathbb{R}^{n\times d}$ and a vector $\mathbf{y}\in\mathbb{R}^n$, define the optimization problem \begin{align*}\text{minimize }\|\mathbf{y}-\mathbf{X}\mathbf{w}\|_2^2\tag{1} \\ \text{subject to }\|\mathbf{w}\|_2^2\leqslant \beta^2\end{align*} We can utilize Lagrange multipliers to incorporate the constraint into the objective function by adding a term which acts to "penalize" the thing we are constraining. \textbf{Rewrite the constrained optimization problem into an unconstrained optimization problem.}
+\BeginSolution
+%2a
+
+\EndSolution
+\item Recall that ridge regression is given by the unconstrained optimization problem \begin{align*}\arg\min_\mathbf{w}\|\mathbf{y}-\mathbf{X}\mathbf{w}\|_2^2+\lambda\|\mathbf{w}\|_2^2\tag{2}\end{align*} One way to interpret ``ridge regression'' is as the Lagrangian form of a constrained problem. \textbf{Qualitatively, how would increasing $\beta$ in our previous problem be reflected in the desired penalty $\lambda$ of ridge regression (i.e. if our threshold $\beta$ increases, what should we do to $\lambda$)?}
+\BeginSolution
+%2b
+
+\EndSolution
+\item One reason why we might want to have small weights $\mathbf{w}$ has to do with the sensitivity of the predictor to its input. Let $\mathbf{x}$ be a $d$-dimensional list of features corresponding to a new test point. Our predictor is $\mathbf{w}^\top \mathbf{x}$. \textbf{What is an upper bound on how much our prediction could change if we added noise $\mathbf{\epsilon} \in \mathbb{R}^d$ to a test point's features $\mathbf{x}$?}
+\BeginSolution
+%2c
+
+\EndSolution
+\item \textbf{Derive that the solution to ridge regression (2) is given by $\mathbf{\hat{w}_{r}} = (\mathbf{X}^\top \mathbf{X} + \lambda \mathbf{I})^{-1} \mathbf{X}^\top \mathbf{y}$. What happens when $\lambda \to \infty$?} It is for this reason that sometimes regularization is referred to as "shrinkage."
+\BeginSolution
+%2d
+
+\EndSolution
+\item Note that in computing $\mathbf{\hat{w}_r}$, we are trying to invert the matrix $\mathbf{X}^\top \mathbf{X} + \lambda \mathbf{I}$ instead of the matrix $\mathbf{X}^\top \mathbf{X}$. \textbf{If $\mathbf{X}^\top \mathbf{X}$ has eigenvalues $\sigma_1^2, \ldots, \sigma_d^2$, what are the eigenvalues of $\mathbf{X}^\top \mathbf{X} + \lambda \mathbf{I}$? Comment on why adding the regularizer term $\lambda \mathbf{I}$ can improve the inversion operation numerically.}
+\BeginSolution
+%2e
+
+\EndSolution
+\item Let the number of parameters $d = 3$ and the number of datapoints $n = 5$, and let the eigenvalues of $\mathbf{X}^\top \mathbf{X}$ be given by $1000$, $1$ and $0.001$. We must now choose between two regularization parameters $\lambda_1 = 100$ and $\lambda_2 = 0.5$. \textbf{Which do you think is a better choice for this problem and why?}
+\BeginSolution
+%2f
+
+\EndSolution
+\item Another advantage of ridge regression can be seen for under-determined systems. Say we have the data drawn from a $5$ parameter model, but only have $4$ training samples of it, i.e. $\mathbf{X} \in \mathbb{R}^{4 \times 5}$. Now this is clearly an underdetermined system, since $n < d$. \textbf{Show that ridge regression with $\lambda > 0$ results in a unique solution, whereas ordinary least squares has an infinite number of solutions.}
+\BeginSolution
+%2g
+
+\EndSolution
+\item For the previous part, \textbf{what will the answer be if you take the limit $\lambda \rightarrow 0$ for ridge regression? }
+\BeginSolution
+%2h
+
+\EndSolution
+\item Tikhonov regularization is a general term for ridge regression, where the implicit constraint set takes the form of an ellipsoid instead of a ball. In other words, we solve the optimization problem \begin{align*}\mathbf{w}=\arg\min_\mathbf{w}\frac{1}{2}\|\mathbf{y}-\mathbf{X}\mathbf{w}\|_2^2+\lambda\|\Gamma\mathbf{w}\|_2^2\end{align*} for some full rank matrix $\Gamma \in \mathbb{R}^{d \times d}$. \textbf{Derive a closed form solution to this problem.}
+\BeginSolution
+%2i
+
+\EndSolution
+\end{enumerate}
+%%%% Problem 2 Ends Here %%%%
+\clearpage
+
+%%%% Problem 3 Starts Here %%%%
+\vspace{-2mm}\noindent\begin{mybox}{\begin{center}\textbf{\color{black}Problem 3: Polynomials and Invertibility}\end{center}}\end{mybox}\vspace{-2mm}
+\vspace{10pt}
+\noindent This problem will walk through the properties of a feature matrix based on univariate polynomials and multivariate polynomials.
+\vspace{4pt}
+
+\noindent First, we consider fitting a function $y = f(x)$ where both $x$ and $y$ are scalars, using univariate polynomials. Given $n$ training data points $\left\{(x_i, y_i), i=1, \ldots, n\right\}$, our task reduces to performing linear regression with a feature matrix $\mathbf{F}$ where \begin{align*}\mathbf{F}=\left[\mathbf{p}_D(x_1),\ldots,\mathbf{p}_D(x_n)\right]^\top\quad\text{ and }\quad \mathbf{p}_D(x)\left[x^0,x^1,\ldots,x^D\right]^\top\end{align*} Note that $\mathbf{F}\in\mathbb{R}^{n\times(D+1)}$ and $\mathbf{y}=[y_1,\ldots,y_n]^\top\in\mathbb{R}^n$.
+\vspace{4pt}
+
+\noindent Parts (a) to (e) study the rank of the feature matrix $\mathbf{F}$ as a function of the points $x_i$'s. These parts are elementary and they are \textbf{optional} if you are already familiar with this material and feel comfortable in deriving the determinant of $\mathbf{F}$. In this case we encourage you to do Problem 6 about non-linear classification boundaries instead.
+\vspace{4pt}
+
+\noindent In parts (f)--(h), we consider the case when the sampling points are vectors $\mathbf{x}_i$ and we use multivariate polynomials $\mathbf{p}_D(\mathbf{x}_i)$ as the rows of the feature matrix. These parts are mandatory.
+\begin{enumerate}
+\item \textbf{(OPTIONAL)} For $n = 2$ and $D=1$, \textbf{show that the matrix $\mathbf{F}$ has full rank iff $x_1 \neq x_2$.} \textit{Note that iff stands for if and only if.}
+\BeginSolution
+%3a
+
+\EndSolution
+\item From parts (b) through (e), we work through different steps to establish that the columns of $\mathbf{F}$ are linearly independent if the sampling data points are distinct and $n \geqslant D+1$. Note that it suffices to consider the case $n=D+1$. In other words, we have $D+1$ sample points and have constructed a square feature matrix $\mathbf{F}$. Now as a first step, construct a matrix $\mathbf{F}'$ from the matrix $\mathbf{F}$ via this operation: subtract the first row of $\mathbf{F}$ from its rows $2$ through $n$. \textbf{Is it true that $\det(\mathbf{F}) = \det(\mathbf{F}')$?}
+\vspace{4pt}
+
+Hint: Think about representing the row subtraction operation using a matrix multiplication, and then take determinants.
+\BeginSolution
+%3b
+
+\EndSolution
+\item \textbf{(OPTIONAL)} Perform the following sequence of operations to $\mathbf{F}'$, and obtain the matrix $\mathbf{F}''$.
+\begin{align*}i&) \text{ Subtract } x_1*\text{column}_{n-1}\text{ from }\text{column}_n \\ii&) \text{ Subtract } x_1*\text{column}_{n-2}\text{ from }\text{column}_{n-1} \\ n-1&) \text{ Subtract } x_1*\text{column}_{1}\text{ from }\text{column}_2\end{align*} \textbf{Write out the matrix $\mathbf{F}''$ and argue why $\det(\mathbf{F}') = \det(\mathbf{F}'')$.}
+\BeginSolution
+%3c
+
+\EndSolution
+\item \textbf{(OPTIONAL)} For any square matrix $\mathbf{A} \in \mathbb{R}^{d \times d}$ and a matrix $$\mathbf{B} = \left[\begin{array}{cc}1 & \mathbf{0}^\top \\ \mathbf{0} & \mathbf{A}\end{array}\right]$$ \textbf{argue that the $d+1$ eigenvalues of $B$ are given by $\{1, \lambda_1(\mathbf{A} ), \lambda_2(\mathbf{A} ), \ldots, \lambda_d(\mathbf{A} )\}$. Can we conclude $\det(\mathbf{B}) = \det(\mathbf{A})$?} Here, ${\mathbf{0}}$ represents a column vector of zeros in $\mathbb{R}^d$.
+\BeginSolution
+%3d
+
+\EndSolution
+\item \textbf{(OPTIONAL)} \textbf{Use the above parts and an induction argument to prove that} $$\det(\mathbf{F}) = \prod_{1 \leqslant i < j \leqslant n} (x_j - x_i)$$ Consequently, \textbf{argue} that the matrix $\mathbf{F}$ is full rank unless two input data points are equal.
+\vspace{4pt}
+
+Hint: First show that $$\det(\mathbf{F}) = \left(\prod_{i=2}^n(x_i-x_1)\right)\det\left(\left[\mathbf{p}_{D-1}(x_2), \mathbf{p}_{D-1}(x_3),\ldots,\mathbf{p}_{D-1}(x_n)\right]^\top\right)$$ where $D=n-1$.
+\vspace{4pt}
+
+Hint: You can use the fact that multiplying a row of a matrix by a constant scales the determinant by this constant. (A fact that is clear from the oriented volume interpretation of determinants.)
+\BeginSolution
+%3e
+
+\EndSolution
+\item We now consider multivariate polynomials. We have $\mathbf{x}_i = (x_{i,1}, x_{i,2}, \ldots , x_{i,\ell})^T \in \mathbb{R}^\ell$ and we consider the multivariate polynomial $\mathbf{p}_D(\mathbf{x})$ of degree $D$. Here is an illustration of the new features for $\ell=2$ and $D=3$: $$\mathbf{x}_i = (x_{i,1},x_{i,2})^\top\quad\text{ and }\quad \mathbf{p}_D(\mathbf{x}_i) = (1,\ x_{i, 1},\ x_{i, 2},\ x_{i, 1}^2,\ x_{i, 2}^2,\ x_{i, 1}x_{i,2},\ x_{i, 1}x_{i,2}^2,\ x_{i, 1}^2x_{i, 2},\ x_{i, 1}^3,\ x_{i, 2}^3)^\top$$ For a more general $\ell$ and $D$, \textbf{show that the size of $\mathbf{p}_D(\mathbf{x})$ is $\binom{D + \ell}{\ell}$}. You may use a stars and bars argument (link is \href{https://inst.eecs.berkeley.edu/~cs70/fa15/slides/lec-18.6up.pdf}{\color{brown}{here}} if you did not take CS70).
+\BeginSolution
+%3f
+
+\EndSolution
+\item With $n$ sample points $\{\mathbf{x}_i\}_{i=1}^n$, stack up the multivariate polynomial features $\mathbf{p}_D(\mathbf{x}_i)$ as rows to obtain the feature matrix $\mathbf{F}_{\ell} \in \mathbb{R}^{n \times \binom{D + \ell}{\ell}}$. Let $x_{i,1} = x_{i,2} = \cdots  = x_{i,\ell} = \alpha_i$ where $\alpha_i$'s are distinct scalars for $i \in \{1, 2, 3 \ldots, n\}$. \textbf{Show that with these sample points, the feature matrix $\mathbf{F}_{\ell}$ always has linearly dependent columns for any value of $n > 1$.} Compare this fact with your conclusion from part (e).
+\BeginSolution
+%3g
+
+\EndSolution
+\item Now \textbf{design a set of sampling points $\mathbf{x}_i$ such that the corresponding multivariate polynomial feature matrix $\mathbf{F}_{\ell}$ is full column rank.} You are free to choose the number of points at your convenience. Although we are only asking you to show that there exists a way to sample to achieve full rank with enough samples taken, it turns out to be true that the $\mathbf{F}_{\ell}$ matrix will be full rank as long as $n=\binom{D + \ell}{\ell}$ "generic" points are chosen.
+\vspace{4pt}
+
+Hint: Leverage earlier parts of this problem if you can.
+\BeginSolution
+%3h
+
+\EndSolution
+\end{enumerate}
+%%%% Problem 3 Ends Here %%%%
+\clearpage
+
+%%%% Problem 4 Starts Here %%%%
+\vspace{-2mm}\noindent\begin{mybox}{\begin{center}\textbf{\color{black}Problem 4: Polynomials and Approximation}\end{center}}\end{mybox}\vspace{-2mm}
+\vspace{10pt}
+\noindent For a $p$-times differentiable function $f: \mathbb{R} \to \mathbb{R}$, the Taylor series expansion of order $m \leqslant p - 1$ about the point $x_0$ is given by \begin{align*}f(x) = \sum_{i=0}^m\frac{1}{i!}f^{(i)}(x_0)(x-x_0)^i+\frac{1}{(m+1)!}f^{(m+1)}(a(x))(x-x_0)^{m+1}\tag{3}\end{align*} Here, $f^{(m)}$ denotes the $m$th derivative of the function $f$, and $a(x)$ is some value between $x_0$ and $x$. By definition, $f^{(0)} = f$.
+\vspace{4pt}
+
+\noindent The last term $$r_m(x) :=  \frac{1}{(m + 1)!} f^{(m+1)}(a(x)) (x - x_0)^{m + 1}$$ of this expansion is typically referred to as the remainder term when approximating $f(x)$ by an $m$-th degree polynomial.
+\vspace{4pt}
+
+\noindent We denote by $\phi_m$ the $m$-th degree Taylor polynomial (also called the Taylor \textit{approximation}), which consists of the Taylor series expansion of order $m$ without the remainder term and thus reads $$f(x)\approx \phi_m(x) = \sum_{i=0}^m\frac{1}{i!}f^{(i)}(x_0)(x-x_0)^i$$ where the sign $\approx$ indicates approximation of the left hand side by the right hand side.
+\vspace{4pt}
+
+\noindent For functions $f$ whose derivatives are bounded in the neighborhood of interest, if we have $|f^{(m)}(x)| \leqslant T$ for $x\in (x_0 - s, x_0 + s)$, we know that for $x\in (x_0 -s, x_0 + s)$ that the \textit{approximation error} of the $m$-th order Taylor approximation $|f(x) - \phi_m(x)| = |r_m(x)|$ is upper bounded $$|f(x) - \phi_m(x)|\leqslant \frac{T|x-x_0|^{m+1}}{(m + 1)!}$$
+\begin{enumerate}
+\item \textbf{Compute the $1$st, $2$nd, $3$rd, and $4$th order Taylor approximation of the following functions around the point $x_0 = 0$.}
+\begin{enumerate}[i.]
+\item $\displaystyle e^x$
+\BeginSolution
+%4ai
+
+\EndSolution
+\item $\displaystyle \sin x$
+\BeginSolution
+%4aii
+
+\EndSolution
+\end{enumerate}
+\item For $f(x) = e^x$, \textbf{plot the Taylor approximation from order 1 through 4 at $x_0 = 0$ for $x$ in the domain $I:= [-4,3]$.} If you are unfamiliar with plotting in Python, please refer to the starter code for this question which could save you time.
+\vspace{4pt}
+
+We denote the maximum approximation error on the domain $I$ by $$\|f - \phi_m\|_{\infty} := \sup_{x\in I} |f(x) - \phi_m(x)|$$ where $\| \cdot\|_{\infty}$ is also called the sup-norm with respect to $I$. \textbf{Compute $\|f - \phi_m\|_{\infty}$ for $m=2$. What is an upper bound for arbitrary non-zero integers $m$? Compute the limit of $\|f - \phi_m\|_{\infty}$ as $m\rightarrow \infty$?}
+\vspace{4pt}
+
+Hint: Use Stirling's approximation for integers $n$ which is: $n!\sim \sqrt{2\pi n}\left(\frac ne\right)^n$
+\vspace{4pt}
+
+\textbf{Now plot the Taylor approximation of $f$ up to order $4$ on the interval $[-20, 8]$. How does the approximation error behave outside the bounded interval $I$?}
+\BeginSolution
+%4b
+
+\EndSolution
+\item Let's say we would like an accurate polynomial approximation of the functions in part (a) for all $x \in I$. Given the results of the previous parts, we can in fact find a Taylor polynomial of degree $D$ such that $|f(x) - \phi_D(x)| \leqslant \epsilon$ for all $x \in I$. \textbf{Using the upper bound in (b), show that if $D$ is larger than $\mathcal{O}(\log(1/\epsilon))$, we can guarantee that $|f(x) - \phi_D(x)| \leqslant \epsilon$ for both choices of $f(x)$ in part (a).} Note that constant factors are not relevant here, and assume sufficiently small positive $\epsilon \ll 1$.
+\BeginSolution
+%4c
+
+\EndSolution
+\item \textbf{Conclude that a univariate polynomial of high enough degree can approximate any function $f$ on a closed interval $I$, that is continuously differentiable infinitely many times and has bounded derivatives $|f^{(m)}(x)|\leqslant T$ for all $m\geqslant 1$ and $x\in I$.} Mathematically speaking, we need to show that for any $\epsilon > 0$, there exists a degree $D \geqslant 1$ such that $\|f-\phi_D\|_{\infty} < \epsilon$, where the sup-norm is taken with respect to the interval $I$.
+\vspace{4pt}
+
+This universal approximation property illustrates the power of polynomial features, even when we don't know the underlying function $f$ that is generating our data! Later, we will see that neural networks are also universal function approximators.)
+\BeginSolution
+%4d
+
+\EndSolution
+\item Now let's extend this idea of approximating functions with polynomials to multivariable functions.  The Taylor series expansion for a function $f(x,y)$ about the point $(x_0,y_0)$ is given by \begin{align*} f(x,y) = &f(x_0,y_0)+f_x(x_0,y_0)(x-x_0)+f_y(x_0,y_0)(y-y_0)+\\&\frac{1}{2!}[f_{xx}(x_0,y_0)(x-x_0)^2+f_{xy}(x_0,y_0)(x-x_0)(y-y_0)+\\&f_{yx}(x_0,y_0)(x-x_0)(y-y_0)+f_{yy}(x_0,y_0)(y-y_0)^2]+\ldots\tag{4}\end{align*} where $f_x=\frac{\partial f}{\partial x}$, $f_y=\frac{\partial f}{\partial y}$, $f_{xx}=\frac{\partial^2f}{\partial x^2}$, $f_{yy}=\frac{\partial^2f}{\partial y^2}$, and $f_{xy}=\frac{\partial^2f}{\partial x \partial y}$.
+\vspace{4pt}
+
+As you can see, the Taylor series for multivariate functions quickly becomes unwieldy after the second order.  Let's try to make the series a little bit more manageable. \textbf{Using matrix notation, write the expansion for a function of two variables in a more compact form up to the second order terms where $f(\mathbf{v})=f(x,y)$ with $\mathbf{v}=[x,y]^T$ and $\mathbf{v}_0=[x_0,y_0]$.  Clearly define any additional vectors and matrices that you use.}
+\vspace{4pt}
+
+Consider the multivariate function $f(\mathbf{v})=e^{x}y^2$ where $\mathbf{v}=[x,y]^T$. \textbf{Please write down the second order multivariate Taylor approximation for $f$ at $\mathbf{v}_0$.}
+\BeginSolution
+%4e
+
+\EndSolution
+\item In this part we want to show how the univariate approximation discussed in the previous parts can be used as a stepping stone to understand polynomial approximation in multiple dimensions.
+\vspace{4pt}
+
+Let us consider the approximation of the function $f(\mathbf{v}) = e^x y^2$ around $\mathbf{v}_0 = \mathbf{0}$ along a direction $\mathbf{v} - \mathbf{v}_0 = \mathbf{v}$. All vectors along this direction are on the path $\mathbf{v}(t) := \mathbf{0}+ t(\mathbf{v}-\mathbf{0})$ for $t\in \mathbb{R}$. \textbf{Write the second order Taylor expansion of $g(t) = f(\mathbf{v}(t))$ around the point $t_0=0$.} Note that $g$ is a function mapping a scalar to a scalar.
+\vspace{4pt}
+
+By considering all such paths $\mathbf{v}(t)$ over different directions $\mathbf{v}$, we can reduce the multidimensional setting to the univariate setting. The example hopefully helped you to get an idea why the approximation behavior of Taylor polynomials holds similarly in higher dimensions.
+\BeginSolution
+%4f
+
+\EndSolution
+\end{enumerate}
+%%%% Problem 4 Ends Here %%%%
+\clearpage
+
+%%%% Problem 5 Starts Here %%%%
+\vspace{-2mm}\noindent\begin{mybox}{\begin{center}\textbf{\color{black}Problem 5: Jaina and Her Giant Peaches}\end{center}}\end{mybox}\vspace{-2mm}
+\vspace{10pt}
+\noindent \textbf{Make sure to submit the code you write in this problem to ``HW2 Code'' on Gradescope.}
+\vspace{4pt}
+
+\noindent In another alternative universe, Jaina is a mage testing how long she can fly a collection of giant peaches. She has $n$ training peaches -- with masses given by $x_1, x_2, \ldots x_n$ -- and flies these peaches once to collect training data. The experimental flight time of peach $i$ is given by $y_i$. She believes that the flight time is well approximated by a polynomial function of the mass $$y_i \approx w_0 + w_1x_i + w_2x_i^2 \dots + w_Dx_i^D$$ where her goal is to fit a polynomial of degree $D$ to this data. Include all text responses and plots in your write-up.
+\begin{enumerate}
+\item \textbf{Show how Jaina's problem can be formulated as a linear regression problem.}
+\BeginSolution
+%5a
+
+\EndSolution
+\item You are given data of the masses $\{x_i\}_{i=1}^n$ and flying times $\{y_i\}_{i=1}^n$ in the "x\_train" and "y\_train" keys of the file \texttt{1D\_poly.mat} with the masses centered and normalized to lie in the range $[-1, 1]$. \textbf{Write a script to do a least-squares fit (taking care to include a constant term) of a polynomial function of degree $D$ to the data.} Letting $f_D$ denote the fitted polynomial, \textbf{plot the average training error $$R(D) = \frac{1}{n} \sum_{i=1}^n (y_i - f_D(x_i))^2$$ against $D$ in the range $D \in \{1, 2, 3, \ldots, n-1\}$.}  You may not use any library other than \texttt{numpy} and \texttt{numpy.linalg} for computation.
+\BeginSolution
+%5b
+
+\EndSolution
+\item \textbf{How does the average training error behave as a function of $D$, and why? What happens if you try to fit a polynomial of degree $n$ with a standard matrix inversion method?}
+\BeginSolution
+%5c
+
+\EndSolution
+\item Jaina has taken Mystical Learning 189, and so decides that she needs to run another experiment before deciding that her prediction is true. She runs another fresh experiment of flight times using the same peaches, to obtain the data with key "y\_fresh" in \texttt{1D\_poly.mat}. Denoting the fresh flight time of peach $i$ by $\tilde{y}_i$, \textbf{plot the average error $$\tilde{R}(D) = \frac{1}{n} \sum_{i=1}^n (\tilde{y}_i - f_D(x_i))^2$$ for the same values of $D$ as in part (b) using the polynomial approximations $f_D$ also from the previous part. How does this plot differ from the plot in (b) and why?}
+\BeginSolution
+%5d
+
+\EndSolution
+\item \textbf{How do you propose using the two plots from parts (b) and (d) to "select" the right polynomial model for Jaina?}
+\BeginSolution
+%5e
+
+\EndSolution
+\item Jaina has a new hypothesis -- the flying time is actually a function of the mass, smoothness, size, and sweetness of the peach, and some multivariate polynomial function of all of these parameters. A $D$-multivariate polynomial function looks like $$f_D(\mathbf{x}) = \sum_j\alpha_j\prod_i x_i^{p_{ji}}$$ where $\forall j\,:\,\sum_i p_{ji}\leqslant D$. Here $\alpha_j$ is the scale constant for $j$th term and $p_{ji}$ is the exponent of $x_i$ in $j$th term. The data in \texttt{polynomial\_regression\_samples.mat} ($100000 \times 5$) with columns corresponding to the $5$ attributes of the peach. \textbf{Use $4$-fold cross-validation to decide which of $D \in \{1, 2, 3, 4, 5, 6\}$ is the best fit for the data provided}. For this part, compute the polynomial coefficients via ridge regression with penalty $\lambda = 0.1$, instead of ordinary least squares.  You are not allowed to use any library other than \texttt{numpy} and \texttt{numpy.linalg}.
+\BeginSolution
+%5f
+
+\EndSolution
+\item Now \textbf{redo the previous part, but use 4-fold cross-validation on all combinations of $D \in \{1, 2,3,4,5,6\} $ and $\lambda \in \{0.05, 0.1, 0.15, 0.2\}$} - this is referred to as a grid search. \textbf{Find the best $D$ and $\lambda$ that best explains the data using ridge regression. Print the average training/validation error per sample for all $D$ and $\lambda$.}
+\BeginSolution
+%5g
+
+\EndSolution
+\end{enumerate}
+%%%% Problem 5 Ends Here %%%%
+\clearpage
+
+%%%% Problem 6 Starts Here %%%%
+\vspace{-2mm}\noindent\begin{mybox}{\begin{center}\textbf{\color{black}Problem 6: Nonlinear Classification Boundaries}\end{center}}\end{mybox}\vspace{-2mm}
+\vspace{10pt}
+\noindent \textbf{Make sure to submit the code you write in this problem to ``HW2 Code'' on Gradescope.}
+\vspace{4pt}
+
+\noindent In this problem we will learn how to use polynomial features to learn nonlinear classification boundaries.
+\vspace{4pt}
+
+\noindent In Problem 7 on HW1, we found that linear regression can be quite effective for classification. We applied it in the setting where the training data points were \textit{approximately linearly separable}. This means there exists a hyperplane such that most of the training data points in the first class are on one side of the hyperplane and most training data points in the second class are on the other side of the hyperplane.
+\vspace{4pt}
+
+\noindent However, often times in practice classification datasets are not linearly separable. In this case we can create features that are linearly separable by augmenting the original data with polynomial features as seen in Problem 5. This embeds the data points into a higher dimensional space where they are more likely to be linearly separable.
+\vspace{4pt}
+
+\noindent In this problem we consider a simple dataset of points $(x_i, y_i) \in \mathbb{R}^2$, each associated with a label $b_i$ which is $-1$ or $+1$. The dataset was generated by sampling data points with label $-1$ from a disk of radius $1.0$ and data points with label $+1$ from a ring with inner radius $0.8$ and outer radius $2.0$.
+\begin{enumerate}
+\item \textbf{(OPTIONAL)} \textbf{Run the starter code to load and visualize the dataset and submit a scatterplot of the points with your homework. Why can't these points be classified with a linear classification boundary?}
+\BeginSolution
+%6a
+
+\EndSolution
+\item  \textbf{(OPTIONAL)} Classify the points with the technique from Problem 7 on HW1 (``A Simple classification approach''). Use the feature matrix $\mathbf{X}$ whose first column consists of the $x$-coordinates of the training points and whose second column consists of the $y$-coordinates of the training points. The target vector $\mathbf{b}$ consists of the class label $-1$ or $+1$. Perform the linear regression $\mathbf{w}_1 = \arg\min_{\mathbf{w}} \norm{\mathbf{X}\mathbf{w} - \mathbf{b}}_2^2$. \textbf{Report the classification accuracy on the test set.}
+\BeginSolution
+%6b
+
+\EndSolution
+\item \textbf{(OPTIONAL)} Now augment the data matrix $\mathbf{X}$ with polynomial features $1, x^2, xy, y^2$ and classify the points again, i.e. create a new feature matrix $$\Phi = \left(\begin{array}{cccccc}x_1 & y_1 & x_1^2 & x_1 y_1 & y_1^2 & 1\\ x_2 & x_2 & x_2^2 & x_2 y_2 & y_2^2 & 1\\ \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\ x_n & y_n & x_n^2 & x_n y_n & y_n^2 & 1\end{array}\right)$$ and perform the linear regression $\mathbf{w}_2 = \arg\min_{\mathbf{w}} \|{\Phi\mathbf{w} - \mathbf{b}}\|_2^2$. \textbf{Report the classification accuracy on the test set.}
+\BeginSolution
+%6c
+
+\EndSolution
+\item \textbf{(OPTIONAL)} \textbf{Report the weight vector that was found in the feature space with the polynomial features. Show that up to small error the classification rule has the form $\alpha x^2 + \alpha y^2 \leqslant \beta$. What is the interpretation of $\beta/\alpha$ here? Why did the classification in the augmented space work?}
+\BeginSolution
+%6d
+
+\EndSolution
+\end{enumerate}
+%%%% Problem 6 Ends Here %%%%
+\clearpage
+
+
+%%%% Problem 7 Starts Here %%%%
+\vspace{-2mm}\noindent\begin{mybox}{\begin{center}\textbf{\color{black}Problem 7: Your Own Question}\end{center}}\end{mybox}\vspace{-2mm}
+\vspace{10pt}
+\noindent \textbf{Write your own question, and provide a thorough solution.}
+\vspace{3pt}
+
+\noindent Writing your own problems is a very important way to really learn the material. The famous ``Bloom's Taxonomy'' that lists the levels of learning is: Remember, Understand, Apply, Analyze, Evaluate, and Create. Using what you know to create is the top-level. We rarely ask you any HW questions about the lowest level of straight-up remembering, expecting you to be able to do that yourself. (e.g. make yourself flashcards) But we don't want the same to be true about the highest level.
+\vspace{3pt}
+
+\noindent As a practical matter, having some practice at trying to create problems helps you study for exams much better than simply counting on solving existing practice problems. This is because thinking about how to create an interesting problem forces you to really look at the material from the perspective of those who are going to create the exams. 
+\vspace{3pt}
+
+\noindent Besides, this is fun. If you want to make a boring problem, go ahead. That is your prerogative. But it is more fun to really engage with the material, discover something interesting, and then come up with a problem that walks others down a journey that lets them share your discovery. You don't have to achieve this every week. But unless you try every week, it probably won't happen ever. 
+\BeginSolution
+\EndSolution
+%%%% Problem 7 Ends Here %%%%
+\clearpage
+
+\end{document}
+%%%%% Template Ends Here %%%%%
