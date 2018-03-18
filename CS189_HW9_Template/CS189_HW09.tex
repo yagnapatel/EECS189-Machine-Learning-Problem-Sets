@@ -1,0 +1,282 @@
+%%%%% Don't Make Changes Below Here %%%%%
+\documentclass{article}\usepackage[utf8]{inputenc}\usepackage[margin=0.4cm,top=0.4cm,bottom=0.4cm]{geometry}\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}\usepackage{bm, multicol}\usepackage{calligra}\usepackage{tikz, listings}\usepackage{hyperref}\usetikzlibrary{matrix,fit,chains,calc,scopes}\usepackage{tcolorbox}\tcbuselibrary{skins}\tcbset{Baystyle/.style={sharp corners,enhanced,boxrule=6pt,colframe=orange,height=\textheight,width=\textwidth,borderline={8pt}{-11pt}{},}}\usepackage{amsmath,amssymb,amsthm,tikz,tkz-graph,color,chngpage,soul,hyperref,csquotes,graphicx,floatrow}\newcommand*{\QEDB}{\hfill\ensuremath{\square}}\newtheorem*{prop}{Proposition}\renewcommand{\theenumi}{\alph{enumi}}\usepackage[shortlabels]{enumitem}\usetikzlibrary{matrix,calc}\MakeOuterQuote{"}\newtheorem{theorem}{Theorem} \usetikzlibrary{shapes} \usepackage{lipsum}\usepackage{tabularx,ragged2e,booktabs,caption}\tcbuselibrary{breakable}\newenvironment{yframed}{\begin{tcolorbox}[breakable,colback=gray!3,title after break={\textit{\color{red}Solution (cont.)}},colbacktitle=gray!3, coltitle=black,titlerule=-1pt] }{\end{tcolorbox}}\newtcolorbox{mybox}{colback=black!15!white, colframe=white,arc=12pt}\newtcolorbox{myboxot}{colback=green!15!white, colframe=white,arc=12pt,width=110pt, height=27pt}\newtcbox{\mylib}{enhanced,boxrule=0pt,top=0mm,bottom=0mm,right=0mm,left=4mm,arc=4pt,boxsep=9pt,before upper={\vphantom{dlg}},colframe=green!50!black,coltext=green!25!black,colback=green!10!white,overlay={\begin{tcbclipinterior}\fill[green!75!blue!50!white] (frame.south west)rectangle node[text=white,font=\sffamily\bfseries\tiny,rotate=90] {Problem} ([xshift=4mm]frame.north west);\end{tcbclipinterior}}}\newtcbox{\mylibot}{enhanced,boxrule=0pt,top=0mm,bottom=0mm,right=0mm,arc=4pt,boxsep=9pt,before upper={\vphantom{dlg}},colframe=green!50!black,coltext=green!25!black,colback=green!10!white,overlay={\begin{tcbclipinterior}\fill[red!75!blue!50!white] (frame.south west)rectangle node[text=white,font=\sffamily\bfseries\tiny,rotate=90] {Other} ([xshift=4mm]frame.north west);\end{tcbclipinterior}}}
+\def\Title{\begin{tcolorbox}[Baystyle,]{\begin{center}\vspace*{0.14\textheight}
+{\rule{\textwidth}{1.6pt}\vspace*{-\baselineskip}\vspace*{2pt}}
+\rule{\textwidth}{0.4pt}\\[0.2\baselineskip]{\fontsize{45}{45}\scshape CS 189: Introduction to Machine Learning \\[0.2\baselineskip] \calligra Spring 2018 \\[0.2\baselineskip]}
+{\rule{\textwidth}{0.4pt}\vspace*{-\baselineskip}\vspace{3.2pt}}
+\rule{\textwidth}{1.6pt}\\[\baselineskip]\vspace{0.05\textheight}{{\fontsize{45}{45}\scshape$\bullet$\\ {Homework 9}\\\vspace*{0.01\textheight} }{{\fontsize{18}{18}\scshape{Due on Friday, March 23rd, 2018 at 10pm\\}}}\fontsize{45}{45}\scshape$\bullet$  \\}\vspace*{0.1\textheight}{\fontsize{12}{12}\calligra Solutions by\\}{\fontsize{28}{28}\scshape \Name \\}\vspace*{0.01\textheight}{\fontsize{12}{12}\scshape \SID} \\\vspace*{0.05\textheight}{\fontsize{12}{12}\calligra In collaboration with\\}\vspace*{0.01\textheight}{\fontsize{12}{12}\scshape \Collabs} \\\vspace*{0.05\textheight}\end{center}}\end{tcolorbox}\newgeometry{margin=0.75in}}\def\BeginSolution{\begin{yframed}\textbf{\color{red}Solution }}\def\EndSolution{\end{yframed}}\usepackage{algorithm}\usepackage[noend]{algpseudocode}\makeatletter\def\BState{\State\hskip-\ALG@thistlm}\makeatother\def\star{\bigstar}\usetikzlibrary{arrows}\usepackage[mathscr]{euscript}\usepackage[T1]{fontenc}\DeclareSymbolFont{rsfs}{U}{rsfs}{m}{n}\DeclareSymbolFontAlphabet{\mathscrsfs}{rsfs}\newcommand\tab[1][1cm]{\hspace*{#1}}\hypersetup{colorlinks=true,urlcolor=blue}\newtheorem{lemma}[theorem]{Lemma}\newcommand{\norm}[1]{\left\lVert#1\right\rVert}\def\vec{\mathbf}\def\y{\mathbf{y}}\def\X{\mathbf{X}}\def\R{\mathbb{R}}\def\x{\mathbf{x}}\def\w{\mathbf{w}}\def\T{^\top}\def\r{\mathbf{r}}\def\mat{\mathbf}\def\I{\mathbf{I}}\def\A{\mathbf{A}}\newcommand{\num}{n}\newcommand{\dims}{d}\def\real{\mathbb{R}}\def\ev{\mathbb{E}}\newcommand{\whatridge}{\widehat{w}_\lambda}\def\calN{\mathcal{N}}\newcommand{\hatwPCA}{\vec{\widehat{w}}_\text{{PCA}}}\newcommand{\hatyPCA}{\vec{\widehat{y}}_{\text{PCA}}}\newcommand{\hatwOLS}{\vec{\widehat{w}}_{\text{OLS}}}\newcommand{\hatwridge}{\vec{\widehat{w}}_{\text{ridge}}}\newcommand{\tildewridge}{\vec{\tilde{w}}_{\text{ridge}}}\newcommand{\hatyridge}{\vec{\hat{y}}_{\text{ridge}}}\def\diag{\operatorname{diag}}\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[circle,fill=white!20,draw,inner sep=1pt,opacity=1,text opacity=0] (char) {#1};}}\newcommand\citem{\item[\circled{\Alph{enumi}}]}\def\leq{\leqslant}\def\geq{\geqslant}\def\hat{\widehat}
+\def\lbreak{\vspace{4pt}
+
+\noindent }
+%%%%% Don't Make Changes Above Here %%%%%
+
+%%%%% Template Begins Here %%%%%
+
+\def\Name{Firstname Lastname}  % Your name
+\def\SID{StudentID}  % Your student ID number
+\def\Collabs{None} % Your collaborators here with a comma between each person's name. Write None if no collaborators. Don't leave blank.
+
+
+\pagestyle{empty}
+\begin{document}
+\Title
+\clearpage
+
+%%%% Problem 1 Starts Here %%%%
+\vspace{-2mm}\noindent\begin{mybox}{\begin{center}\textbf{\color{black}Problem 1: Getting Started}\end{center}}\end{mybox}\vspace{-2mm}
+\vspace{10pt}
+\noindent \textbf{Read through this page carefully.} You may typeset your homework in latex or submit neatly handwritten/scanned solutions. Please start each question on a new page. Deliverables:
+\begin{enumerate}[1.]
+\item Submit a PDF of your writeup, \textbf{with an appendix for your code}, to assignment on Gradescope, ``HW9 Write-Up''. If there are graphs, include those graphs in the correct sections. Do not simply reference your appendix.
+\item If there is code, submit all code needed to reproduce your results, ``HW9 Code''.
+\item If there is a test set, submit your test set evaluation results, ``HW9 Test Set''.
+\end{enumerate}
+After you've submitted your homework, watch out for the self-grade form.
+\begin{enumerate}
+\item Who else did you you work with on this homework? In case of course events, just describe the group. How did you work on this homework? Any comments about the homework?
+\BeginSolution
+%1a
+
+\EndSolution
+\item Please copy the following statement and sign next to it. We just want to make it \textit{extra} clear so that no one inadvertently cheats.
+
+\textit{I certify that all solutions are entirely in my words and that I have not looked at another student's solutions. I have credited all external sources in this write up.}
+\BeginSolution
+%1b
+
+\EndSolution
+\end{enumerate}
+%%%% Problem 1 Ends Here %%%%
+\clearpage
+
+%%%% Problem 2 Starts Here %%%%
+\vspace{-2mm}\noindent\begin{mybox}{\begin{center}\textbf{\color{black}Problem 2: Classification Policy}\end{center}}\end{mybox}\vspace{-2mm}
+\vspace{10pt}
+\noindent Suppose we have a classification problem with classes labeled $1, \dotsc, c$ and an additional ``doubt'' category labeled $c+1$. Let $f : \mathbb{R}^d \to \{1, \dots, c+1 \}$ be a decision rule. Define the loss function \begin{equation}L(f(\vec{x}), y) =\begin{cases}0 & \mathrm{if}\ f(\vec{x})=y \quad f(\vec{x}) \in\{1,\dotsc,c\}, \\\lambda_c & \mathrm{if}\ f(\vec{x})\neq y \quad f(\vec{x}) \in \{1,\dotsc,c\}, \\\lambda_d & \mathrm{if}\ f(\vec{x})=c+1\end{cases} \end{equation} where $\lambda_c \geq 0$ is the loss incurred for making a misclassification and $\lambda_d \geq 0$ is the loss incurred for choosing doubt. In words this means the following: \begin{itemize}\item When you are correct, you should incur no loss. \item When you are incorrect, you should incur some penalty $\lambda_c$ for making the wrong choice. \item When you are unsure about what to choose, you might want to select a category corresponding to ``doubt'' and you should incur a penalty $\lambda_d$. \end{itemize}
+\lbreak
+We can see that in practice we'd like to have this sort of loss function if we don't want to make a decision if we are unsure about it. This sort of loss function, however, doesn't help you in instances where you have high certainty about a decision, but that decision is wrong.
+\lbreak
+To understand the expected amount of loss we will incur with decision rule $f(\vec{x})$, we look at the risk. The risk of classifying a new data point $\vec{x}$ as class $f(\vec{x}) \in \{1,2,\dots,c+1\}$ is $$R(f(\vec{x})|\vec{x}) = \sum_{i=1}^{c} L(f(\vec{x}), i) \, P(Y=i|\vec{x}).$$
+\begin{enumerate}
+\item \textbf{Show that the following policy $f_{opt}(x)$ obtains the minimum risk:}\begin{itemize}\item Find class $i$ such that $P(Y=i|\vec{x}) \geq P(Y=j|\vec{x})$ for all j, meaning you pick the class with the highest probability given x.\item Choose class $i$ if $P(Y=i|\vec{x}) \geq 1 - \frac{\lambda_d}{\lambda_c}$ \item Choose doubt otherwise.\end{itemize}
+\BeginSolution
+%2a
+
+\EndSolution
+\item \textbf{How would you modify your optimum decision rule if $\lambda_d=0$? What happens if $\lambda_d>\lambda_c$? Explain why this is or is not consistent with what one would expect intuitively.}
+\BeginSolution
+%2b
+
+\EndSolution
+\end{enumerate}
+%%%% Problem 2 Ends Here %%%%
+\clearpage
+
+%%%% Problem 3 Starts Here %%%%
+\vspace{-2mm}\noindent\begin{mybox}{\begin{center}\textbf{\color{black}Problem 3: LDA and CCA}\end{center}}\end{mybox}\vspace{-2mm}
+\vspace{10pt}
+\noindent Consider the following random variable $\vec X \in \mathbb{R}^d$, generated using a \emph{mixture of two Gaussians}. Here, the vectors $\vec \mu_1, \vec \mu_2 \in \mathbb{R}^d$ are arbitrary (mean) vectors, and $\mat \Sigma \in \mathbb{R}^{d \times d}$ represents a positive definite (covariance) matrix. For now, we will assume that we know all of these parameters.
+\lbreak
+Draw a label $L \in \{1, 2\}$ such that the label 1 is chosen with probability $\pi_1$ (and consequently, label 2 with probability $\pi_2 = 1 - \pi_1$), and generate $\vec X \sim \mathcal{N}(\vec \mu_{L}, \vec \Sigma)$.
+\begin{enumerate}
+\item Now given a particular $\vec X \in \mathbb{R}^d$ generated from the above model, we wish to find its label. {\bf Write out the decision rule corresponding to the following estimates of $L$:} \begin{itemize} \item MLE \item MAP \end{itemize} Your decision rule should take the form of a threshold: if some function $f(\vec X) > T$, then choose the label $1$, otherwise choose the label $2$. {\bf When are these two decision rules the same?} Hint: investigate the ratio between the two likelihood functions and the ratio between the two posterior probabilities respectively.
+\BeginSolution
+%3a
+
+\EndSolution
+\item You should have noticed that the function $f$ is \emph{linear} in its argument $\vec X$, and takes the form $\vec w^\top (\vec X - \vec v)$. We will now show that CCA defined on a suitable set of random variables leads to precisely the same decision rule.
+\lbreak
+Let $\vec Y \in \mathbb{R}^2$ be a one hot vector denoting the realization of the label $\ell$, i.e. $Y_\ell = 1$ if $L = \ell$, and zero otherwise. Let $\pi_1 = \pi_2 = 1/2$. {\bf Compute the covariance matrices $\mat \Sigma_{XX}, \mat \Sigma_{XY}$ and $\mat \Sigma_{YY}$ as a function of $\vec \mu_1, \vec \mu_2, \mat \Sigma$.} Recall that the random variables are not zero-mean. Hint: when computing the covariance matrices, the tower property of the expectation is useful.
+\BeginSolution
+%3b
+
+\EndSolution
+\item Let us now perform CCA on the two random variables. Recall that in order to find the first canonical directions, we look for vectors $\vec u \in \mathbb{R}^d$ and $\vec v \in \mathbb{R}^2$ such that $\rho(\vec u^\top \vec X, \vec v^\top \vec Y)$ is maximized.
+\lbreak
+{\bf Show that the maximizing $\vec u^*$ is proportional to $\mat \Sigma^{-1} (\vec \mu_1 - \vec \mu_2)$.} Recall that $\vec u^*$ is that "direction" of $\vec X$ that contributes most to predicting $\vec Y$. {\bf What is the relationship between $\vec u^*$ and the function $f(\vec X)$ computed in part (a)?}
+\lbreak
+Hint: The Sherman-Morrison formula for matrix inversion may be useful:
+\lbreak
+Suppose $\mat A\in \mathbb {R} ^{d\times d}$ is an invertible square matrix and $\vec a, \vec b\in \mathbb {R}^{d}$ are column vectors. Then, \begin{align*}(\mat A+\vec a\vec b^{T})^{-1}=\mat A^{-1}- \frac{\mat A^{-1}\vec a\vec b^{T}\mat A^{-1}}{1+\vec b^{T}\mat A^{-1}\vec a}.\end{align*}
+\BeginSolution
+%3c
+
+\EndSolution
+\end{enumerate}
+%%%% Problem 3 Ends Here %%%%
+\clearpage
+
+%%%% Problem 4 Starts Here %%%%
+\vspace{-2mm}\noindent\begin{mybox}{\begin{center}\textbf{\color{black}Sensors, Objects, and Localization (Part 2)}\end{center}}\end{mybox}\vspace{-2mm}
+\vspace{10pt}
+\noindent Let us say there are $n$ objects and $m$ sensors located in a $2d$ plane. The $n$ objects are located at the points $(x_1,y_1),\ldots,(x_n,y_n)$. The $m$ sensors are located at the points $(a_1,b_1),\ldots,(a_m,b_m)$.  We have measurements for the distances between the objects and the sensors: $D_{ij}$ is the measured distance from object $i$ to sensor $j$. The distance measurement has noise in it. Specifically, we model $$D_{ij} = ||(x_i,y_i)-(a_j,b_j)||+Z_{ij},$$ where $Z_{ij} \sim N(0, 1)$. The noise is independent across different measurements.
+\lbreak
+Assume we observe $D_{ij}=d_{ij}$ with $(X_i,Y_i)=(x_i,y_i)$ for $i=1,\dots, n$ and $j=1,\dots,m$. Here, $m=7$. \textbf{Our goal is to predict $(X_{i'},Y_{i'})$ from newly observed $D_{{i'}1},\dots,D_{{i'}7}$.} For a data set with $q$ points, the error is measured by the average distance between the predicted object locations and the true object locations, $$\frac{1}{q}\sum_{i=1}^q\sqrt{(\hat x_i-x_i)^2 + (\hat y_i - y_i)^2},$$ where $(\hat x_i, \hat y_i)$ is the location of objects predicted by a model.
+\lbreak
+We are going to consider five models in this problem and compare their performance: \begin{itemize}\item A \emph{Generative Model}:  This is basically from the earlier assignment: we first estimate sensor locations from the training data and then use the estimated sensor locations to estimate the new object locations. \item A \emph{Oracle Model}: This is the same as generative model except that we will use the ground truth sensor location rather than the estimated sensor location. \item A \emph{Linear Model}. Using the training set, the linear model attempts to fit $(X_i, Y_i)$ directly from the distance measurements $(D_{i1}, \ldots, D_{i7})$. Then it predicts $(X_{i'},Y_{i'})$ from $(D_{i'1},\ldots,D_{i'7})$. \item A \emph{Second-Order Polynomial Regression Model}. The set-up is similar to the linear model, but including second-order polynomial features. \item A \emph{Third-Order Polynomial Regression Model}. The set-up is similar to the linear model, but including third-order polynomial features. \item A \emph{Neural Network Model}. The Neural Network should have two hidden layers, each with $100$ neurons, and use \texttt{Relu} as the non-linearity. \end{itemize}
+\begin{enumerate}
+\item \textbf{Implement the last four models listed above in \texttt{models.py}.} Starter code has been provided for data generation and visualization to aid your explorations. We provide you a simple gradient descent framework for you to implement the neural network, but you are also free to use the TensorFlow and PyTorch code from your previous homework.
+\BeginSolution
+%4a
+
+\EndSolution
+\item \label{pt:models} \textbf{Fix a set of $7$ sensors and generate the following data sets:} \begin{itemize}\item $15$ training sets where $n_\text{train}$ varies from $10$ to $290$ in increments of $20$. \item A ``regular'' testing data set where $n_\text{test} = 1000$. \item A ``shifted'' testing data set where $n_\text{test} = 1000$. You can do this by setting original\_dist to \texttt{False} in the function \texttt{generate\_data} in \texttt{starter.py}.\end{itemize} The difference between the ``regular'' testing data and the ``shifted'' testing data is that the ``regular'' testing data is drawn from the same distribution as the training data, whereas the ``shifted'' testing data is farther away. 
+\lbreak
+Run \texttt{plot0.py} to visualize the sensor location, sampled regular data, and sampled shifted data. \textbf{Attach the plot/}
+\BeginSolution
+%4b
+
+\EndSolution
+\item \textbf{Use \texttt{plot1.py} to train each of the five models on each of the fifteen training sets. Use your results to generate three figures.  Each figure should include \emph{all} of the models on the same plot so that you can compare them}: \begin{itemize}\item A plot of \emph{training error} versus $n_\text{train}$ (the amount of data used to train the model) for all of the models. \item A plot of \emph{testing error} on the ``regular'' test set versus $n_\text{train}$ (the amount of data used to train the model) for all of the models. \item A plot of \emph{testing error} on the ``shifted'' test set versus $n_\text{train}$ (the amount of data used to train the model) for all of the models. \end{itemize} \textbf{Briefly describe your observations. What are the strengths and weaknesses of each model?}
+\BeginSolution
+%4c
+
+\EndSolution
+\item We are now going to do some hyper-parameter tuning on our neural network. Fix the number of hidden layers to be two and let $\ell$ be the number of neurons in each of these two layers. Try values for $\ell$ between $100$ and $500$ in increments of $50$. Use data sets with $n_\text{train} = 200$ and $n_\text{test}=1,000$. \textbf{What is the best choice for $\ell$ (the number of neurons in the hidden layers)? Justify your answer with plots.} The starter code is in \texttt{plot3.py}.
+\BeginSolution
+%4d
+
+\EndSolution
+\item We are going to do some more hyper-parameter tuning on our neural network. Let $k$ be the number of hidden layers and let $\ell$ be the number of neurons in each hidden layer. \textbf{Write a formula for the total number of weights in our network in terms of $\ell$ and $k$. If we want to keep the total number of weights in the network approximately equal to $10000$, find a formula for $\ell$ in terms of $k$.} Try values of $k$ between $1$ and $4$ with the appropriate implied choice for $\ell$. Use data sets with $n_\text{train}=n_\text{test}=200$. \textbf{What is the best choice for $k$ (the number of layers)? Justify your answer with plots.} The starter code is in \texttt{plot2.py}.
+\BeginSolution
+%4e
+
+\EndSolution
+\item You might have seen the neural network performance is disappointing compared to the generative model in the "shifted" data. Try increasing the number of training data and tune the hyper-parameters. Can you get it to generalize to the "shifted" test data? \textbf{Attach the "number of training data vs accuracy" plot to justify your conclusion.} What is the intuition how neural network works on predicting the $D$? The starter kit is provided in \texttt{plot4.py}.
+\BeginSolution
+%4f
+
+\EndSolution
+\end{enumerate}
+%%%% Problem 4 Ends Here %%%%
+\clearpage
+
+%%%% Problem 5 Starts Here %%%%
+\vspace{-2mm}\noindent\begin{mybox}{\begin{center}\textbf{\color{black}Problem 5: Entropy, KL Divergences, and Cross-Entropy}\end{center}}\end{mybox}\vspace{-2mm}
+\vspace{10pt}
+\noindent Stepping back for a bit, notice that so far we have mostly considered so called \textit{Euclidean} spaces, the most prominenet example is the vector space $\mathbb{R}^d$ with inner product $\langle \vec{x},\vec{y}\rangle = \vec{x}^\top \vec{y}$ and norm $\|\vec{x}\|_2^2 = \vec{x}^\top\vec{x}$. For example in linear regression, we had the loss function $$f(\vec{\theta}) = \|\mat X^\top\vec{\theta}-\vec{y}\|_2^2 = \sum_{i=1}^n(\vec{x}_i^\top \vec{\theta} - y_i)^2$$ which uses precisely the Euclidean norm squared to measure the error.
+\lbreak
+In this problem, we will implicitly consider a different geometric structure, which defines a metric on probability distributions. In more advanced courses, this can be developed further to show how probability distributions are naturally imbued with a curved non-Euclidean intrinsic geometry. Here, our goals are modest - we just want you to better understand the relationship between probability distributions, entropy, KL Divergence, and cross-entropy.
+\lbreak
+Let $\vec{p}$ and $\vec{q}$ be two probability distributions, i.e. $p_i\geq 0$, $q_i\geq 0$, $\sum_i p_i = 1$ and $\sum_i q_i = 1$, then we define the Killback-Leibler divergence $$\operatorname{KL}(\vec{p},\vec{q}) = \sum_i p_i\log\frac{p_i}{q_i}$$ which is the "distance" to $\vec{p}$ from $\vec{q}$. We have $\operatorname{KL}(\vec{p},\vec{p})=0$ and $\operatorname{KL}(\vec{p},\vec{q})\geq 0$ (the latter by Jensen's inequality) as would be expected from a distance metric. However, $\operatorname{KL}(\vec{p},\vec{q})\neq \operatorname{KL}(\vec{q},\vec{p})$ since the KL divergence is not symmetric.
+\begin{enumerate}
+\item \textit{Entropy motivation}: Let $X_1, X_2,\ldots, X_n$ be independent identically distributed random variables taking values in a finite set $\{0,1,\ldots, m\}$, i.e. $p_j=P(X_i=j)$ for $j\in\{0,1,\ldots,m\}$. The \textit{empirical number of occurrences} is then a random vector that we can denote $\mathbf{F}^{(n)}$ where $F_j^{(n)}$ is the number of variables $X_i$ that happen to take a value equal to $j$.
+\lbreak
+Intuitively, we can consider coin tosses with $j=0$ corresponding to heads and $j=1$ corresponding to tails. Say we do an experiment with $n=100$ coin tosses, then $F_0^{(100)}$ is the number of heads that came up and $F_1^{(100)}$ is the number of tails.
+\lbreak
+Recall that the number of configurations of $X_1, X_2, \ldots X_n$ that have $f^{(n)}$ as their empirical type is $$\left(\begin{array}{c}n \\f_0^{(n)}, f_1^{(n)}, \ldots, f_m^{(n)}\end{array}\right)$$ Further notice that dividing the empirical type by $n$ yields an empirical probability distribution.
+\lbreak
+\textbf{Show using the crudest form of Stirling's approximation ($\ell!\approx (\ell/e)^\ell$) that this is approximately equal to} $\exp\left(n H\left(f^{(n)}/n\right)\right)$ where the entropy $H$ of a probability distribution is defined as $$H(\vec{p}) = \sum_{j=0}^m p_n\ln\frac{1}{p_j}$$
+\BeginSolution
+%5a
+
+\EndSolution
+\item \textit{KL divergence motivation}: Recall that the probability of seeing a particular empirical type is given by: $$P\left(\mathbf{F}^{(n)} = \mathbf{f}^{(n)}\right) = \left(\begin{array}{c}n \\f_0^{(n)}, f_1^{(n)}, \ldots, f_m^{(n)}\end{array}\right)\prod_{j=1}^m p_j^{f_j^{(n)}}$$ Consider the limit of large $n$ and a sequence of empirical types so that $\frac{1}{n}\mathbf{f}^{(n)}\to \mathbf{f}$ for $n\to\infty$ where $\mathbf{f}$ is some distribution of interest.
+\lbreak
+\textbf{Use Stirling's approximation to show that} $$\lim_{n\to\infty}\frac{1}{n}\log P\left(\mathbf{F}^{(n)} = \mathbf{f}^{(n)}\right) = -\operatorname{KL}(\mathbf{f}, \mathbf{p})$$ Intuitively, this means that the larger $\operatorname{KL}(\mathbf{f}, \mathbf{p})$ is, the easier it is to conclude $\mathbf{f}\neq\mathbf{p}$ from empirical data since the chance that we would get confused in that way is decaying exponentially. Note also that the empirical distribution is the first argument of the KL divergence and the true model is the second argument of the KL divergence - we are going from the true model to the empirical one.
+\BeginSolution
+%5b
+
+\EndSolution
+\item \textbf{Show that for probability distributions $p(\vec{x},y)$ and $q_\theta(\vec{x},y) = q_\theta(y\mid \vec{x})q(\vec{x})$ with $\vec{x}$ from some discrete set $\mathcal{X}$ and $y$ from some discrete set $\mathcal{Y}$ we have \begin{align*}\operatorname{KL}(p,q_\theta) = c-\sum_{\vec{x}\in\mathbf{\mathcal{X}}}\sum_{{y}\in\mathbf{\mathcal{Y}}}p(\vec{x},y)\log q_\theta (y\mid \vec{x})\tag{1}\end{align*} for some constant $c$ independent of $\theta$.}
+\BeginSolution
+%5c
+
+\EndSolution
+\item In logistic regression we predict labels $y_i=+1$ or $y_i=-1$ from features $\vec{x}_i$ using the transition probability model \begin{align*}q_\theta(y_i\mid \vec{x}_i) = \frac{1}{1+e^{-y_i\vec{\theta}^\top\vec{x}_i}}\tag{2}\end{align*} We now show that the cross-entropy loss you have seen in lectures can be formulated as minimizing the KL distance to the empirical probabilities from the probabilities induced by the model $q_\theta$.
+\lbreak
+For convenience, we assume that all the feature $\vec{x}_i$ are distinct - no two training points are identical.
+\lbreak
+\textbf{Use (c) to show that with the empirical distribution} $$p(\vec{x},y) = \begin{cases}\frac{1}{n} & \text{if }\vec{x}=\vec{x}_i\text{ and } y=y_i\text{ for some }i=1,2,\ldots,n \\ 0 & \text{otherwise}\end{cases}$$ \textbf{we get} $$\min_\theta \operatorname{KL}(p,q_\theta) = \min_\theta -\frac{1}{n}\sum_i\log q_\vec{\theta}(y_i\mid \vec{x}_i)$$ which is the cross entropy loss derived in lectures.
+\BeginSolution
+%5d
+
+\EndSolution
+\end{enumerate}
+%%%% Problem 5 Ends Here %%%%
+\clearpage
+
+%%%% Problem 6 Starts Here %%%%
+\vspace{-2mm}\noindent\begin{mybox}{\begin{center}\textbf{\color{black}Problem 5: Your Own Question}\end{center}}\end{mybox}\vspace{-2mm}
+\vspace{10pt}
+\noindent \textbf{Write your own question, and provide a thorough solution.}
+\vspace{3pt}
+
+\noindent Writing your own problems is a very important way to really learn the material. The famous ``Bloom's Taxonomy'' that lists the levels of learning is: Remember, Understand, Apply, Analyze, Evaluate, and Create. Using what you know to create is the top-level. We rarely ask you any HW questions about the lowest level of straight-up remembering, expecting you to be able to do that yourself. (e.g. make yourself flashcards) But we don't want the same to be true about the highest level.
+\vspace{3pt}
+
+\noindent As a practical matter, having some practice at trying to create problems helps you study for exams much better than simply counting on solving existing practice problems. This is because thinking about how to create an interesting problem forces you to really look at the material from the perspective of those who are going to create the exams. 
+\vspace{3pt}
+
+\noindent Besides, this is fun. If you want to make a boring problem, go ahead. That is your prerogative. But it is more fun to really engage with the material, discover something interesting, and then come up with a problem that walks others down a journey that lets them share your discovery. You don't have to achieve this every week. But unless you try every week, it probably won't happen ever. 
+\BeginSolution
+%6
+
+\EndSolution
+%%%% Problem 6 Ends Here %%%%
+\clearpage
+
+%%%% Code Appendix Starts Here %%%%
+\vspace{-2mm}\noindent\begin{mybox}{\begin{center}\textbf{\color{black}Code Appendix}\end{center}}\end{mybox}\vspace{-2mm}
+\begin{itemize}
+\item \texttt{models.py}
+\BeginSolution
+% Paste Code Between Verbatim
+% models.py
+\begin{verbatim}
+
+\end{verbatim}
+\EndSolution
+\item \texttt{plot0.py}
+\BeginSolution
+% Paste Code Between Verbatim
+% plot0.py
+\begin{verbatim}
+
+\end{verbatim}
+\EndSolution
+\item \texttt{plot1.py}
+\BeginSolution
+% Paste Code Between Verbatim
+% plot1.py
+\begin{verbatim}
+
+\end{verbatim}
+\EndSolution
+\item \texttt{plot2.py}
+\BeginSolution
+% Paste Code Between Verbatim
+% plot2.py
+\begin{verbatim}
+
+\end{verbatim}
+\EndSolution
+\item \texttt{plot3.py}
+\BeginSolution
+% Paste Code Between Verbatim
+% plot3.py
+\begin{verbatim}
+
+\end{verbatim}
+\EndSolution
+\item \texttt{plot4.py}
+\BeginSolution
+% Paste Code Between Verbatim
+% plot4.py
+\begin{verbatim}
+
+\end{verbatim}
+\EndSolution
+\item \texttt{starter.py}
+\BeginSolution
+% Paste Code Between Verbatim
+% starter.py
+\begin{verbatim}
+
+\end{verbatim}
+\EndSolution
+\end{itemize}
+%%%% Code Appendix Ends Here %%%%
+
+\end{document}
+%%%%% Template Ends Here %%%%%
