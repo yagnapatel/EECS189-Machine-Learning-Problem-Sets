@@ -1,0 +1,304 @@
+%%%%% Don't Make Changes Below Here %%%%%
+\documentclass{article}\usepackage[utf8]{inputenc}\usepackage[margin=0.4cm,top=0.4cm,bottom=0.4cm]{geometry}\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}\usepackage{bm, multicol}\usepackage{calligra}\usepackage{tikz, listings}\usepackage{hyperref}\usetikzlibrary{matrix,fit,chains,calc,scopes}\usepackage{tcolorbox}\tcbuselibrary{skins}\tcbset{Baystyle/.style={sharp corners,enhanced,boxrule=6pt,colframe=orange,height=\textheight,width=\textwidth,borderline={8pt}{-11pt}{},}}\usepackage{amsmath,amssymb,amsthm,tikz,tkz-graph,color,chngpage,soul,hyperref,csquotes,graphicx,floatrow}\newcommand*{\QEDB}{\hfill\ensuremath{\square}}\newtheorem*{prop}{Proposition}\renewcommand{\theenumi}{\alph{enumi}}\usepackage[shortlabels]{enumitem}\usetikzlibrary{matrix,calc}\MakeOuterQuote{"}\newtheorem{theorem}{Theorem} \usetikzlibrary{shapes} \usepackage{lipsum}\usepackage{tabularx,ragged2e,booktabs,caption}\tcbuselibrary{breakable}\newenvironment{yframed}{\begin{tcolorbox}[breakable,colback=gray!3,title after break={\textit{\color{red}Solution (cont.)}},colbacktitle=gray!3, coltitle=black,titlerule=-1pt] }{\end{tcolorbox}}\newtcolorbox{mybox}{colback=black!15!white, colframe=white,arc=12pt}\newtcolorbox{myboxot}{colback=green!15!white, colframe=white,arc=12pt,width=110pt, height=27pt}\newtcbox{\mylib}{enhanced,boxrule=0pt,top=0mm,bottom=0mm,right=0mm,left=4mm,arc=4pt,boxsep=9pt,before upper={\vphantom{dlg}},colframe=green!50!black,coltext=green!25!black,colback=green!10!white,overlay={\begin{tcbclipinterior}\fill[green!75!blue!50!white] (frame.south west)rectangle node[text=white,font=\sffamily\bfseries\tiny,rotate=90] {Problem} ([xshift=4mm]frame.north west);\end{tcbclipinterior}}}\newtcbox{\mylibot}{enhanced,boxrule=0pt,top=0mm,bottom=0mm,right=0mm,arc=4pt,boxsep=9pt,before upper={\vphantom{dlg}},colframe=green!50!black,coltext=green!25!black,colback=green!10!white,overlay={\begin{tcbclipinterior}\fill[red!75!blue!50!white] (frame.south west)rectangle node[text=white,font=\sffamily\bfseries\tiny,rotate=90] {Other} ([xshift=4mm]frame.north west);\end{tcbclipinterior}}}
+\def\Title{\begin{tcolorbox}[Baystyle,]{\begin{center}\vspace*{0.14\textheight}
+{\rule{\textwidth}{1.6pt}\vspace*{-\baselineskip}\vspace*{2pt}}
+\rule{\textwidth}{0.4pt}\\[0.2\baselineskip]{\fontsize{45}{45}\scshape CS 189: Introduction to Machine Learning \\[0.2\baselineskip] \calligra Spring 2018 \\[0.2\baselineskip]}
+{\rule{\textwidth}{0.4pt}\vspace*{-\baselineskip}\vspace{3.2pt}}
+\rule{\textwidth}{1.6pt}\\[\baselineskip]\vspace{0.05\textheight}{{\fontsize{45}{45}\scshape$\bullet$\\ {Homework 11}\\\vspace*{0.01\textheight} }{{\fontsize{18}{18}\scshape{Due on Friday, April 13th, 2018 at 10pm\\}}}\fontsize{45}{45}\scshape$\bullet$  \\}\vspace*{0.1\textheight}{\fontsize{12}{12}\calligra Solutions by\\}{\fontsize{28}{28}\scshape \Name \\}\vspace*{0.01\textheight}{\fontsize{12}{12}\scshape \SID} \\\vspace*{0.05\textheight}{\fontsize{12}{12}\calligra In collaboration with\\}\vspace*{0.01\textheight}{\fontsize{12}{12}\scshape \Collabs} \\\vspace*{0.05\textheight}\end{center}}\end{tcolorbox}\newgeometry{margin=0.75in}}\def\BeginSolution{\begin{yframed}\textbf{\color{red}Solution }}\def\EndSolution{\end{yframed}}\usepackage{algorithm}\usepackage[noend]{algpseudocode}\makeatletter\def\BState{\State\hskip-\ALG@thistlm}\makeatother\def\star{\bigstar}\usetikzlibrary{arrows}\usepackage[mathscr]{euscript}\usepackage[T1]{fontenc}\DeclareSymbolFont{rsfs}{U}{rsfs}{m}{n}\DeclareSymbolFontAlphabet{\mathscrsfs}{rsfs}\newcommand\tab[1][1cm]{\hspace*{#1}}\hypersetup{colorlinks=true,urlcolor=blue}\newtheorem{lemma}[theorem]{Lemma}\newcommand{\norm}[1]{\left\lVert#1\right\rVert}\def\vec{\mathbf}\def\y{\mathbf{y}}\def\X{\mathbf{X}}\def\R{\mathbb{R}}\def\x{\mathbf{x}}\def\w{\mathbf{w}}\def\T{^\top}\def\r{\mathbf{r}}\def\mat{\mathbf}\def\I{\mathbf{I}}\def\A{\mathbf{A}}\newcommand{\num}{n}\newcommand{\dims}{d}\def\real{\mathbb{R}}\def\ev{\mathbb{E}}\newcommand{\whatridge}{\widehat{w}_\lambda}\def\calN{\mathcal{N}}\newcommand{\hatwPCA}{\vec{\widehat{w}}_\text{{PCA}}}\newcommand{\hatyPCA}{\vec{\widehat{y}}_{\text{PCA}}}\newcommand{\hatwOLS}{\vec{\widehat{w}}_{\text{OLS}}}\newcommand{\hatwridge}{\vec{\widehat{w}}_{\text{ridge}}}\newcommand{\tildewridge}{\vec{\tilde{w}}_{\text{ridge}}}\newcommand{\hatyridge}{\vec{\hat{y}}_{\text{ridge}}}\def\diag{\operatorname{diag}}\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[circle,fill=white!20,draw,inner sep=1pt,opacity=1,text opacity=0] (char) {#1};}}\newcommand\citem{\item[\circled{\Alph{enumi}}]}\def\leq{\leqslant}\def\geq{\geqslant}\def\hat{\widehat}
+\def\lbreak{\vspace{4pt}
+
+\noindent }
+\newcommand{\lag}{\mathcal{L}}\newcommand{\blam}{\mathbb{\lambda}}\newcommand{\bnu}{\mathbb{\nu}}\newcommand{\balpha}{\mathbb{\alpha}}
+\newcommand{\DD}{\mathcal{D}}\newcommand{\E}{\mathbb{E}}
+%%%%% Don't Make Changes Above Here %%%%%
+
+%%%%% Template Begins Here %%%%%
+
+\def\Name{Firstname Lastname}  % Your name
+\def\SID{StudentID}  % Your student ID number
+\def\Collabs{None} % Your collaborators here with a comma between each person's name. Write None if no collaborators. Don't leave blank.
+
+
+\pagestyle{empty}
+\begin{document}
+\Title
+\clearpage
+
+%%%% Problem 1 Starts Here %%%%
+\vspace{-2mm}\noindent\begin{mybox}{\begin{center}\textbf{\color{black}Problem 1: Getting Started}\end{center}}\end{mybox}\vspace{-2mm}
+\vspace{10pt}
+\noindent \textbf{Read through this page carefully.} You may typeset your homework in latex or submit neatly handwritten/scanned solutions. Please start each question on a new page. Deliverables:
+\begin{enumerate}[1.]
+\item Submit a PDF of your writeup, \textbf{with an appendix for your code}, to assignment on Gradescope, ``HW11 Write-Up''. If there are graphs, include those graphs in the correct sections. Do not simply reference your appendix.
+\item If there is code, submit all code needed to reproduce your results, ``HW11 Code''.
+\item If there is a test set, submit your test set evaluation results, ``HW11 Test Set''.
+\end{enumerate}
+After you've submitted your homework, watch out for the self-grade form.
+\begin{enumerate}
+\item Who else did you you work with on this homework? In case of course events, just describe the group. How did you work on this homework? Any comments about the homework?
+\BeginSolution
+%1a
+
+\EndSolution
+\item Please copy the following statement and sign next to it. We just want to make it \textit{extra} clear so that no one inadvertently cheats.
+
+\textit{I certify that all solutions are entirely in my words and that I have not looked at another student's solutions. I have credited all external sources in this write up.}
+\BeginSolution
+%1b
+
+\EndSolution
+\end{enumerate}
+%%%% Problem 1 Ends Here %%%%
+\clearpage
+
+%%%% Problem 2 Starts Here %%%%
+\vspace{-2mm}\noindent\begin{mybox}{\begin{center}\textbf{\color{black}Problem 2: SVM with custom margins}\end{center}}\end{mybox}\vspace{-2mm}
+\vspace{10pt}
+\noindent In the lecture, we covered the soft margin SVM. The objective to be optimized over the training set $\{(\vec x_1, y_1), (\vec x_2, y_2),$ $\dots, (\vec x_n, y_n)\}$ is \begin{align}\min_{\w, b, \xi_i} & \frac{1}{2}||\w||^2 + C\sum_{i=1}^{n} \xi_i   \\s.t. \quad & y_i (\w^\top \x_i -b) \geq 1 - \xi_i \quad \forall i \\     & \xi_i \geq 0 \quad \forall i\end{align} In this problem, we are interested in a modified version of the soft margin SVM where we have a custom margin for each of the $n$ data points. In the standard soft margin SVM, we pay a penalty of $\xi_i$ for each of the data point. In practice, we might not want to treat each training point equally, since with prior knowledge, we might know that some data points are more important than the others. There is some connection to weighted least squares. We formally define the following optimization problem: \begin{align}\min_{\w, b, \xi_i} & \frac{1}{2}||\w||^2 + C\sum_{i=1}^{n} \phi_i \xi_i   \\s.t. \quad & y_i (\w^\top \x_i -b) \geq 1 - \xi_i \quad \forall i \\     & \xi_i \geq 0 \quad \forall i\end{align} Note that the only difference is that we have a weighting factor $\phi_i > 0$ for each of the slack variables $\xi_i$ in the objective function. $\phi_i$ are some constants given by the prior knowledge, thus they can be treated as known constants in the optimization problem. Intuitively, this formulation weights each of the violations ($\xi_i$) differently according to the prior knowledge ($\phi_i$).
+\begin{enumerate}
+\item For the standard soft margin SVM, we have shown that the constrained optimization problem is equal to the following unconstrained optimization problem, i.e. regularized empirical risk minimization problem with hinge loss: \begin{align}\min_{\w, b} \frac{1}{2} ||\w||^2 + C \sum_{i=1}^{n} \max(1-y_i(\w^\top \x_i - b), 0)\end{align} \textbf{What's the corresponding unconstrained optimization problem for the SVM with custom margins?}
+\BeginSolution
+%2a
+
+\EndSolution
+\item The dual of the standard soft margin SVM is: \begin{align}\max_{\mathbb{\alpha}} & \mathbb{\alpha}^\top \mathbf{1} - \frac{1}{2}\mathbb{\alpha}^\top \mathbf{Q} \mathbb{\alpha} \\s.t. & \sum_{i=1}^{n} \alpha_i y_i = 0 \\& 0 \leq \alpha_i  \leq C \quad i=1, \cdots , n \end{align} where $\mathbf{Q} = (\diag\y) \X \X^T (\diag \y)$ 
+\lbreak
+\textbf{What's the dual form of the SVM with custom margin? Show the derivation steps in detail.  }
+\BeginSolution
+%2b
+
+\EndSolution
+\item \textbf{From the dual formulation above, how would you kernelize the SVM with custom margins? What role does the $\phi_i$ play in the kernelized version? }
+\BeginSolution
+%2c
+
+\EndSolution
+\end{enumerate}
+%%%% Problem 2 Ends Here %%%%
+\clearpage
+
+%%%% Problem 3 Starts Here %%%%
+\vspace{-2mm}\noindent\begin{mybox}{\begin{center}\textbf{\color{black}Problem 3: Nearest Neighbors, from A to Z}\end{center}}\end{mybox}\vspace{-2mm}
+\vspace{10pt}
+\noindent For this problem, we will use data from the UN to have some fun with the nearest neighbors approach to learning. A lot of the code you will need has been provided for you.
+\lbreak
+The data we are using is called the ``World Values Survey.'' It consists of survey data collection over several years from almost all countries. The survey asked ``Which of these are most important for you and your family?'' There were $16$ possible responses, including needs like ``Freedom from Discrimination and Persecution'' and ``Better Transport and Roads.'' The data reported is the fraction of responses in each country that chose each option.
+\lbreak
+We would like to use these $16$ features of each country (the citizen's responses to the survey) to predict that country's HDI (Human Development Index). In reality, the HDI is a complex measure which takes into account lots of data about a country, including factors like life expectancy, education, per capita income, etc. Intuitively though, you might expect citizens of countries with different HDI to have different priorities. For that reason, predicting the HDI from survey data might be a reasonable endeavor.
+\lbreak
+Note that throughout the problem we will be using RMSE, which stands for Root Mean Squared Error.
+\begin{enumerate}
+\item (Bonus): \textbf{Fill out the ``Berkeley's S2018 Values Survey.''} The purpose of this is so that you have a sense of how the data was generated, a useful first step in any ML problem. Just for fun, at the end of this problem we will attempt to predict what the HDI of Berkeley would be if it were its own country.
+\BeginSolution
+%3a
+
+\EndSolution
+\item  \label{pt:corrs} First, we should do some basic data exploration. \textbf{Compute the correlation of each feature with HDI. Which feature is the most positively correlated with HDI? Which feature is the most negatively correlated with HDI? Which feature is the least correlated with HDI (closest to $0$)?}
+\BeginSolution
+%3b
+
+\EndSolution
+\item \textbf{For each of these three features identified in \ref{pt:corrs} (most positively correlated, most negatively correlated, least correlated), plot ``HDI versus [Feature].''} You will create three plots in total. \textbf{What do you observe?}
+\BeginSolution
+%3c
+
+\EndSolution
+\item Let's visualize the data a bit more. \textbf{Plot the data in its first two PCA dimensions, colored by HDI.} The code to do this has been provided for you.
+\BeginSolution
+%3d
+
+\EndSolution
+\item Now, let's use our first ML technique. \textbf{Use the code provided to train and cross-validate ridge regression to predict a country's HDI from its citizens' world values survey responses.} \textbf{What is the best RMSE?}
+\BeginSolution
+%3e
+
+\EndSolution
+\item Let's try another ML technique. \textbf{Use the code provided to train and cross-validate LASSO regression to predict a country's HDI from its citizens' world values survey responses.} \textbf{What is the best RMSE?}
+\BeginSolution
+%3f
+
+\EndSolution
+\item \textbf{Examine the model returned by LASSO regression (that is, the $16$ feature weights). Does LASSO regression indeed give more $0$ weights?}
+\BeginSolution
+%3g
+
+\EndSolution
+\item In lecture, we covered $k$-Nearest Neighbors for classification problems. We decided that the class of a test point would be the plurality of the classes of the $k$ nearest training points. That algorithm makes sense when the outputs are discrete, so we can vote. Here, the outputs are continuous. \textbf{How would you adapt the $k$ Nearest Neighbors algorithm for a regression problem?}
+\BeginSolution
+%3h
+
+\EndSolution
+\item \label{pt:knncountry} \textbf{Which countries are the $7$ nearest neighbors of the USA (in order)?}
+\BeginSolution
+%3i
+
+\EndSolution
+\item \label{pt:knnplot} The most important meta-parameter of $k$ nearest neighbors is $k$ itself. \textbf{Plot the RMSE of kNN regression versus $k$, where $k$ is the number of neighbors. What is the best value of $k$? What is the RMSE?}
+\BeginSolution
+%3j
+
+\EndSolution
+\item \textbf{Explain your plot in (\ref{pt:knnplot}) in terms of bias and variance.} This is tricky, so take some time to think about it. Think about the spirit of bias and variance more than their precise definitions.
+\BeginSolution
+%3k
+
+\EndSolution
+\item We do not need to give every neighbor an equal weight. Maybe closer neighbors are more relevant. For the sake of this problem, let's weight each neighbor by the inverse of its distance to the test point. \textbf{Plot the RMSE of kNN regression with distance weighting versus $k$, where $k$ is the number of features. What is the best value of $k$? What is the RMSE?}
+\BeginSolution
+%3l
+
+\EndSolution
+\item One of the challenges of $k$ Nearest Neighbors is that it is very sensitive to the scale of the features. For example, if one feature takes on values $0$ or $0.1$ and another takes on values $0$ or $10$, then the nearest neighbors approach will almost certainly pick nearest neighbors according to the second feature. \textbf{Which countries are the $7$ nearest neighbors of the USA after scaling (in order)? Compare your result to \ref{pt:knncountry}.}
+\BeginSolution
+%3m
+
+\EndSolution
+\item \textbf{Add scaling to your $k$ nearest neighbors pipeline (continue to use distance weighting). Plot RMSE versus $k$. What is the best value for $k$? What is the RMSE?}
+\BeginSolution
+%3n
+
+\EndSolution
+\item (Bonus): \textbf{Rather than scaling each feature to have unit variance, explore ways of scaling the features non-uniformly. How much does this help, if at all?}
+\BeginSolution
+%3o
+
+\EndSolution
+\item You have been given a set of test features: countries where the responses to the world values survey are given but the HDI is not known. \textbf{Using the best model developed so far, predict the HDI values of the countries in the test set. Submit your predictions on Gradescope.}
+\BeginSolution
+%3p
+
+\EndSolution
+\item So far we have dealt with the regression problem. Let's take a brief look at classification. A naive classifier is a classifier which disregards the features and just classifies everything as belonging to a single class. \textbf{In any classification problem with $k$ classes, at least what accuracy are we guaranteed to get with the best naive classifier?} (Hint: there are $k$ possible naive classifiers. Use the pigeonhole principle).
+\BeginSolution
+%3q
+
+\EndSolution
+\item \label{pt:pcaclass} We will split countries into two groups: high HDI (more than $0.7$) and low HDI (less than $0.7$). \textbf{Plot the countries by their first two PCA dimensions again, but now color them by class.}
+\BeginSolution
+%3r
+
+\EndSolution
+\item Examine the graph generated in (\ref{pt:pcaclass}). \textbf{How well do you think a linear SVM would do in classification?}
+\BeginSolution
+%3s
+
+\EndSolution
+\item \label{svmintro} We will use an SVM classifier to predict whether a country's HDI is ``high'' or ``low'' based on the responses of their citizens to the World Values Survey. \textbf{Use the code provided to train and cross-validate an SVM classifier using a linear kernel. What is the accuracy of the classifier?}
+\BeginSolution
+%3t
+
+\EndSolution
+\item We are going to modify the classifier from (\ref{svmintro}). \textbf{Add a PCA step and Scaling step to the SVM pipeline. Your hyper-parameter search should now be over all possible dimensions for the PCA reduction. Does the accuracy improve?}
+\BeginSolution
+%3u
+
+\EndSolution
+\item Change the kernel in \ref{svmintro} from linear to ``radial basis function'' (rbf). For this part, do not use PCA or Scaling. \textbf{What is the accuracy?}
+\BeginSolution
+%3v
+
+\EndSolution
+\item Now we are going to use $k$ Nearest Neighbors for the same task. That is, we would like to predict whether a country's HDI is ``high'' or ``low'' based on the responses of their citizens to the World Values Survey. \textbf{Train and cross-validate a $k$ Nearest Neighbors classifier using distance weighting. What is its accuracy? Does scaling help?}
+\BeginSolution
+%3w
+
+\EndSolution
+\item (Bonus): Towards the end of the week, we will post the ``Berkeley's S2018 Values Survey.'' \textbf{If this course were an independent country, what do you predict its HDI would be?}
+\BeginSolution
+%3x
+
+\EndSolution
+\item (Bonus): \textbf{Describe how you would use kNN to revisit the sensor location problem from previous homework. How well do you think it will work?}
+\BeginSolution
+%3y
+
+\EndSolution
+\item (Bonus): \textbf{What did you learn from this problem? Do you have any useful feedback for the problem author?}
+\BeginSolution
+%3z
+
+\EndSolution
+\end{enumerate}
+%%%% Problem 3 Ends Here %%%%
+\clearpage
+
+%%%% Problem 4 Starts Here %%%%
+\vspace{-2mm}\noindent\begin{mybox}{\begin{center}\textbf{\color{black}Problem 4: Stability: A Unified Approach to Generalization for Classification and Regression}\end{center}}\end{mybox}\vspace{-2mm}
+\vspace{10pt}
+\noindent In this problem, we will study how well machine learning algorithms can generalize from the dataset they have been trained on (the training set) to an unseen dataset (the test set). Assume all data is generated from some distribution $\mathcal D$ and we sample a training set $S\sim \mathcal D^n$ where $\mathcal D^n$ is the distribution of $n$ datapoints drawn i.i.d{.} from $\mathcal D$. In this problem we consider estimators of the form \begin{equation}\label{learning_algorithm} \w(S) = \arg\min_{\vec w} L_S(\vec w) + \lambda \lVert \vec w\rVert^2 \end{equation} where $L_S(\vec w)$ is the empirical loss function \begin{align*}  L_S(\vec w) = \frac 1 n \sum_{i=1}^n \ell(\vec w, z_i)\qquad\text{where $z_i = (\vec x_i, y_i)$}\end{align*} evaluated on the training data set $S = (z_1, z_2, \dots, z_n)$. We are interested in the loss \begin{equation}L_{\DD} (\vec w) = \E_{z\sim \DD} [\ell(\vec w, z)]\end{equation} on a yet unseen test dataset drawn from $\DD$.
+\lbreak
+We call an estimator \textbf{$\epsilon_n$-stable} if \begin{align*}  \E_{S\sim \DD^{n}, z'\sim \DD, i\sim U(n)} [\ell(\w(S^{(i)}(z')), z_i) - \ell(\w(S), z_i)] \leq \epsilon_n\end{align*}where $S = (z_1, z_2, \dots, z_n)$ and $S^{(i)}(z') = (z_1, z_2, \dots, z_{i-1}, z', z_{i+1}, \dots, z_n)$ and $U(n)$ is the uniform distribution on $\{1, \dots, n\}$.
+\lbreak
+We will show that if an estimator is \textbf{$\epsilon_n$-stable}, then the test error is close to the training error in expectation, namely \begin{equation}\label{test_error_bound}\E_{S\sim \DD^n}[L_\DD(\w(S))] \leq \E_{S\sim \DD^n}[L_S(\w(S))] + \epsilon_n\end{equation} In the first part of the problem, we will establish this result and in the second part, we will apply it to show the generalization properties of ridge regression and soft margin SVMs.
+\begin{enumerate}
+\item We first link stability to generalization via the fundamental property  \begin{equation}    \label{eq:fundaprop}\E_{S\sim \DD^n} [L_\DD(\w(S)) - L_S(\w(S))] =\E_{S \sim \DD^{n}, i\sim U(n), z'\in \DD} [\ell(\w(S^{(i)}(z'), z_i) - \ell(\w(S), z_i)]\end{equation} where $S = (z_1, \dots, z_n)$ be an iid sequence of samples and $z'$ be another iid sample and $U(n)$ be the uniform distribution over $\{1, 2, \dots, n\}$. \textbf{Show equation \eqref{eq:fundaprop} and conclude that \eqref{test_error_bound} holds if $A$ is $\epsilon$-stable}.
+\lbreak
+Conceptual hint: When computing the expectation over both training points and a test point, switching any one training point and the test point gives the same result.
+\lbreak
+Technical hint: Use that $\frac{1}{n}\sum_{i=1}^n f(z_i) = \E_{i\sim U(n)} f(z_i)$.
+\BeginSolution
+%4a
+
+\EndSolution
+\item As a simple example, let's walk through the steps of the proof in the simple example where  we estimate the mean  \begin{equation}    \mu(S) = \frac 1 n \sum_{i=1}^n x_i  \end{equation}  of a dataset $S = (x_1, x_2, \dots, x_n)$ with scalars $x_1, \dots, x_n\in \R$.  The loss function in this case is  \begin{equation*}    \ell(\mu, x_i) = \frac 1 2 (\mu - x_i)^2  \end{equation*}  and the regularization parameter is $\lambda = 0$.  \textbf{First, show that}  \begin{equation*}    \ell(\mu(S^{(i)}(z')), x_i) - \ell(\mu(S), x_i) \leq \frac{C \cdot B\cdot \max_i |x_i|}{n}  \end{equation*}  where $|\mu(S)|, |\mu(S^{(i)}(z'))| \leq B$ and $C$ is some numerical constant.  \textbf{Conclude that the generalization error is bounded by}  \begin{equation*}    \E_{S\sim \DD^n} [L_\DD(\mu(S)) - L_S(\mu(S))] \leq    \frac{C \cdot B\cdot \max_i |x_i|}{n}  \end{equation*}
+\BeginSolution
+%4b
+
+\EndSolution
+\item We now consider {\bf ridge regression}. The loss function is \eqref{learning_algorithm} with $\ell(\vec w, z) = \frac 1 2 (\vec w^\top \vec x_i - y_i)^2$. \textbf{First, show that $\ell(\vec w, z)$ is $\beta$-smooth, i. e.}\begin{align*}  \lVert \nabla \ell(\vec v, z) - \nabla \ell(\vec w, z)\lVert \leq  \beta \lVert \vec v - \vec w\rVert\end{align*}with $\beta = \max_i \norm{x_i}$.
+\BeginSolution
+%4c
+
+\EndSolution
+\item \textbf{Derive a generalization bound \eqref{test_error_bound} for ridge regression.}
+\lbreak
+You may use \emph{without proof} that for a $\beta$-smooth loss function, we have \begin{equation}\label{smooth_stability}\E[\ell(\w(S^{(i)}(z')), z_i) - \ell(\w(S), z_i)] \leq \frac{C\beta}{\lambda n} \end{equation} for some constant $C$.
+\BeginSolution
+%4d
+
+\EndSolution
+\item Show that if $\ell$ is $\rho$-Lipschitz in the first argument, i.e. \begin{equation} \ell(\vec w(S^{(i)}(z')), z_i) - \ell(\vec w(S), z_i) \leq \rho \lVert \vec w(S^{(i)}(z')) - \vec w(S) \rVert \end{equation} then the learning algorithm \eqref{learning_algorithm} is $\epsilon$-stable with \begin{align*}  \ell(\vec w(S^{(i)}(z')), z_i) - \ell(\vec w(S), z_i) \leq \frac{2\rho^2}{\lambda n}. \end{align*} Hint: First show \begin{equation}\label{lipschitz_hint}\lambda \lVert \vec w(S^{(i)}(z')) - \vec w(S)\rVert^2 \leq\frac{\ell(\vec w(S^{(i)}), z_i) - \ell(\vec w(S), z_i)}{n} +\frac{\ell(\vec w(S), z') - \ell(\vec w(S^{(i)}), z')}{n}. \end{equation}
+\BeginSolution
+%4e
+
+\EndSolution
+\item We now consider the {\bf soft margin SVMs}. The associated loss function is the hinge loss $\ell(\vec w, z_i) = \max(0, 1-y_i \vec w^\top \vec x_i)$. \textbf{First show that $\ell(\vec w, z_i)$ is $\rho$-Lipschitz with $\rho = \max_i\norm{x_i}$.}
+\BeginSolution
+%4f
+
+\EndSolution
+\item \textbf{Derive a generalization bound \eqref{test_error_bound} for soft margin SVMs.}
+\BeginSolution
+%4g
+
+\EndSolution
+\end{enumerate}
+%%%% Problem 4 Ends Here %%%%
+\clearpage
+
+%%%% Problem 5 Starts Here %%%%
+\vspace{-2mm}\noindent\begin{mybox}{\begin{center}\textbf{\color{black}Problem 5: Your Own Question}\end{center}}\end{mybox}\vspace{-2mm}
+\vspace{10pt}
+\noindent \textbf{Write your own question, and provide a thorough solution.}
+\vspace{3pt}
+
+\noindent Writing your own problems is a very important way to really learn the material. The famous ``Bloom's Taxonomy'' that lists the levels of learning is: Remember, Understand, Apply, Analyze, Evaluate, and Create. Using what you know to create is the top-level. We rarely ask you any HW questions about the lowest level of straight-up remembering, expecting you to be able to do that yourself. (e.g. make yourself flashcards) But we don't want the same to be true about the highest level.
+\vspace{3pt}
+
+\noindent As a practical matter, having some practice at trying to create problems helps you study for exams much better than simply counting on solving existing practice problems. This is because thinking about how to create an interesting problem forces you to really look at the material from the perspective of those who are going to create the exams. 
+\vspace{3pt}
+
+\noindent Besides, this is fun. If you want to make a boring problem, go ahead. That is your prerogative. But it is more fun to really engage with the material, discover something interesting, and then come up with a problem that walks others down a journey that lets them share your discovery. You don't have to achieve this every week. But unless you try every week, it probably won't happen ever. 
+\BeginSolution
+%5
+
+\EndSolution
+%%%% Problem 5 Ends Here %%%%
+\clearpage
+
+%%%% Code Appendix Starts Here %%%%
+\vspace{-2mm}\noindent\begin{mybox}{\begin{center}\textbf{\color{black}Code Appendix}\end{center}}\end{mybox}\vspace{-2mm}
+%%%% Code Appendix Ends Here %%%%
+
+\end{document}
+%%%%% Template Ends Here %%%%%
