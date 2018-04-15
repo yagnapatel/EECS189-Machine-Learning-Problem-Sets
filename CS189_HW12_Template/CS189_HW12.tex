@@ -1,0 +1,352 @@
+%%%%% Don't Make Changes Below Here %%%%%
+\documentclass{article}\usepackage[utf8]{inputenc}\usepackage[margin=0.4cm,top=0.4cm,bottom=0.4cm]{geometry}\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}\usepackage{bm, multicol}\usepackage{calligra}\usepackage{tikz, listings}\usepackage{hyperref}\usetikzlibrary{matrix,fit,chains,calc,scopes}\usepackage{tcolorbox}\tcbuselibrary{skins}\tcbset{Baystyle/.style={sharp corners,enhanced,boxrule=6pt,colframe=orange,height=\textheight,width=\textwidth,borderline={8pt}{-11pt}{},}}\usepackage{amsmath,amssymb,amsthm,tikz,tkz-graph,color,chngpage,soul,hyperref,csquotes,graphicx,floatrow}\newcommand*{\QEDB}{\hfill\ensuremath{\square}}\newtheorem*{prop}{Proposition}\renewcommand{\theenumi}{\alph{enumi}}\usepackage[shortlabels]{enumitem}\usetikzlibrary{matrix,calc}\MakeOuterQuote{"}\newtheorem{theorem}{Theorem} \usetikzlibrary{shapes} \usepackage{lipsum}\usepackage{tabularx,ragged2e,booktabs,caption}\tcbuselibrary{breakable}\newenvironment{yframed}{\begin{tcolorbox}[breakable,colback=gray!3,title after break={\textit{\color{red}Solution (cont.)}},colbacktitle=gray!3, coltitle=black,titlerule=-1pt] }{\end{tcolorbox}}\newtcolorbox{mybox}{colback=black!15!white, colframe=white,arc=12pt}\newtcolorbox{myboxot}{colback=green!15!white, colframe=white,arc=12pt,width=110pt, height=27pt}\newtcbox{\mylib}{enhanced,boxrule=0pt,top=0mm,bottom=0mm,right=0mm,left=4mm,arc=4pt,boxsep=9pt,before upper={\vphantom{dlg}},colframe=green!50!black,coltext=green!25!black,colback=green!10!white,overlay={\begin{tcbclipinterior}\fill[green!75!blue!50!white] (frame.south west)rectangle node[text=white,font=\sffamily\bfseries\tiny,rotate=90] {Problem} ([xshift=4mm]frame.north west);\end{tcbclipinterior}}}\newtcbox{\mylibot}{enhanced,boxrule=0pt,top=0mm,bottom=0mm,right=0mm,arc=4pt,boxsep=9pt,before upper={\vphantom{dlg}},colframe=green!50!black,coltext=green!25!black,colback=green!10!white,overlay={\begin{tcbclipinterior}\fill[red!75!blue!50!white] (frame.south west)rectangle node[text=white,font=\sffamily\bfseries\tiny,rotate=90] {Other} ([xshift=4mm]frame.north west);\end{tcbclipinterior}}}
+\def\Title{\begin{tcolorbox}[Baystyle,]{\begin{center}\vspace*{0.14\textheight}
+{\rule{\textwidth}{1.6pt}\vspace*{-\baselineskip}\vspace*{2pt}}
+\rule{\textwidth}{0.4pt}\\[0.2\baselineskip]{\fontsize{45}{45}\scshape CS 189: Introduction to Machine Learning \\[0.2\baselineskip] \calligra Spring 2018 \\[0.2\baselineskip]}
+{\rule{\textwidth}{0.4pt}\vspace*{-\baselineskip}\vspace{3.2pt}}
+\rule{\textwidth}{1.6pt}\\[\baselineskip]\vspace{0.05\textheight}{{\fontsize{45}{45}\scshape$\bullet$\\ {Homework 12}\\\vspace*{0.01\textheight} }{{\fontsize{18}{18}\scshape{Due on Friday, April 20th, 2018 at 10pm\\}}}\fontsize{45}{45}\scshape$\bullet$  \\}\vspace*{0.1\textheight}{\fontsize{12}{12}\calligra Solutions by\\}{\fontsize{28}{28}\scshape \Name \\}\vspace*{0.01\textheight}{\fontsize{12}{12}\scshape \SID} \\\vspace*{0.05\textheight}{\fontsize{12}{12}\calligra In collaboration with\\}\vspace*{0.01\textheight}{\fontsize{12}{12}\scshape \Collabs} \\\vspace*{0.05\textheight}\end{center}}\end{tcolorbox}\newgeometry{margin=0.75in}}\def\BeginSolution{\begin{yframed}\textbf{\color{red}Solution }}\def\EndSolution{\end{yframed}}\usepackage{algorithm}\usepackage[noend]{algpseudocode}\makeatletter\def\BState{\State\hskip-\ALG@thistlm}\makeatother\def\star{\bigstar}\usetikzlibrary{arrows}\usepackage[mathscr]{euscript}\usepackage[T1]{fontenc}\DeclareSymbolFont{rsfs}{U}{rsfs}{m}{n}\DeclareSymbolFontAlphabet{\mathscrsfs}{rsfs}\newcommand\tab[1][1cm]{\hspace*{#1}}\hypersetup{colorlinks=true,urlcolor=blue}\newtheorem{lemma}[theorem]{Lemma}\newcommand{\norm}[1]{\left\lVert#1\right\rVert}\def\vec{\mathbf}\def\y{\mathbf{y}}\def\X{\mathbf{X}}\def\R{\mathbb{R}}\def\x{\mathbf{x}}\def\w{\mathbf{w}}\def\T{^\top}\def\r{\mathbf{r}}\def\mat{\mathbf}\def\I{\mathbf{I}}\def\A{\mathbf{A}}\newcommand{\num}{n}\newcommand{\dims}{d}\def\real{\mathbb{R}}\def\ev{\mathbb{E}}\newcommand{\whatridge}{\widehat{w}_\lambda}\def\calN{\mathcal{N}}\newcommand{\hatwPCA}{\vec{\widehat{w}}_\text{{PCA}}}\newcommand{\hatyPCA}{\vec{\widehat{y}}_{\text{PCA}}}\newcommand{\hatwOLS}{\vec{\widehat{w}}_{\text{OLS}}}\newcommand{\hatwridge}{\vec{\widehat{w}}_{\text{ridge}}}\newcommand{\tildewridge}{\vec{\tilde{w}}_{\text{ridge}}}\newcommand{\hatyridge}{\vec{\hat{y}}_{\text{ridge}}}\def\diag{\operatorname{diag}}\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[circle,fill=white!20,draw,inner sep=1pt,opacity=1,text opacity=0] (char) {#1};}}\newcommand\citem{\item[\circled{\Alph{enumi}}]}\def\leq{\leqslant}\def\geq{\geqslant}\def\hat{\widehat}\def\z{\vec{z}}
+\def\lbreak{\vspace{4pt}
+
+\noindent }
+\newcommand{\lag}{\mathcal{L}}\newcommand{\blam}{\mathbb{\lambda}}\newcommand{\bnu}{\mathbb{\nu}}\newcommand{\balpha}{\mathbb{\alpha}}
+\newcommand{\DD}{\mathcal{D}}\newcommand{\E}{\mathbb{E}}\def\w{\vec{w}}\def\y{\vec{y}}
+%%%%% Don't Make Changes Above Here %%%%%
+
+%%%%% Template Begins Here %%%%%
+
+\def\Name{Firstname Lastname}  % Your name
+\def\SID{StudentID}  % Your student ID number
+\def\Collabs{None} % Your collaborators here with a comma between each person's name. Write None if no collaborators. Don't leave blank.
+
+
+\pagestyle{empty}
+\begin{document}
+\Title
+\clearpage
+
+%%%% Problem 1 Starts Here %%%%
+\vspace{-2mm}\noindent\begin{mybox}{\begin{center}\textbf{\color{black}Problem 1: Getting Started}\end{center}}\end{mybox}\vspace{-2mm}
+\vspace{10pt}
+\noindent \textbf{Read through this page carefully.} You may typeset your homework in latex or submit neatly handwritten/scanned solutions. Please start each question on a new page. Deliverables:
+\begin{enumerate}[1.]
+\item Submit a PDF of your writeup, \textbf{with an appendix for your code}, to assignment on Gradescope, ``HW11 Write-Up''. If there are graphs, include those graphs in the correct sections. Do not simply reference your appendix.
+\item If there is code, submit all code needed to reproduce your results, ``HW11 Code''.
+\item If there is a test set, submit your test set evaluation results, ``HW11 Test Set''.
+\end{enumerate}
+After you've submitted your homework, watch out for the self-grade form.
+\begin{enumerate}
+\item Who else did you you work with on this homework? In case of course events, just describe the group. How did you work on this homework? Any comments about the homework?
+\BeginSolution
+%1a
+
+\EndSolution
+\item Please copy the following statement and sign next to it. We just want to make it \textit{extra} clear so that no one inadvertently cheats.
+
+\textit{I certify that all solutions are entirely in my words and that I have not looked at another student's solutions. I have credited all external sources in this write up.}
+\BeginSolution
+%1b
+
+\EndSolution
+\end{enumerate}
+%%%% Problem 1 Ends Here %%%%
+\clearpage
+
+%%%% Problem 2 Starts Here %%%%
+\vspace{-2mm}\noindent\begin{mybox}{\begin{center}\textbf{\color{black}Problem 2: $\ell_1$-Regularized Linear Regression}\end{center}}\end{mybox}\vspace{-2mm}
+\vspace{10pt}
+\noindent The $\ell_1$-norm is one of the popular regularizers used to enhance the robustness of regression models. Regression with an $\ell_1$-penalty is referred to as the Lasso regression. It promotes sparsity in the resulting solution. In this problem, we will explore the optimization objective of the Lasso.
+\lbreak
+Assume the training data points are denoted as the rows of a $n\times d$ matrix $\X$ and their corresponding output value as an $n\times 1$ vector $\y$. The parameter vector and its optimal value are represented by $d\times 1$ vectors $\w$ and $\w^*$, respectively. For the sake of simplicity, assume columns of data have been standardized to have mean $0$ and variance $1$, and are uncorrelated (i.e. $\X^\top\X=n\I$). (\emph{We center the data mean to zero, so that the lasso penalty treats all features similarly. We assume uncorrelated features in order to reasons about Lasso in the upcoming parts.})
+\lbreak
+For lasso regression, the optimal parameter vector is given by: $$\w^* = \arg\min_{\w} \{J_{\lambda}(\w) = \frac{1}{2} \|\y- \X\w\|_2^2 +\lambda \|\w\|_1\},$$ where $\lambda >0$.
+\begin{enumerate}
+\item {\bf Show that for data with uncorrelated features, one can learn the parameter $w_i$ corresponding to each $i$-th feature independently from the other features, one at a time, and get a solution which is equivalent to having learned them all jointly as we normally do.} To show this, write $J_{\lambda}(\w)$ in the following form for appropriate functions $g$ and $f$: \[J_{\lambda}(\w) = g(\y) + \sum_{i=1}^d f(\X_i,\y,w_i,\lambda)\] where $\X_i$ is the $i$-th column of $\X$.
+\BeginSolution
+%2a
+
+\EndSolution
+\item Assume that $w_i^* >0$. {\bf What is the value of $w_i^*$ in this case?}
+\BeginSolution
+%2b
+
+\EndSolution
+\item Assume that $w_i^* <0$. {\bf What is the value of $w_i^*$ in this case?}
+\BeginSolution
+%2c
+
+\EndSolution
+\item From the previous two parts, {\bf what is the condition for $w_i^*$ to be zero?}
+\BeginSolution
+%2d
+
+\EndSolution
+\item Now consider the ridge regression problem where the regularization term is replaced by $\lambda\|\w\|_2^2$ where the optimal parameter vector is now given by: \[\w^* = \arg\min_{\w} \{J_{\lambda}(\w) = \frac{1}{2} \|{\y}- \X\w\|_2^2 +\lambda \|\w\|^2_2\},\] where $\lambda >0$.
+\lbreak
+{\bf What is the condition for $w_i^*=0$? How does it differ from the condition you obtained in the previous part?} Can you see why the $\ell_1$ norm promotes sparsity?
+\BeginSolution
+%2e
+
+\EndSolution
+\item Assume that we have a sparse image vectorized in the vector $\w$ (so $\w$ is a sparse vector). We have a gaussian matrix $n \times d$ matrix $\X$ and an $n \times 1$ noise vector $\z$ where $n>1$. Our measurements take the form $\y = \X\w + \z$. We want to extract the original image $\w$ given matrix $\X$ knowing that this image is sparse. The fact that $\w$ is sparse suggests using $\ell_1$ regularization. Use the provided iPython notebook and apply $\ell_1$ regularization. {\bf Change the hyperparameter $\lambda$ to extract the best looking image and report it.}
+\BeginSolution
+%2f
+
+\EndSolution
+\end{enumerate}
+%%%% Problem 2 Ends Here %%%%
+\clearpage
+
+%%%% Problem 2 Starts Here %%%%
+\vspace{-2mm}\noindent\begin{mybox}{\begin{center}\textbf{\color{black}Problem 3: Variance of Sparse Linear Models Obtained by Thresholding}\end{center}}\end{mybox}\vspace{-2mm}
+\vspace{10pt}
+\noindent In this question, we will analyze the variance of sparse linear models. In particular, we will analyze two procedures that perform feature selection in linear models, and show quantitatively that feature selection lowers the variance of linear models. This should make sense to you at an intuitive level: enforcing sparsity is equivalent to deliberately constraining model complexity; think about where this puts you on the bias variance trade-off.
+\lbreak
+However note that there is a subtle difference between feature selection before training and after training. If we use less number of features to begin with, our results so far imply that we will have low variance because of smaller model complexity. What we learn from working through this problem is that selecting features adaptively (that is based on the training data) does not hurt either, if done in certain ways. In other words, although there is a difference between doing feature selection before or after using the data, post training feature selection still leads to variance reduction under certain assumptions.
+\lbreak
+First, some setup. Data from a sparse linear model is generated using \begin{align*}y = \X w^* + z,\end{align*} where $y \in \mathbb{R}^n$ denotes a vector of responses, $\X \in \mathbb{R}^{n \times d}$ is our data matrix, $w^* \in \mathbb{R}^d$ is an unknown, $s$-sparse vector (with at most $s$ non-zero entries), and $z \sim N(0, \sigma^2 I_n)$ is an $n$-dimensional vector of i.i.d. Gaussian noise of variance $\sigma^2$.
+\lbreak
+Before we begin analyzing this model, recall that we have already analyzed the performance of the simple least-squares estimator $\widehat{w}_{{\sf LS}} = (\X^\top \X)^{-1} \X^\top y$. In particular, we showed in (Problem 4)[HW 3] and the (Problem 4)[Practice Midterm] that \begin{align}\mathbb{E} \left[ \frac{1}{n} \| \X(\widehat{w}_{{\sf LS}} - w^*) \|_2^2 \right] = \sigma^2 \frac{d}{n}, \text{ and} \label{eq:pred} \\\mathbb{E} \left[ \| \widehat{w}_{{\sf LS}} - w^* \|_2^2 \right] = \sigma^2 \mathsf{trace} \left[(\X^\top \X)^{-1} \right], \label{eq:est}\end{align} respectively. Equations \eqref{eq:pred} and \eqref{eq:est} represent the "prediction" error (or variance) and the mean squared error of the parameters of our model, respectively. For algebraic convenience, \emph{we will assume in this problem that the matrix $\X$ has orthonormal columns}, and so the bounds become \begin{align}\mathbb{E} \left[ \frac{1}{n} \| \X(\widehat{w}_{{\sf LS}} - w^*) \|_2^2 \right] = \sigma^2 \frac{d}{n}, \text{ and} \label{eq:pred1} \\\mathbb{E} \left[ \| \widehat{w}_{{\sf LS}} - w^* \|_2^2 \right] = \sigma^2 d, \label{eq:est1}\end{align} In this problem, we will analyze two estimators that explicitly take into account the fact that $w^*$ is sparse, and consequently attain lower error than the vanilla least-squares estimate.
+\lbreak
+Let us define two operators. Given a vector $v \in \mathbb{R}^d$, the operation $\tau_k (v)$ zeroes out all but the top $k$ entries of $v$ measured in absolute value. The operator $T_{\lambda}(v)$, on the other hand, zeros out all entries that are less than $\lambda$ in absolute value.
+\lbreak
+Recall that the least squares estimate was given by $\widehat{w}_{{\sf LS}} = \X^{\dagger} y = \X^\top y$, where $\X^\dagger$ is the pseudo-inverse of $\X$ (it is equal to the transpose since $\X$ has orthonormal columns). We now define \begin{align*} \widehat{w}_{{\sf top}}(s) &= \tau_s(\widehat{w}_{{\sf LS}}) \\ \widehat{w}_T(\lambda) &= T_\lambda (\widehat{w}_{{\sf LS}}), \end{align*} which are the two sparsity-inducing estimators that we will consider.
+\lbreak
+The solution to first three parts of the problem can be filled out in the provided iPython notebook. Parts (d)-(j) must have a separate, written solution. All logarithms are to the base $e$.
+\begin{enumerate}
+\item Let us first do some numerical exploration. {\bf In the provided iPython notebook, you will find code to generate and plot the behavior of the least squares algorithm.}
+\BeginSolution
+%3a
+
+\EndSolution
+\item Now implement the two estimators described above and {\bf plot their performance as a function of $n$, $d$ and $s$.}
+\BeginSolution
+%3b
+
+\EndSolution
+\item {\bf Now generate data from a non-sparse linear model, and numerically compute the estimators for this data. Explain the behavior you are seeing in these plots in terms of the bias-variance trade-off.}
+\BeginSolution
+%3c
+
+\EndSolution
+\item In the rest of the problem, we will theoretically analyze the variance of the top-k procedure, and try to explain the curves above. We will need to use a handy tool, which is a bound on the maximum of Gaussian random variables.
+\lbreak
+{\bf Show that given $d$ Gaussians $\{Z_i\}_{i=1}^d$ (not necessarily independent) with mean $0$ and variance $\sigma^2$, we have} \begin{align*}\Pr \left\{ \max_{i \in \{1, 2, \ldots, d\}} |Z_i| \geq 2 \sigma \sqrt{\log d} \right\} \leq \frac{1}{d}.\end{align*} Hint 1: You may use without proof the fact that for a Gaussian random variable $Z \sim N(0, \sigma^2)$ and scalar $t > 0$, we have $\Pr\{|Z| \geq t\} \leq e^{- \frac{t^2}{2\sigma^2}}$.
+\lbreak
+Hint 2: For the maximum to be large, one of the Gaussians must be large. Now use the union bound.
+\BeginSolution
+%3d
+
+\EndSolution
+\item {\bf Show that $\widehat{w}_{{\sf top}}(s)$ returns the top $s$ entries of the vector $w^* + z'$ in absolute value, where $z'$ is i.i.d. Gaussian with variance $\sigma^2$.}
+\BeginSolution
+%3e
+
+\EndSolution
+\item {\bf Argue that the (random) error vector $e = \widehat{w}_{{\sf top}}(s) - w^*$ is always (at most) $2s$-sparse.}
+\BeginSolution
+%3f
+
+\EndSolution
+\item Let us now condition on the event $\mathcal{E} = \{\max |z_i'| \leq 2 \sigma \sqrt{\log d} \}$. Conditioned on this event, {\bf show that we have $|e_i| \leq 4 \sigma \sqrt{\log d}$ for each index $i$.}
+\BeginSolution
+%3g
+
+\EndSolution
+\item {\bf Conclude that with probability at least $1 - 1/d$, we have}
+\begin{align*}
+\| \widehat{w}_{{\sf top}}(s) - w^* \|_2^2 \leq 32 \sigma^2 s\log d.\end{align*} Compare this with equation \eqref{eq:est1} (assuming for the moment that the above quantity is actually an expectation, which we can also show but haven't). When is parameter estimation with the top-$s$ procedure better than the least squares estimator according to these calculations? Pay particular attention to the regime in which $s$ is constant (we have 10 features in our problem that we consider important, although we continue to collect tons of additional ones.) 
+\BeginSolution
+%3h
+
+\EndSolution
+\item Use the above part to {\bf show that with probability at least $1 - 1/d$, we have} \begin{align*}\frac{1}{n} \| \X (\widehat{w}_{{\sf top}}(s) - w^*) \|_2^2 \leq 32 \sigma^2 \frac{s \log d}{n},\end{align*} and conclude that we have smaller variance as long as $s \leq \frac{d}{32 \log d}$.
+\lbreak
+In conclusion, roughly speaking the sparse solution has a mean prediction error upper bound of $O(\sigma^2 \frac{s \log d}{n})$ with high probability. On the other hand, the least square solution has an expected mean prediction error of $\sigma^2 \frac{d}{n}$. Thus when $s \log d < c \times d$, the sparse solution has smaller error than the least square solution, where $c$ is some constant.
+\BeginSolution
+%3i
+
+\EndSolution
+\item {\bf Now consider the case if we already knew the important $s$ features to begin with. What would be the variance of the sparse OLS estimator using the $s$ important features? How does this variance compare to the variance bound for the sparse $\widehat{w}_{{\sf top}}(s)$ derived above?}
+\BeginSolution
+%3j
+
+\EndSolution
+\item {\bf BONUS: Derive the variance of the threshold estimator} $\widehat{w}_{T}(\lambda)$ with $\lambda = 2 \sigma \sqrt{\log d}$.
+\BeginSolution
+%3k
+
+\EndSolution
+\end{enumerate}
+%%%% Problem 3 Ends Here %%%%
+\clearpage
+
+%%%% Problem 4 Starts Here %%%%
+\vspace{-2mm}\noindent\begin{mybox}{\begin{center}\textbf{\color{black}Problem 4: Decision Trees and Random Forests}\end{center}}\end{mybox}\vspace{-2mm}
+\vspace{10pt}
+\noindent In this problem, you will implement decision trees and random forests for classification on two datasets: \begin{enumerate}\item Titanic Dataset: predict Titanic survivors\item Spam Dataset: predict if a message is spam\end{enumerate} In lectures, you were given a basic introduction to decision trees and how such trees are trained. You were also introduced to random forests. Feel free to research different decision tree techniques online.
+\lbreak
+\textbf{NOTE:} You should NOT use any software package for decision trees for Part~\ref{pt:treescratch}.
+\begin{enumerate}
+\item \label{pt:treescratch} \textbf{Implement the information gain and gini impurity splitting rules for a decision tree.}
+\lbreak
+See \texttt{decision\_tree\_starter.py} for the recommended starter code. The code sample is a simplified implementation, which combines decision tree and decision node functionalities and splits only on one feature at a time. \textbf{Include your code for information gain and gini impurity.}
+\lbreak
+\textbf{Note}: The sample implementation assumes that all features are continuous. You may convert all your features to be continuous or augment the implementation to handle discrete features.
+\BeginSolution
+%4a
+
+\EndSolution
+\item Before applying the decision tree to the Titanic dataset, described below, we will first preprocess the dataset. We provide the code to preprocess the data.  Describe how we deal with the following problems:\begin{itemize}\item Some data miss class labels;\item Some features are not numerical values;\item Some data miss features.\end{itemize} \paragraph{Data Processing for Titanic} Here is a brief overview of the fields in the Titanic dataset. \begin{enumerate}\item survived - 1 is survived; 0 is not. This is the class label.\item pclass - Measure of socioeconomic status: 1 is upper, 2 is middle, 3 is lower.\item sex - Male/Female\item age - Fractional if less than 1.\item sibsp - Number of siblings/spouses aboard the Titanic\item parch - Number of parents/children aboard the Titanic\item ticket - Ticket number\item fare - Fare.\item cabin - Cabin number.\item embarked - Port of Embarkation (C = Cherbourg, Q = Queenstown, S = Southampton)\end{enumerate}
+\BeginSolution
+%4b
+
+\EndSolution
+\item \textbf{Apply your decision tree to the titanic dataset.} \textbf{Train a shallow decision tree} (for example, a depth $3$ tree, although you may choose any depth that looks good) and \textbf{visualize your tree}. Include for each non-leaf node the feature name and the split rule, and include for leaf nodes the class your decision tree would assign.
+\lbreak
+We provide you a code snippet to draw the tree using \texttt{pydot} and \texttt{graphviz}.  If it is hard for you to install these dependencies, you need to draw the diagram by hand.
+\BeginSolution
+%4c
+
+\EndSolution
+\item From this point forward, you are allowed to use \texttt{sklearn.tree.*} and the classes we have imported for you below in the starter code snippets.
+You are NOT allowed to use other functions from \texttt{sklearn}. \textbf{Implement bagged trees as follows:} for each tree up to $n$, sample \textit{with replacement} from the original training set until you have as many samples as the training set. Fit a decision tree for each sampling. \textbf{Include your bagged trees code.} Below is optional starter code.
+\begin{verbatim}
+import numpy as np
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.base import BaseEstimator, ClassifierMixin
+
+
+class BaggedTrees(BaseEstimator, ClassifierMixin):
+
+    def __init__(self, params=None, n=200):
+        if params is None:
+            params = {}	
+        self.params = params
+        self.n = n
+        self.decision_trees = [
+            DecisionTreeClassifier(random_state=i, 
+                                   **self.params) for i in
+            range(self.n)]
+
+    def fit(self, X, y):
+        # TODO implement function
+        pass
+
+    def predict(self, X):
+        # TODO implement function
+        pass
+\end{verbatim}
+\BeginSolution
+%4d
+
+\EndSolution
+\item \textbf{Apply bagged trees to the titanic and spam datasets.} \textbf{Find and state the most common splits made at the root node of the trees.} For example: \begin{enumerate}\item ("viagra") $\geq$ 3 (20 trees)\item ("thanks") $<$ 4 (15 trees)\item ("nigeria") $\geq$ 1 (5 trees)\end{enumerate}\paragraph{Data format for Spam} The preprocessed spam dataset given to you as part of the homework in \texttt{spam\_data.mat} consists of 11,029 email messages, from which 32 features have been extracted as follows: \begin{itemize}\item 25 features giving the frequency (count) of words in a given message which match the following words: pain, private, bank, money, drug, spam, prescription, creative, height, featured, differ, width, other, energy, business, message, volumes, revision, path, meter, memo, planning, pleased, record, out.\item 7 features giving the frequency (count) of characters in the email that match the following characters: \texttt{;, \$, \#, !, (, [, \&}.\end{itemize} The dataset consists of a training set size 5172 and a test set of size 5857.
+\BeginSolution
+%4e
+
+\EndSolution
+\item \textbf{Implement random forests as follows:} again, for each tree in the forest, sample \textit{with replacement} from the original training set until you have as many samples as the training set. Fit a decision tree for each sample, this time using a randomly sampled subset of the features (instead of the full set of features) to find the best split on the data. Let \texttt{m} denote the number of features to subsample. \textbf{Include your random forests code.} Below is optional starter code.
+\begin{verbatim}
+class RandomForest(BaggedTrees):
+
+    def __init__(self, params=None, n=200, m=1):
+        if params is None:
+            params = {}
+        # TODO implement function
+        pass
+\end{verbatim}
+\BeginSolution
+%4f
+
+\EndSolution
+\item \textbf{Apply bagged random forests to the titanic and spam datasets.} \textbf{Find and state the most common splits made at the root node of the trees.}
+\BeginSolution
+%4g
+
+\EndSolution
+\item Implement the AdaBoost random forests as follows: this time, we will collect one sampling at a time and we will change the weights on the data after each new tree is fit to generate more trees that tackle some of the more challenging data. Let $w \in \mathbb{R}^N$ denote the probability vector for each datum (initially, uniform), where $N$ denotes the number of data points. To start off, as before, sample \textit{with replacement} from the original training set accordingly to $w$ until you have as many samples as the training set. Fit a decision tree for this sample, again using a randomly sampled subset of the features. Compute the weight for tree $j$ based on its accuracy: \begin{align*}a_j = \frac{1}{2} \log \frac{1-e_j}{e_j}\end{align*} where $e_j$ is the weighted error: \begin{align*} e_j = \frac{\sum_{i=1}^N{I_j(x_i) w_i}}{\sum_{i=1}^N{w_i}}\end{align*} and $I_j(x_i)$ is an indicator for datum $i$ being \textit{incorrect}.
+\lbreak
+Then update the weights as follows: \begin{align*}w_i^+ = \begin{cases} w_i \exp(a_j)  & \quad if I_j(x_i) = 1 \\w_i \exp(-a_j) & \quad \text{otherwise}\end{cases}\end{align*}Repeat until you have $M$ trees.
+\lbreak
+Predict by first calculating the score $z(x, c)$ for a data sample $x$ and class label $c$: \begin{align*}z(x, c) = \sum_{j=1}^M a_j I_{j}(x, c).\end{align*} where $I_j(x,c)$ is now an indicator variable for if tree $j$ predicts data $x$ with class label $c$. Then, the class with the highest weight is the prediction (classification result): \begin{align*}\hat{y} = \arg \max_c z(x, c)\end{align*}
+\textbf{Include your boosted random forests code.} Below is optional starter code. How are the trees being weighted? \textbf{Describe qualitatively what this algorithm is doing. What does it mean when $a_i < 0$, and how does the algorithm handle such trees?} 
+\begin{verbatim}
+class BoostedRandomForest(RandomForest):
+
+    def fit(self, X, y):
+        self.w = np.ones(X.shape[0]) / X.shape[0]  # Weights on data
+        self.a = np.zeros(self.n)  # Weights on decision trees
+        # TODO implement function
+        return self
+
+    def predict(self, X):
+        # TODO implement function
+        pass
+\end{verbatim} 
+\BeginSolution
+%4h
+
+\EndSolution
+\item \textbf{Apply boosted random forests to the titanic and spam datasets. For the spam dataset only: Describe what kind of data are the most challenging to classify and which are the easiest. Give a few examples. Describe your procedure for determining which data are easy or hard to classify.}
+\BeginSolution
+%4i
+
+\EndSolution
+\item \textbf{Summarize the performance evaluation of each of the above trees and forests: a single decision tree, bagged trees, random forests, and boosted random forests}. For each of the $2$ datasets, report your training and validation accuracies. You should be reporting $24$ numbers ($2$ datasets $\times$ $4$ classifiers $\times$ $3$ data splits). Describe qualitatively which types of trees and forests performed best. Detail any parameters that worked well for you. \textbf{In addition, for each of the $2$ datasets, train your best model and submit your predictions to Gradescope}. Your best Titanic classifier should exceed 73\
+\BeginSolution
+%4j
+
+\EndSolution
+\item You should submit \begin{itemize}\item a PDF write-up containing your \textit{answers, plots, and code} to Gradescope;\item a .zip file of your \textit{code}.\item a file, named \texttt{submission.txt}, of your titantic predictions (one per line).\item a file, named \texttt{submission.txt}, of your spam predictions (one per line).\end{itemize}
+\BeginSolution
+%4k
+
+\EndSolution
+\end{enumerate}
+%%%% Problem 4 Ends Here %%%%
+\clearpage
+
+%%%% Problem 5 Starts Here %%%%
+\vspace{-2mm}\noindent\begin{mybox}{\begin{center}\textbf{\color{black}Problem 5: Your Own Question}\end{center}}\end{mybox}\vspace{-2mm}
+\vspace{10pt}
+\noindent \textbf{Write your own question, and provide a thorough solution.}
+\vspace{3pt}
+
+\noindent Writing your own problems is a very important way to really learn the material. The famous ``Bloom's Taxonomy'' that lists the levels of learning is: Remember, Understand, Apply, Analyze, Evaluate, and Create. Using what you know to create is the top-level. We rarely ask you any HW questions about the lowest level of straight-up remembering, expecting you to be able to do that yourself. (e.g. make yourself flashcards) But we don't want the same to be true about the highest level.
+\vspace{3pt}
+
+\noindent As a practical matter, having some practice at trying to create problems helps you study for exams much better than simply counting on solving existing practice problems. This is because thinking about how to create an interesting problem forces you to really look at the material from the perspective of those who are going to create the exams. 
+\vspace{3pt}
+
+\noindent Besides, this is fun. If you want to make a boring problem, go ahead. That is your prerogative. But it is more fun to really engage with the material, discover something interesting, and then come up with a problem that walks others down a journey that lets them share your discovery. You don't have to achieve this every week. But unless you try every week, it probably won't happen ever. 
+\BeginSolution
+%5
+
+\EndSolution
+%%%% Problem 5 Ends Here %%%%
+\clearpage
+
+%%%% Code Appendix Starts Here %%%%
+\vspace{-2mm}\noindent\begin{mybox}{\begin{center}\textbf{\color{black}Code Appendix}\end{center}}\end{mybox}\vspace{-2mm}
+\begin{itemize}
+\item \texttt{decision\_tree\_starter/decision\_tree\_starter.py}
+\BeginSolution
+% Paste Code Between Verbatim
+% decision_tree_starter/decision_tree_starter.py
+\begin{verbatim}
+
+\end{verbatim}
+\EndSolution
+\item \texttt{variance\_sparse\_linear\_regression/Sparse Linear Regression.ipynb}
+\BeginSolution
+% Paste Code Between Verbatim
+% variance_sparse_linear_regression/Sparse Linear Regression.ipynb
+\begin{verbatim}
+
+\end{verbatim}
+\EndSolution
+\end{itemize}
+%%%% Code Appendix Ends Here %%%%
+
+\end{document}
+%%%%% Template Ends Here %%%%%
